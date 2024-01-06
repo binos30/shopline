@@ -1,0 +1,17 @@
+# See https://git-scm.com/docs/gitattributes for more about git attribute files.
+
+# Mark the database schema as having been generated.
+db/schema.rb linguist-generated
+
+# Mark any vendored files as having been vendored.
+vendor/* linguist-vendored
+config/credentials/*.yml.enc diff=rails_credentials
+config/credentials.yml.enc diff=rails_credentials
+
+# Mark the yarn lockfile as having been generated.
+yarn.lock linguist-generated
+
+# Identify the release and plugin bundles as binary content.
+# This way Git won't bother showing massive diffs when each time you subsequently add or update them
+/.yarn/releases/** binary
+/.yarn/plugins/** binary
