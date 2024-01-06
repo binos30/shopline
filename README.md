@@ -1,24 +1,31 @@
-# README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prerequisites
 
-Things you may want to cover:
+- [Ruby 3.3.0](https://www.ruby-lang.org/en/downloads/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Node.js 20.10.0](https://nodejs.org/en/blog/release/v20.10.0)
 
-* Ruby version
+Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials
 
-* System dependencies
+Install dependencies
 
-* Configuration
+```
+yarn install
+```
 
-* Database creation
+```
+bundle i
+```
 
-* Database initialization
+Setup database
 
-* How to run the test suite
+```
+bin/rails db:setup
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+Start local web server
 
-* Deployment instructions
-
-* ...
+```
+bin/dev
+```
