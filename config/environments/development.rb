@@ -2,6 +2,13 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  config.after_initialize do
+    Bullet.add_footer = true
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.enable = true
+    Bullet.rails_logger = true
+  end
 
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development

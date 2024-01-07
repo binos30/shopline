@@ -79,4 +79,7 @@ group :development do
   gem "syntax_tree"
   gem "syntax_tree-haml"
   gem "syntax_tree-rbs"
+
+  # Optimize queries
+  gem "bullet"
 end
