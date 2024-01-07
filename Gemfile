@@ -75,6 +75,7 @@ group :development do
   gem "rubocop"
   gem "rubocop-performance"
   gem "rubocop-rails"
+  gem "slim_lint"
   gem "syntax_tree"
   gem "syntax_tree-haml"
   gem "syntax_tree-rbs"
