@@ -11,11 +11,21 @@
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^4.0.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
     "prettier": "^3.1.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "{app,lib,test}/**/*.rb": [
+      "./node_modules/.bin/prettier --plugin=@prettier/plugin-ruby --write",
+      "bundle exec rubocop -a"
+    ],
+    "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },
   "packageManager": "yarn@4.0.2"
 }
