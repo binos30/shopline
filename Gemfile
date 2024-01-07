@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby "3.3.0"
@@ -67,4 +69,13 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+  # Code Formatting & Linting
+  gem "prettier_print"
+  gem "rubocop"
+  gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "syntax_tree"
+  gem "syntax_tree-haml"
+  gem "syntax_tree-rbs"
 end

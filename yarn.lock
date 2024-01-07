@@ -309,6 +309,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@prettier/plugin-ruby@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "@prettier/plugin-ruby@npm:4.0.4"
+  peerDependencies:
+    prettier: ^3.0.0
+  checksum: 7567d7f87fe807f7a90fb4eba7a91d25a1843e19de09289412ba0420e25fadea9840085b495c54212249bb418fcd146d53b105c0e4e57990c5235326bd7c6b01
+  languageName: node
+  linkType: hard
+
 "@rails/actioncable@npm:^7.0":
   version: 7.1.2
   resolution: "@rails/actioncable@npm:7.1.2"
@@ -1447,6 +1456,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prettier@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
+  bin:
+    prettier: bin/prettier.cjs
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
+  languageName: node
+  linkType: hard
+
 "proc-log@npm:^3.0.0":
   version: 3.0.0
   resolution: "proc-log@npm:3.0.0"
@@ -1578,9 +1596,11 @@ __metadata:
   dependencies:
     "@hotwired/stimulus": "npm:^3.2.2"
     "@hotwired/turbo-rails": "npm:^8.0.0-beta.2"
+    "@prettier/plugin-ruby": "npm:^4.0.4"
     autoprefixer: "npm:^10.4.16"
     esbuild: "npm:^0.19.11"
     postcss: "npm:^8.4.33"
+    prettier: "npm:^3.1.1"
     tailwindcss: "npm:^3.4.1"
   languageName: unknown
   linkType: soft
