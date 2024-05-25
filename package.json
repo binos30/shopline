@@ -2,8 +2,9 @@
   "name": "shopline",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.1",
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.0-beta.2",
+    "@hotwired/turbo-rails": "^8.0.3",
     "autoprefixer": "^10.4.16",
     "esbuild": "^0.19.11",
     "postcss": "^8.4.33",
@@ -21,10 +22,11 @@
     "prepare": "husky install"
   },
   "lint-staged": {
-    "{app,lib,test}/**/*.rb": [
+    "{app,lib,spec,test}/**/*.rb": [
       "./node_modules/.bin/prettier --plugin=@prettier/plugin-ruby --write",
-      "bundle exec rubocop -a"
+      "./bin/bundle exec rubocop -a"
     ],
+    "spec/**/*_spec.rb": "rspec",
     "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },
   "packageManager": "yarn@4.0.2"
