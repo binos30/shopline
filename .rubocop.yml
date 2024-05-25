@@ -3,6 +3,7 @@
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 inherit_from:
   - node_modules/@prettier/plugin-ruby/rubocop.yml
@@ -110,3 +111,11 @@ Rails/ActionOrder:
 
 Bundler/OrderedGems:
   Enabled: false
+
+# RSpec Cops
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 3

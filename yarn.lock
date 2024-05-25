@@ -173,6 +173,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fortawesome/fontawesome-free@npm:^6.5.1":
+  version: 6.5.1
+  resolution: "@fortawesome/fontawesome-free@npm:6.5.1"
+  checksum: dc359ede1ddfc6d91915345143008420001c56b164a6fe95d81bcca631eecca41009bfacf794d55bdb9d927c112119ce90a11cb4f576a815ed69ec681e5eb824
+  languageName: node
+  linkType: hard
+
 "@hotwired/stimulus@npm:^3.2.2":
   version: 3.2.2
   resolution: "@hotwired/stimulus@npm:3.2.2"
@@ -180,20 +187,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^8.0.0-beta.2":
-  version: 8.0.0-beta.2
-  resolution: "@hotwired/turbo-rails@npm:8.0.0-beta.2"
+"@hotwired/turbo-rails@npm:^8.0.3":
+  version: 8.0.4
+  resolution: "@hotwired/turbo-rails@npm:8.0.4"
   dependencies:
-    "@hotwired/turbo": "npm:^8.0.0-beta.2"
+    "@hotwired/turbo": "npm:^8.0.4"
     "@rails/actioncable": "npm:^7.0"
-  checksum: 110118bbb23826432e14909618a818bd18eeb5b927ff3cc4aeda24ea9284c463d554f0889d92d51630c6bd33b1c9a81451db53277a2bbd02efc2f432635012c6
+  checksum: c35fdcc79876f3ceaed7100f2e6965bcf9aa647309dce7a6ed685e880ffc1ac475299e00538ecc926addfa4023704c9bd1ea37e70fbef3a77697f7f01d4e344f
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^8.0.0-beta.2":
-  version: 8.0.0-beta.2
-  resolution: "@hotwired/turbo@npm:8.0.0-beta.2"
-  checksum: b2ec4b41cdb6e168f0ae552752f4bd137535dd10e5483e6ca95fb767c7df9a99c1459cbbddc8c33510acf325dcbb09637c21b2d7937129ee6afeda4fb05b602c
+"@hotwired/turbo@npm:^8.0.4":
+  version: 8.0.4
+  resolution: "@hotwired/turbo@npm:8.0.4"
+  checksum: 3e7174d550adf3b9a0a4c45ff5d1b71d47c20de6ae01f646fbbaf8ed447677bd1a5fb6dbd46e95b14645a663fe58a6187c1c6d2a688b0981b5cf437379c5e00a
   languageName: node
   linkType: hard
 
@@ -506,9 +513,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001538, caniuse-lite@npm:^1.0.30001565":
-  version: 1.0.30001574
-  resolution: "caniuse-lite@npm:1.0.30001574"
-  checksum: 27a01d086f5a7300862ea054a9f8b8e155f2cfb83c8223723be0d707e55c653ca5eb1adc196cb28c9aa2ed91d6f87b5372f342c554f1de6769c57a284835b8ed
+  version: 1.0.30001621
+  resolution: "caniuse-lite@npm:1.0.30001621"
+  checksum: c7e7fb021ca32b26394ddf0d62faa8a7919c2e50f8a0dcc51f02a96b7b46fff69a81d6b7ead711367fcaf9dfbc6c795320553b6f84dcb393806a10efeb756ce7
   languageName: node
   linkType: hard
 
@@ -1855,8 +1862,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shopline@workspace:."
   dependencies:
+    "@fortawesome/fontawesome-free": "npm:^6.5.1"
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@hotwired/turbo-rails": "npm:^8.0.0-beta.2"
+    "@hotwired/turbo-rails": "npm:^8.0.3"
     "@prettier/plugin-ruby": "npm:^4.0.4"
     autoprefixer: "npm:^10.4.16"
     esbuild: "npm:^0.19.11"
