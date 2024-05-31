@@ -11,9 +11,9 @@ Rails.application.routes.draw do
   root "home#index"
 
   devise_for :users,
-             path: "admin",
+             path: "",
              controllers: {
-               sessions: "admin/sessions"
+               sessions: "sessions"
              },
              path_names: {
                sign_in: "/login",

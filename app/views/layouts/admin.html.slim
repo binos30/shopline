@@ -17,5 +17,6 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", defer: true
 
   body
-    main.main-admin
+    main.main-admin.flex
+      == render "admin/shared/sidebar"
       = yield
