@@ -32,6 +32,7 @@ class User < ApplicationRecord
     validates :last_name
   end
 
+  before_validation :set_role, on: :create, if: -> { role_id.blank? }
   before_create :set_defaults
 
   def active_for_authentication?
@@ -63,6 +64,10 @@ class User < ApplicationRecord
 
     return unless password_is_same
     errors.add(:base, I18n.t("errors.messages.old_password_not_allowed"))
+  end
+
+  def set_role
+    self.role = Role.find_or_create_by!(name: "Customer")
   end
 
   def set_defaults

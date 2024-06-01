@@ -29,3 +29,7 @@
 
 en:
   title: "Shopline"
+  record:
+    create: "%{record} <strong>%{name}</strong> was successfully created."
+    update: "%{record} <strong>%{name}</strong> was successfully updated."
+    delete: "%{record} <strong>%{name}</strong> was successfully deleted."
