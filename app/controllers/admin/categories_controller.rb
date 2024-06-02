@@ -82,6 +82,9 @@ module Admin
     # Use callbacks to share common setup or constraints between actions.
     def set_category
       @category = Category.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Category not found #{params[:id]}"
+      redirect_back(fallback_location: admin_categories_url)
     end
 
     # Only allow a list of trusted parameters through.
