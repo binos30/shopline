@@ -9,12 +9,13 @@ aside.w-64.p-4.h-screen.bg-gray-800.sticky.top-0
         i.fa-solid.fa-gauge.mr-2
         span class="hidden md:inline-block" Dashboard
     li
-      = link_to  admin_categories_path,
+      = link_to admin_categories_path,
         class: "#{sidebar_link_active_class("categories")} block px-4 py-2 hover:rounded hover:bg-gray-900" do
         i.fa-solid.fa-list.mr-2
         span class="hidden md:inline-block" Categories
     li
-      = link_to  "admin", class: "block px-4 py-2 hover:rounded hover:bg-gray-900" do
+      = link_to admin_products_path,
+        class: "#{sidebar_link_active_class("products, stocks")} block px-4 py-2 hover:rounded hover:bg-gray-900" do
         i.fa-solid.fa-cart-shopping.mr-2
         span class="hidden md:inline-block" Products
     li

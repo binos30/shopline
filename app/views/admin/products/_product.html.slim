@@ -1,27 +1,45 @@
-section id="#{dom_id category}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+section id="#{dom_id product}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
       strong class="block mb-1 font-medium text-gray-900 dark:text-white"
         | Status:
-      = status_badge(category.active)
+      = status_badge(product.active)
+    p
+      strong class="block mb-1 font-medium text-gray-900 dark:text-white"
+        | Category:
+      span class="text-gray-900 dark:text-white"
+        =< product.category.name
     p
       strong class="block mb-1 font-medium text-gray-900 dark:text-white"
         | Name:
       span class="text-gray-900 dark:text-white"
-        =< category.name
+        =< product.name
     p
       strong class="block mb-1 font-medium text-gray-900 dark:text-white"
         | Description:
       span class="text-gray-900 dark:text-white"
-        =< category.description
+        =< product.description
+    p
+      strong class="block mb-1 font-medium text-gray-900 dark:text-white"
+        | Price:
+      span class="text-gray-900 dark:text-white"
+        =< number_to_currency(product.price, unit: "₱")
+    - if product.images.any?
+      div class="grid gap-4"
+        div
+          = image_tag(product.images.first, class: "h-auto max-w-full rounded-lg")
+        div class="grid grid-cols-5 gap-4"
+          - product.images.each do |image|
+            div
+              = image_tag(image, class: "h-auto max-w-full rounded-lg")
     div
-      => link_to "Edit this category", edit_admin_category_path(category),
+      => link_to "Edit this product", edit_admin_product_path(product),
         class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
       - if action_name == "show"
-        =< link_to "Back to categories", admin_categories_path,
+        =< link_to "Back to products", admin_products_path,
           class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        = button_to "Destroy this category", admin_category_path(category), method: :delete,
+        = button_to "Destroy this product", admin_product_path(product), method: :delete,
           class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
       - else
-        => link_to "Show this category", admin_category_path(category),
+        => link_to "Show this product", admin_product_path(product),
           class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"

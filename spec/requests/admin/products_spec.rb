@@ -14,7 +14,7 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/categories" do
+RSpec.describe "/admin/products" do
   let!(:user) do
     User.create!(
       role: Role.find_or_create_by!(name: "Administrator"),
@@ -25,10 +25,12 @@ RSpec.describe "/admin/categories" do
     )
   end
 
+  let!(:category) { Category.create!(name: "Category") }
+
   # This should return the minimal set of attributes required to create a valid
-  # Category. As you add validations to Category, be sure to
+  # Product. As you add validations to Product, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { { name: "Category" } }
+  let(:valid_attributes) { { name: "Product", category_id: category.id } }
 
   let(:invalid_attributes) { { name: "" } }
 
@@ -36,61 +38,61 @@ RSpec.describe "/admin/categories" do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Category.create! valid_attributes
-      get admin_categories_url
+      Product.create! valid_attributes
+      get admin_products_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get admin_category_url(category)
+      product = Product.create! valid_attributes
+      get admin_product_url(product)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_category_url
+      get new_admin_product_url
       expect(response).to be_successful
     end
   end
 
   describe "GET /edit" do
     it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get edit_admin_category_url(category)
+      product = Product.create! valid_attributes
+      get edit_admin_product_url(product)
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Category" do
+      it "creates a new Product" do
         expect do
- post admin_categories_url, params: { category: valid_attributes } 
+ post admin_products_url, params: { product: valid_attributes } 
 end.to change(
-          Category,
+          Product,
           :count
         ).by(1)
       end
 
-      it "redirects to the created category" do
-        post admin_categories_url, params: { category: valid_attributes }
-        expect(response).to redirect_to(admin_category_url(Category.last))
+      it "redirects to the created product" do
+        post admin_products_url, params: { product: valid_attributes }
+        expect(response).to redirect_to(admin_product_url(Product.last))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Category" do
+      it "does not create a new Product" do
         expect do
-          post admin_categories_url, params: { category: invalid_attributes }
-        end.not_to change(Category, :count)
+          post admin_products_url, params: { product: invalid_attributes }
+        end.not_to change(Product, :count)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_categories_url, params: { category: invalid_attributes }
+        post admin_products_url, params: { product: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -98,42 +100,42 @@ end.to change(
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      let(:new_attributes) { { name: "Category2" } }
+      let(:new_attributes) { { name: "Product2" } }
 
-      it "updates the requested category" do
-        category = Category.create! valid_attributes
-        patch admin_category_url(category), params: { category: new_attributes }
-        category.reload
-        expect(category.name).to eq("Category2")
+      it "updates the requested product" do
+        product = Product.create! valid_attributes
+        patch admin_product_url(product), params: { product: new_attributes }
+        product.reload
+        expect(product.name).to eq("Product2")
       end
 
-      it "redirects to the category" do
-        category = Category.create! valid_attributes
-        patch admin_category_url(category), params: { category: new_attributes }
-        category.reload
-        expect(response).to redirect_to(admin_category_url(category))
+      it "redirects to the product" do
+        product = Product.create! valid_attributes
+        patch admin_product_url(product), params: { product: new_attributes }
+        product.reload
+        expect(response).to redirect_to(admin_product_url(product))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        category = Category.create! valid_attributes
-        patch admin_category_url(category), params: { category: invalid_attributes }
+        product = Product.create! valid_attributes
+        patch admin_product_url(product), params: { product: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested category" do
-      category = Category.create! valid_attributes
-      expect { delete admin_category_url(category) }.to change(Category, :count).by(-1)
+    it "destroys the requested product" do
+      product = Product.create! valid_attributes
+      expect { delete admin_product_url(product) }.to change(Product, :count).by(-1)
     end
 
-    it "redirects to the categories list" do
-      category = Category.create! valid_attributes
-      delete admin_category_url(category)
-      expect(response).to redirect_to(admin_categories_url)
+    it "redirects to the products list" do
+      product = Product.create! valid_attributes
+      delete admin_product_url(product)
+      expect(response).to redirect_to(admin_products_url)
     end
   end
 end
