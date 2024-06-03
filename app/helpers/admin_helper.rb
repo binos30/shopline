@@ -9,7 +9,7 @@ module AdminHelper
     "bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
 
   def sidebar_link_active_class(kontroller)
-    controller_name == kontroller ? "rounded bg-gray-900" : ""
+    kontroller.include?(controller_name) ? "rounded bg-gray-900" : ""
   end
 
   def status_badge(is_active)
