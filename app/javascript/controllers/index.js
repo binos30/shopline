@@ -4,5 +4,8 @@
 
 import { application } from "./application";
 
+import Admin__DashboardController from "./admin/dashboard_controller";
+application.register("admin--dashboard", Admin__DashboardController);
+
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);

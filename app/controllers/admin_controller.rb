@@ -6,9 +6,6 @@ class AdminController < ApplicationController
   before_action :check_and_authenticate_user
   before_action :authenticate_user!
 
-  def index
-  end
-
   private
 
   def check_and_authenticate_user
