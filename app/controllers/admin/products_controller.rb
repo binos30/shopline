@@ -7,7 +7,7 @@ module Admin
 
     # GET /admin/products or /admin/products.json
     def index
-      @products = Product.includes([:category, { images_attachments: :blob }])
+      @products = Product.includes([:category, { images_attachments: :blob }]).order(:name)
     end
 
     # GET /admin/products/1 or /admin/products/1.json

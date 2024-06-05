@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/categories or /admin/categories.json
     def index
-      @categories = Category.includes([:image_attachment])
+      @categories = Category.includes([:image_attachment]).order(:name)
     end
 
     # GET /admin/categories/1 or /admin/categories/1.json
