@@ -1,0 +1,23 @@
+div class="relative overflow-x-auto shadow-md sm:rounded-lg"
+  table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      tr
+        th scope="col" class="px-6 py-3"
+          | Order ID
+        th scope="col" class="px-6 py-3"
+          | Customer
+        th scope="col" class="px-6 py-3"
+          | Date
+        th scope="col" class="px-6 py-3"
+          | Total
+    tbody
+      - @unfulfilled_orders.each do |order|
+        tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            = link_to order.id, admin_order_path(order)
+          td class="px-6 py-4 whitespace-nowrap"
+            = order.customer_full_name
+          td class="px-6 py-4 whitespace-nowrap"
+            = format_date(order.created_at, "%b %e, %Y %l:%M %p")
+          td class="px-6 py-4 whitespace-nowrap"
+            = number_to_currency(order.total, unit: "₱")

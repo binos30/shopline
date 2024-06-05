@@ -20,8 +20,10 @@ Rails.application.routes.draw do
                sign_out: "/logout"
              }
 
-  get "admin" => "admin#index"
   namespace :admin do
+    root to: redirect("admin/dashboard")
+
+    resources :dashboard, only: :index, constraints: { format: :html }
     resources :categories
     resources :products do
       resources :stocks
