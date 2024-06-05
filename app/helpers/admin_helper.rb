@@ -7,6 +7,8 @@ module AdminHelper
     "bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300"
   STATUS_INACTIVE_CLASS =
     "bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-red-900 dark:text-red-300"
+  STATUS_UNFULFILLED_CLASS =
+    "bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300" # rubocop:disable Layout/LineLength
 
   def sidebar_link_active_class(kontroller)
     kontroller.include?(controller_name) ? "rounded bg-gray-900" : ""
@@ -16,6 +18,13 @@ module AdminHelper
     tag.span(
       is_active ? ACTIVE_LABEL : INACTIVE_LABEL,
       class: is_active ? STATUS_ACTIVE_CLASS : STATUS_INACTIVE_CLASS
+    )
+  end
+
+  def order_status_badge(is_fulfilled)
+    tag.span(
+      is_fulfilled ? "Fulfilled" : "Unfulfilled",
+      class: is_fulfilled ? STATUS_ACTIVE_CLASS : STATUS_UNFULFILLED_CLASS
     )
   end
 end

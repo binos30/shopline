@@ -26,5 +26,6 @@ Rails.application.routes.draw do
     resources :products do
       resources :stocks
     end
+    resources :orders, only: %i[index show]
   end
 end

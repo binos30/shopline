@@ -9,6 +9,7 @@ class Product < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [50, 50]
   end
   has_many :stocks, dependent: :destroy
+  has_many :orders, dependent: :restrict_with_exception
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :price,
