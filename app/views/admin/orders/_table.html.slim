@@ -1,0 +1,39 @@
+div class="relative overflow-x-auto shadow-md sm:rounded-lg"
+  table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+      tr
+        th scope="col" class="px-6 py-3"
+          | Product
+        th scope="col" class="px-6 py-3"
+          | Size
+        th scope="col" class="px-6 py-3"
+          | Qty
+        th scope="col" class="px-6 py-3"
+          | Price
+        th scope="col" class="px-6 py-3"
+          | Total
+        th scope="col" class="px-6 py-3"
+          | Customer
+        th scope="col" class="px-6 py-3"
+          | Address
+        th scope="col" class="px-6 py-3"
+          | Status
+    tbody
+      - @orders.each do |order|
+        tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            = link_to order.product_name, admin_order_path(order)
+          td class="px-6 py-4 whitespace-nowrap"
+            = order.size
+          td class="px-6 py-4 whitespace-nowrap"
+            = order.quantity
+          th class="px-6 py-4 whitespace-nowrap"
+            = number_to_currency(order.product_price, unit: "₱")
+          td class="px-6 py-4 whitespace-nowrap"
+            = number_to_currency(order.total, unit: "₱")
+          td class="px-6 py-4 whitespace-nowrap"
+            = order.customer_full_name
+          td class="px-6 py-4 whitespace-nowrap"
+            = order.customer_address
+          td class="px-6 py-4"
+            = order_status_badge(order.fulfilled)

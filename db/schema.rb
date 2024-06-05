@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_015753) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_03_081751) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,25 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_015753) do
     t.datetime "updated_at", null: false
     t.index ["active"], name: "index_categories_on_active"
     t.index ["name"], name: "index_categories_on_name", unique: true
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "product_id", null: false
+    t.bigint "user_id", null: false
+    t.string "product_name", null: false
+    t.decimal "product_price", precision: 12, scale: 2, default: "0.0", null: false
+    t.string "size", null: false
+    t.integer "quantity", null: false
+    t.virtual "total", type: :decimal, precision: 12, scale: 2, null: false, as: "(product_price * (quantity)::numeric)", stored: true
+    t.string "customer_email", null: false
+    t.string "customer_full_name", null: false
+    t.string "customer_address", null: false
+    t.boolean "fulfilled", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fulfilled"], name: "index_orders_on_fulfilled"
+    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -112,6 +131,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_015753) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "orders", "products"
+  add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "stocks", "products"
   add_foreign_key "users", "roles"

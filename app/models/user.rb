@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   belongs_to :role
 
+  has_many :orders, dependent: :restrict_with_exception
+
   validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,

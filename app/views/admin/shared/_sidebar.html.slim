@@ -1,24 +1,25 @@
 aside.w-64.p-4.h-screen.bg-gray-800.sticky.top-0
-  .flex.mb-2
+  .flex.mb-2.items-center
     = image_tag("logo-no-background.svg", class: "w-14 mr-2", alt: "logo")
     h1 class="text-md py-2 text-white font-bold hidden md:block"
       | Shopline
-  ul.flex.flex-col.text-gray-50
+  ul.flex.flex-col.text-gray-50.font-medium
     li
-      = link_to  "admin", class: "block px-4 py-2 hover:rounded hover:bg-gray-900" do
+      = link_to  "admin", class: "block px-4 py-2 hover:rounded hover:bg-gray-900 mb-1" do
         i.fa-solid.fa-gauge.mr-2
         span class="hidden md:inline-block" Dashboard
     li
       = link_to admin_categories_path,
-        class: "#{sidebar_link_active_class("categories")} block px-4 py-2 hover:rounded hover:bg-gray-900" do
+        class: "#{sidebar_link_active_class("categories")} block px-4 py-2 hover:rounded hover:bg-gray-900 mb-1" do
         i.fa-solid.fa-list.mr-2
         span class="hidden md:inline-block" Categories
     li
       = link_to admin_products_path,
-        class: "#{sidebar_link_active_class("products, stocks")} block px-4 py-2 hover:rounded hover:bg-gray-900" do
+        class: "#{sidebar_link_active_class("products, stocks")} block px-4 py-2 hover:rounded hover:bg-gray-900 mb-1" do
         i.fa-solid.fa-cart-shopping.mr-2
         span class="hidden md:inline-block" Products
     li
-      = link_to  "admin", class: "block px-4 py-2 hover:rounded hover:bg-gray-900" do
+      = link_to admin_orders_path,
+        class: "#{sidebar_link_active_class("orders")} block px-4 py-2 hover:rounded hover:bg-gray-900 mb-1" do
         i.fa-solid.fa-truck-fast.mr-2
         span class="hidden md:inline-block" Orders
