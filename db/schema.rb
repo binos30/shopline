@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_03_081751) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_06_065622) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,8 +48,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_081751) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", null: false
     t.index ["active"], name: "index_categories_on_active"
     t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
   create_table "orders", force: :cascade do |t|
@@ -79,9 +81,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_03_081751) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug", null: false
     t.index ["active"], name: "index_products_on_active"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["name"], name: "index_products_on_name", unique: true
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
   create_table "roles", force: :cascade do |t|

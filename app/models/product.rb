@@ -2,6 +2,10 @@
 
 class Product < ApplicationRecord
   include Sanitizable
+  include Sluggable
+
+  # Set the attribute from which the slug would be generated
+  slugify :name
 
   belongs_to :category
 

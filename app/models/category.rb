@@ -2,6 +2,10 @@
 
 class Category < ApplicationRecord
   include Sanitizable
+  include Sluggable
+
+  # Set the attribute from which the slug would be generated
+  slugify :name
 
   has_one_attached :image do |attachable|
     attachable.variant :thumb, resize_to_limit: [50, 50]

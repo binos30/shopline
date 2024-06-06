@@ -30,7 +30,7 @@ module Admin
       respond_to do |format|
         if @stock.save
           format.html do
-            redirect_to admin_product_stock_url(@product, @stock),
+            redirect_to admin_product_stock_url(@product.id, @stock),
                         notice: t("record.create", record: Stock.name, name: @stock.size)
           end
         else
