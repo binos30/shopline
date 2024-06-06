@@ -19,8 +19,9 @@ class Order < ApplicationRecord
             }
 
   scope :recent_unfulfilled, -> { where(fulfilled: false).order(created_at: :desc).take(5) }
-  scope :revenue, -> { where(created_at: Time.current.midnight..Time.current).sum(:total) }
-  scope :sales, -> { where(created_at: Time.current.midnight..Time.current).count }
-  scope :avg_sale, -> { where(created_at: Time.current.midnight..Time.current).average(:total) }
-  scope :per_sale, -> { where(created_at: Time.current.midnight..Time.current).average(:quantity) }
+  scope :today, -> { where(created_at: Time.current.midnight..Time.current) }
+  scope :revenue, -> { today.sum(:total) }
+  scope :sales, -> { today.count }
+  scope :avg_sale, -> { today.average(:total).to_f }
+  scope :per_sale, -> { today.average(:quantity).to_i }
 end
