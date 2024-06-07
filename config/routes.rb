@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", :as => :rails_health_check
 
   # Defines the root path route ("/")
-  root "home#index"
+  root "site/home#index"
 
   devise_for :users,
              path: "",
@@ -29,5 +29,10 @@ Rails.application.routes.draw do
       resources :stocks
     end
     resources :orders, only: %i[index show]
+  end
+
+  scope module: "site" do
+    resources :categories, only: :show, param: :slug
+    resources :products, only: :show, param: :slug
   end
 end
