@@ -2,7 +2,9 @@ div class="flex justify-center gap-20 py-10"
   div class="flex flex-wrap max-w-lg"
     - @product.images.each do |image|
       = image_tag(image, class: "w-auto h-64")
-  div class="flex flex-col items-start max-w-sm"
+  div[class="flex flex-col items-start max-w-sm"
+    data-controller="site--products" data-site--products-product-value="#{@product.to_json}"
+  ]
     h1 class="font-bold text-4xl uppercase"
       = @product.name
     p class="text-2xl mt-4"
@@ -15,6 +17,7 @@ div class="flex justify-center gap-20 py-10"
         - if stock.quantity.positive?
           button[value="#{stock.size}"
             class="bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
+            data-action="site--products#selectSize"
           ]
             = stock.size
         - else
@@ -22,3 +25,9 @@ div class="flex justify-center gap-20 py-10"
             class="disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50"
           ]
             = stock.size
+    #selected-size
+    button[
+      class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      data-action="site--products#addToCart"
+    ]
+      | Add to Cart

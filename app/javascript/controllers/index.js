@@ -9,3 +9,9 @@ application.register("admin--dashboard", Admin__DashboardController);
 
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);
+
+import Site__CartController from "./site/cart_controller";
+application.register("site--cart", Site__CartController);
+
+import Site__ProductsController from "./site/products_controller";
+application.register("site--products", Site__ProductsController);

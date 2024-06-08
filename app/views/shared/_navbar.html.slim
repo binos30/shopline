@@ -12,5 +12,5 @@ nav class="fixed w-full top-0 bg-gray-100 z-10 py-4"
             = image_tag "logo-no-background.svg", class: "hidden lg:block h-20 w-auto", alt: "logo"
         div class="hidden sm:flex sml:ml-6 items-center justify-center"
           div class="flex space-x-10"
-            = link_to "cart_path", class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do
+            = link_to cart_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do
               i.fa-solid.fa-cart-shopping

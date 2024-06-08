@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
 
   scope module: "site" do
+    get "cart" => "cart#show"
     resources :categories, only: :show, param: :slug
     resources :products, only: :show, param: :slug
   end
