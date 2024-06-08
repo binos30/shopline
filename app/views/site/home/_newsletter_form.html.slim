@@ -1,0 +1,8 @@
+div class="bg-gray-600 text-white my-10 text-center py-20"
+  h2 class="text-3xl font-bold mb-6" Stay Updated
+  p class="mb-8"
+    | Subscribe to our newsletter for the latest updates and offers
+  = form_with url: root_path, method: :post, local: true, class: "flex justify-center" do
+    = email_field_tag :email, nil, placeholder: "Enter your email",
+      class: "p-2 rounded-l text-gray-800"
+    = submit_tag "Subscribe", class: "bg-gray-700 hover:bg-gray-800 cursor-pointer text-white font-bold py-2 px-4 rounded-r"

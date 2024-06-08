@@ -1,0 +1,38 @@
+footer class="bg-gray-800 text-white"
+  div class="max-w-6xl mx-auto px-4 py-10 md:py-20"
+    div class="xl:grid xl:grid-cols-3 xl:gap-8"
+      <!-- About -->
+      div class="space-y-8 xl:col-span-1"
+        h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase"
+          | About Shopline
+        p class="text-white leading-6"
+          | Shopline is a leading online marketplace, offering a wide range of products to cater to all your needs.&nbsp;
+          | Our commitment to quality and customer service ensures a great shopping experience.
+      <!-- Quick Links -->
+      div class="grid grid-cols-2 gap-8 mt-12 xl:mt-0 xl:col-span-2"
+        div class="md:grid md:grid-cols-2 md:gap-8"
+          div
+            h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase"
+              | Quick Links
+            ul class="mt-4 space-y-4"
+              li
+                = link_to "Home", root_path, class: "text-base leading-6 text-white hover:text-gray-300"
+              li
+                = link_to "GitHub", "https://github.com/binos30",
+                  class: "text-base leading-6 text-white hover:text-gray-300", target: :_blank, rel: :noopener
+      <!-- Contact Info -->
+      div class="md:grid md:grid-cols-2 md:gap-8 my-8"
+        div
+          h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase"
+            | Contact
+          ul class="mt-4 space-y-4"
+            li
+              p class="text-base leading-6 text-white" 123 Shopline Center
+            li
+              p class="text-base leading-6 text-white" Email: support@shopline.com
+            li
+              p class="text-base leading-6 text-white" Phone: 123-456
+      div class="border-t border-gray-700"
+        div class="max-w-6xl mx-auto px-4 py-10 md:flex md:items-center md:justify-between"
+          p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1"
+            | &copy; #{Time.now.getlocal.year} Shopline. All rights reserved.

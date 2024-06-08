@@ -1,0 +1,19 @@
+h1 class="text-lg font-semibold" = @category.name
+h3 = @category.description
+div class="min-h-screen flex justify-center"
+  div class="flex flex-wrap flex-col mt-6"
+    h2 class="text-lg text-gray-800" Filter
+  div class="flex flex-wrap flex-grow justify-center items-start gap-10 mt-6"
+    - if @products.any?
+      - @products.each do |product|
+        = link_to product_path(product) do
+          div class="max-w-xs flex flex-col p-4 justify-center items-center"
+            - if product.images.first
+              = image_tag(product.images.first.variant(:medium), class: "rounded")
+            - else
+              = image_tag("https://via.placeholder.com/250", class: "rounded")
+            p class="mt-6 font-medium text-gray-800"
+              = product.name
+    - else
+      p class="text-2xl text-left text-gray-800"
+        | No products found

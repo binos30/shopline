@@ -1,0 +1,9 @@
+div class="min-h-screen"
+  h1 class="text-lg font-semibold" Cart
+  div data-controller="site--cart"
+    div class="mt-4 font-medium" id="total"
+    button[
+      class="py-2 px-4 bg-gray-600 hover:bg-gray-700 rounded text-white"
+      data-action="site--cart#clear"
+    ]
+      | Clear Cart
