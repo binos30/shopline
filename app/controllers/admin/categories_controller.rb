@@ -40,8 +40,10 @@ module Admin
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @category.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
 
     # PATCH/PUT /admin/categories/1 or /admin/categories/1.json
@@ -60,8 +62,10 @@ module Admin
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @category.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @category.errors, status: :unprocessable_entity }
+      end
     end
 
     # DELETE /admin/categories/1 or /admin/categories/1.json

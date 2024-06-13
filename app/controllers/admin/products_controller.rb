@@ -41,8 +41,10 @@ module Admin
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
-      format.html { render :new, status: :unprocessable_entity }
-      format.json { render json: @product.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
 
     # PATCH/PUT /admin/products/1 or /admin/products/1.json
@@ -62,8 +64,10 @@ module Admin
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
-      format.html { render :edit, status: :unprocessable_entity }
-      format.json { render json: @product.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
+      end
     end
 
     # DELETE /admin/products/1 or /admin/products/1.json
