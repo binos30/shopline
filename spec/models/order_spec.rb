@@ -16,12 +16,10 @@ RSpec.describe Order do
   let!(:product) { Product.create!(name: "Product", category:) }
   let!(:stock) { product.stocks.create!(size: "L", quantity: 3) }
 
-  it "does not save without product" do
+  it "does not save without item" do
     order =
       described_class.new(
         user:,
-        size: stock.size,
-        quantity: 2,
         customer_email: user.email,
         customer_full_name: user.full_name,
         customer_address: "my address 1"
@@ -29,19 +27,23 @@ RSpec.describe Order do
     expect(order.save).to be false
   end
 
-  it "saves" do
+  it "saves" do # rubocop:disable RSpec/ExampleLength
     order =
       described_class.new(
-        product:,
         user:,
-        product_name: product.name,
-        product_price: product.price,
-        size: stock.size,
-        quantity: 2,
         customer_email: user.email,
         customer_full_name: user.full_name,
         customer_address: "my address 1"
       )
+    order.order_items.build(
+      product:,
+      stock:,
+      order_code: order.order_code,
+      product_name: product.name,
+      product_price: product.price,
+      size: stock.size,
+      quantity: 2
+    )
     expect(order.save).to be true
   end
 end

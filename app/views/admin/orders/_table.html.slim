@@ -3,37 +3,25 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
     thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
       tr
         th scope="col" class="px-6 py-3"
-          | Product
-        th scope="col" class="px-6 py-3"
-          | Size
-        th scope="col" class="px-6 py-3"
-          | Qty
-        th scope="col" class="px-6 py-3"
-          | Price
-        th scope="col" class="px-6 py-3"
-          | Total
+          | Order ID
         th scope="col" class="px-6 py-3"
           | Customer
         th scope="col" class="px-6 py-3"
-          | Address
+          | Date
+        th scope="col" class="px-6 py-3"
+          | Total
         th scope="col" class="px-6 py-3"
           | Status
     tbody
       - @orders.each do |order|
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            = link_to order.product_name, admin_order_path(order)
-          td class="px-6 py-4 whitespace-nowrap"
-            = order.size
-          td class="px-6 py-4 whitespace-nowrap"
-            = order.quantity
-          th class="px-6 py-4 whitespace-nowrap"
-            = number_to_currency(order.product_price, unit: "₱")
-          td class="px-6 py-4 whitespace-nowrap"
-            = number_to_currency(order.total, unit: "₱")
+            = link_to order.order_code, admin_order_path(order)
           td class="px-6 py-4 whitespace-nowrap"
             = order.customer_full_name
           td class="px-6 py-4 whitespace-nowrap"
-            = order.customer_address
+            = format_date(order.created_at, "%b %e, %Y %l:%M %p")
+          td class="px-6 py-4 whitespace-nowrap"
+            = number_to_currency(order.total, unit: "$")
           td class="px-6 py-4"
             = order_status_badge(order.fulfilled)

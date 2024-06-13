@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/orders or /admin/orders.json
     def index
-      @orders = Order.all
+      @orders = Order.order(created_at: :desc)
     end
 
     # GET /admin/orders/1 or /admin/orders/1.json
@@ -17,7 +17,7 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.find(params[:id])
+      @order = Order.includes(:order_items).find(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error "Order not found #{params[:id]}"
       redirect_back(fallback_location: admin_orders_url)

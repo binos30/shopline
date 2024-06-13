@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_06_065622) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_11_030258) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,22 +54,37 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_065622) do
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id", null: false
     t.bigint "product_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "stock_id", null: false
+    t.string "order_code", null: false
     t.string "product_name", null: false
     t.decimal "product_price", precision: 12, scale: 2, default: "0.0", null: false
     t.string "size", null: false
     t.integer "quantity", null: false
-    t.virtual "total", type: :decimal, precision: 12, scale: 2, null: false, as: "(product_price * (quantity)::numeric)", stored: true
+    t.virtual "subtotal", type: :decimal, precision: 12, scale: 2, null: false, as: "(product_price * (quantity)::numeric)", stored: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_code"], name: "index_order_items_on_order_code"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["product_id"], name: "index_order_items_on_product_id"
+    t.index ["stock_id"], name: "index_order_items_on_stock_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
     t.string "customer_email", null: false
     t.string "customer_full_name", null: false
     t.string "customer_address", null: false
     t.boolean "fulfilled", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "order_code", null: false
+    t.decimal "total", precision: 12, scale: 2, default: "0.0", null: false
+    t.index ["customer_email"], name: "index_orders_on_customer_email"
     t.index ["fulfilled"], name: "index_orders_on_fulfilled"
-    t.index ["product_id"], name: "index_orders_on_product_id"
+    t.index ["order_code"], name: "index_orders_on_order_code", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -135,7 +150,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_06_065622) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "orders", "products"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "order_items", "products"
+  add_foreign_key "order_items", "stocks"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
   add_foreign_key "stocks", "products"

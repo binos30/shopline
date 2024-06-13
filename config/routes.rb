@@ -33,7 +33,12 @@ Rails.application.routes.draw do
 
   scope module: "site" do
     get "cart" => "cart#show"
+    get "success" => "checkout#success"
+    get "cancel" => "checkout#cancel"
+    post "checkout" => "checkout#create"
     resources :categories, only: :show, param: :slug
     resources :products, only: :show, param: :slug
   end
+
+  post "stripe_webhooks" => "webhooks#stripe"
 end

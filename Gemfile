@@ -59,6 +59,9 @@ gem "devise"
 # It lets you create pretty URLs and work with human-friendly strings as if they were numeric ids
 gem "friendly_id"
 
+# Ruby library for the Stripe API
+gem "stripe"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]

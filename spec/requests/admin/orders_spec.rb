@@ -27,29 +27,31 @@ RSpec.describe "/admin/orders" do
   let!(:category) { Category.create!(name: "Category") }
   let!(:product) { Product.create!(name: "Product", category:) }
   let!(:stock) { product.stocks.create!(size: "L", quantity: 3) }
-
-  # This should return the minimal set of attributes required to create a valid
-  # Order. As you add validations to Order, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) do
-    {
+  let!(:order) do
+    order =
+      Order.new(
+        user:,
+        customer_email: user.email,
+        customer_full_name: user.full_name,
+        customer_address: "my address 1"
+      )
+    order.order_items.build(
       product:,
-      user:,
+      stock:,
+      order_code: order.order_code,
       product_name: product.name,
       product_price: product.price,
       size: stock.size,
-      quantity: 2,
-      customer_email: user.email,
-      customer_full_name: user.full_name,
-      customer_address: "my address 1"
-    }
+      quantity: 2
+    )
+    order.save!
+    order
   end
 
   before { sign_in(user) }
 
   describe "GET /index" do
     it "renders a successful response" do
-      Order.create! valid_attributes
       get admin_orders_url
       expect(response).to be_successful
     end
@@ -57,7 +59,6 @@ RSpec.describe "/admin/orders" do
 
   describe "GET /show" do
     it "renders a successful response" do
-      order = Order.create! valid_attributes
       get admin_order_url(order)
       expect(response).to be_successful
     end
