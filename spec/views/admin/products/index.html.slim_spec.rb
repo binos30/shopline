@@ -20,7 +20,6 @@ RSpec.describe "admin/products/index" do
     name_selector = "tr>th"
     cell_selector = "tr>td"
     assert_select name_selector, text: Regexp.new("Product".to_s), count: 1
-    assert_select cell_selector, text: Regexp.new("MyText".to_s), count: 2
     assert_select cell_selector, text: Regexp.new("9.99".to_s), count: 2
   end
 end

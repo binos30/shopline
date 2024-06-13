@@ -27,7 +27,7 @@
       "./node_modules/.bin/prettier --plugin=@prettier/plugin-ruby --write",
       "./bin/bundle exec rubocop -a"
     ],
-    "spec/**/*_spec.rb": "./bin/bundle exec rspec",
+    "spec/**/*_spec.rb": "./bin/rspec",
     "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },
   "packageManager": "yarn@4.2.2"

@@ -14,7 +14,7 @@ class Product < ApplicationRecord
     attachable.variant :medium, resize_to_limit: [250, 250]
   end
   has_many :stocks, dependent: :destroy
-  has_many :orders, dependent: :restrict_with_exception
+  has_many :order_items, dependent: :restrict_with_exception
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :price,

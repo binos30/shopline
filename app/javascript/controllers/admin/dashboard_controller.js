@@ -15,10 +15,10 @@ export default class extends Controller {
     new Chart(ctx, {
       type: "line",
       data: {
-        labels: labels,
+        labels,
         datasets: [
           {
-            label: "Revenue ₱",
+            label: "Revenue $",
             data,
             borderWidth: 3,
             fill: true

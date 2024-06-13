@@ -22,6 +22,6 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
           td class="px-6 py-4 whitespace-nowrap"
             = product.category.name
           td class="px-6 py-4 whitespace-nowrap"
-            = number_to_currency(product.price, unit: "₱")
+            = number_to_currency(product.price, unit: "$")
           td class="px-6 py-4"
             = status_badge(product.active)
