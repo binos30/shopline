@@ -1,4 +1,13 @@
-# Setup
+# Shopline
+
+E-commerce app
+
+![Dashboard](./docs/images/dashboard.png)
+![Dashboard-Dark](./docs/images/dashboard-dark.png)
+![Orders](./docs/images/orders.png)
+![Orders-Dark](./docs/images/orders-dark.png)
+
+## Setup
 
 Prerequisites
 
@@ -6,26 +15,56 @@ Prerequisites
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Node.js 20.10.0](https://nodejs.org/en/blog/release/v20.10.0)
 
-Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials
+Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials. Get `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` from your [Stripe](https://dashboard.stripe.com) account
 
-Install dependencies
+Install dependencies and setup database
 
-```
-yarn install
-```
-
-```
-bundle i
-```
-
-Setup database
-
-```
-bin/rails db:setup
+```bash
+bin/setup
 ```
 
 Start local web server
 
-```
+```bash
 bin/dev
+```
+
+Go to [http://localhost:3000](http://localhost:3000)
+
+## Testing
+
+Setup test database
+
+```bash
+bin/rails db:test:prepare
+```
+
+Default: Run all spec files (i.e., those matching spec/\*\*/\*\_spec.rb)
+
+```bash
+bin/rspec
+```
+
+Run all spec files in a single directory (recursively)
+
+```bash
+bin/rspec spec/models
+```
+
+Run a single spec file
+
+```bash
+bin/rspec spec/models/product_spec.rb
+```
+
+Run a single example from a spec file (by line number)
+
+```bash
+bin/rspec spec/models/product_spec.rb:8
+```
+
+See all options for running specs
+
+```bash
+bin/rspec --help
 ```
