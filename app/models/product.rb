@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Product < ApplicationRecord
+  include Filterable
   include Sanitizable
   include Sluggable
 
@@ -25,6 +26,8 @@ class Product < ApplicationRecord
             }
 
   before_save :sanitize_fields
+
+  scope :filter_by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
 
   private
 

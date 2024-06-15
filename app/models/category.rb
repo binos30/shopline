@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Category < ApplicationRecord
+  include Filterable
   include Sanitizable
   include Sluggable
 
@@ -15,6 +16,8 @@ class Category < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
   before_save :sanitize_fields
+
+  scope :filter_by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
 
   private
 

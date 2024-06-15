@@ -651,6 +651,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"debounce@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "debounce@npm:2.1.0"
+  checksum: 10c0/15ef40fc5c402053ca5ab1b2c23cf25eb8f2f3246977793846561b0c87321cbb627075897f69bbcffa5a5a7d07c161c9ba0bfcb4a80ee6898844c5b11bf1a76e
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:4.3.4, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -1884,6 +1891,7 @@ __metadata:
     "@prettier/plugin-ruby": "npm:^4.0.4"
     autoprefixer: "npm:^10.4.16"
     chart.js: "npm:^4.4.3"
+    debounce: "npm:^2.1.0"
     esbuild: "npm:^0.19.11"
     husky: "npm:^8.0.3"
     lint-staged: "npm:^15.2.0"

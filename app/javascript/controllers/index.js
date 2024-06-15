@@ -7,6 +7,9 @@ import { application } from "./application";
 import Admin__DashboardController from "./admin/dashboard_controller";
 application.register("admin--dashboard", Admin__DashboardController);
 
+import Admin__TableController from "./admin/table_controller";
+application.register("admin--table", Admin__TableController);
+
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);
 

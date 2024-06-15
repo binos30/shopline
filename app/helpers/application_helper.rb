@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
+  include Pagy::Frontend
+
   def title(page_title)
     content_for :title, "#{t(:title)} | #{page_title}"
   end
@@ -20,4 +22,22 @@ module ApplicationHelper
 
     date.blank? ? "" : date.localtime.strftime(format)
   end
+
+  # rubocop:disable Rails/OutputSafety
+  def items_option_selected
+    if params[:count_per_page] == "50"
+      "<option value='10'>Show 10</option>
+      <option value='25'>Show 25</option>
+      <option value='50' selected>Show 50</option>".html_safe
+    elsif params[:count_per_page] == "25"
+      "<option value='10'>Show 10</option>
+      <option value='25' selected>Show 25</option>
+      <option value='50'>Show 50</option>".html_safe
+    else
+      "<option value='10' selected>Show 10</option>
+      <option value='25'>Show 25</option>
+      <option value='50'>Show 50</option>".html_safe
+    end
+  end
+  # rubocop:enable Rails/OutputSafety
 end
