@@ -6,7 +6,8 @@ module Admin
 
     # GET /admin/orders or /admin/orders.json
     def index
-      @orders = Order.order(created_at: :desc)
+      @orders = Order.filter(params.slice(:order_code)).order(created_at: :desc)
+      @pagy, @orders = pagy(@orders, items: params[:count_per_page] || 10)
     end
 
     # GET /admin/orders/1 or /admin/orders/1.json

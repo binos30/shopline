@@ -7,7 +7,12 @@ module Admin
 
     # GET /admin/products or /admin/products.json
     def index
-      @products = Product.includes([:category, { images_attachments: :blob }]).order(:name)
+      @products =
+        Product
+          .filter(params.slice(:name))
+          .includes([:category, { images_attachments: :blob }])
+          .order(:name)
+      @pagy, @products = pagy(@products, items: params[:count_per_page] || 10)
     end
 
     # GET /admin/products/1 or /admin/products/1.json

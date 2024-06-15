@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
+  include Filterable
+
   belongs_to :user
 
   has_many :order_items, -> { order(:id) }, dependent: :destroy, inverse_of: :order
@@ -16,6 +18,7 @@ class Order < ApplicationRecord
   scope :sales, -> { today.count }
   scope :avg_sale, -> { today.average(:total).to_f }
   scope :per_sale, -> { joins(:order_items).today.average(:quantity).to_i }
+  scope :filter_by_order_code, ->(order_code) { where("order_code ILIKE ?", "%#{order_code}%") }
 
   private
 
