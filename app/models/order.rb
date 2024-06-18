@@ -19,6 +19,7 @@ class Order < ApplicationRecord
   scope :avg_sale, -> { today.average(:total).to_f }
   scope :per_sale, -> { joins(:order_items).today.average(:quantity).to_i }
   scope :filter_by_order_code, ->(order_code) { where("order_code ILIKE ?", "%#{order_code}%") }
+  scope :filter_by_customer, ->(customer) { where("customer_full_name ILIKE ?", "%#{customer}%") }
 
   private
 
