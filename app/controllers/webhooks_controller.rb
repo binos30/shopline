@@ -56,9 +56,9 @@ class WebhooksController < ApplicationController
             size: product["metadata"]["size"],
             quantity: item["quantity"]
           )
-          order.save!
           stock.update!(quantity: stock.quantity - item["quantity"].to_i)
         end
+        order.save!
       end
     else
       logger.tagged("Stripe Checkout Webhook") do
