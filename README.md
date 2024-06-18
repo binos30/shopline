@@ -1,6 +1,6 @@
 # Shopline
 
-E-commerce app
+E-commerce app. Shop online with Shopline. You shop, we ship!
 
 ![Dashboard](./docs/images/dashboard.png)
 ![Dashboard-Dark](./docs/images/dashboard-dark.png)
@@ -30,6 +30,12 @@ bin/dev
 ```
 
 Go to [http://localhost:3000](http://localhost:3000)
+
+Use Stripe CLI to simulate Stripe events in your local environment or [learn more about Webhooks](https://docs.stripe.com/webhooks)
+
+```bash
+stripe listen --forward-to localhost:3000/stripe_webhooks
+```
 
 ## Testing
 
