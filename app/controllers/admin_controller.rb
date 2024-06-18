@@ -6,6 +6,8 @@ class AdminController < ApplicationController
   before_action :check_and_authenticate_user
   before_action :authenticate_user!
 
+  ITEMS_PER_PAGE_ARRAY = [10, 25, 50, 100].freeze
+
   private
 
   def check_and_authenticate_user

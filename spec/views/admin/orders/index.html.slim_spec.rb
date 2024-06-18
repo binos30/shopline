@@ -36,7 +36,7 @@ RSpec.describe "admin/orders/index" do
     order
   end
 
-  before { assign(:orders, [order, order]) }
+  before { @pagy, @orders = pagy_array([order, order]) }
 
   it "renders a list of admin/orders" do
     render

@@ -25,5 +25,4 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
             = number_to_currency(order.total, unit: "$")
           td class="px-6 py-4"
             = order_status_badge(order.fulfilled)
-div class="flex items-center justify-between mt-4"
-  == render "admin/shared/pagination"
+== render "admin/shared/pagination"

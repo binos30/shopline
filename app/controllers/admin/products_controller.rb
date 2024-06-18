@@ -7,12 +7,13 @@ module Admin
 
     # GET /admin/products or /admin/products.json
     def index
+      count_per_page = ITEMS_PER_PAGE_ARRAY.find { |e| e == params[:count_per_page].to_i } || 10
       @products =
         Product
           .filter(params.slice(:name))
           .includes([:category, { images_attachments: :blob }])
           .order(:name)
-      @pagy, @products = pagy(@products, items: params[:count_per_page] || 10)
+      @pagy, @products = pagy(@products, items: count_per_page)
     end
 
     # GET /admin/products/1 or /admin/products/1.json

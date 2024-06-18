@@ -6,13 +6,13 @@ RSpec.describe "admin/products/index" do
   let!(:category) { Category.create!(name: "Category") }
 
   before do
-    assign(
-      :products,
-      [
-        Product.create!(name: "Product", description: "MyText", price: "9.99", category:),
-        Product.create!(name: "Name", description: "MyText", price: "9.99", category:)
-      ]
-    )
+    @pagy, @products =
+      pagy_array(
+        [
+          Product.create!(name: "Product", description: "MyText", price: "9.99", category:),
+          Product.create!(name: "Name", description: "MyText", price: "9.99", category:)
+        ]
+      )
   end
 
   it "renders a list of admin/products" do

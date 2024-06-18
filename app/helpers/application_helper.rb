@@ -25,18 +25,27 @@ module ApplicationHelper
 
   # rubocop:disable Rails/OutputSafety
   def items_option_selected
-    if params[:count_per_page] == "50"
+    case params[:count_per_page]
+    when "100"
       "<option value='10'>Show 10</option>
       <option value='25'>Show 25</option>
-      <option value='50' selected>Show 50</option>".html_safe
-    elsif params[:count_per_page] == "25"
+      <option value='50'>Show 50</option>
+      <option value='100' selected>Show 100</option>".html_safe
+    when "50"
+      "<option value='10'>Show 10</option>
+      <option value='25'>Show 25</option>
+      <option value='50' selected>Show 50</option>
+      <option value='100'>Show 100</option>".html_safe
+    when "25"
       "<option value='10'>Show 10</option>
       <option value='25' selected>Show 25</option>
-      <option value='50'>Show 50</option>".html_safe
+      <option value='50'>Show 50</option>
+      <option value='100'>Show 100</option>".html_safe
     else
       "<option value='10' selected>Show 10</option>
       <option value='25'>Show 25</option>
-      <option value='50'>Show 50</option>".html_safe
+      <option value='50'>Show 50</option>
+      <option value='100'>Show 100</option>".html_safe
     end
   end
   # rubocop:enable Rails/OutputSafety
