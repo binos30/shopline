@@ -8,7 +8,7 @@ module Admin
     def index
       count_per_page = ITEMS_PER_PAGE_ARRAY.find { |e| e == params[:count_per_page].to_i } || 10
       @categories =
-        Category.filter(params.slice(:name)).includes(image_attachment: :blob).order(:name)
+        Category.filters(params.slice(:name)).includes(image_attachment: :blob).order(:name)
       @pagy, @categories = pagy(@categories, items: count_per_page)
     end
 

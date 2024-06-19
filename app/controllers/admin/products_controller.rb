@@ -10,7 +10,7 @@ module Admin
       count_per_page = ITEMS_PER_PAGE_ARRAY.find { |e| e == params[:count_per_page].to_i } || 10
       @products =
         Product
-          .filter(params.slice(:name))
+          .filters(params.slice(:name))
           .includes([:category, { images_attachments: :blob }])
           .order(:name)
       @pagy, @products = pagy(@products, items: count_per_page)
