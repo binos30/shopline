@@ -28,6 +28,8 @@ class Product < ApplicationRecord
   before_save :sanitize_fields
 
   scope :filter_by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
+  scope :filter_by_min, ->(min) { where("price >= ?", min) }
+  scope :filter_by_max, ->(max) { where("price <= ?", max) }
 
   private
 

@@ -3,8 +3,7 @@
 h1 class="text-lg font-semibold" = @category.name
 h3 = @category.description
 div class="min-h-screen flex justify-center"
-  div class="flex flex-wrap flex-col mt-6"
-    h2 class="text-lg text-gray-800" Filter
+  == render "product_filter"
   div class="flex flex-wrap flex-grow justify-center items-start gap-10 mt-6"
     - if @products.any?
       - @products.each do |product|

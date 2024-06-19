@@ -1,0 +1,12 @@
+div class="flex flex-wrap flex-col mt-6"
+  h2 class="text-lg text-gray-800" Filter
+  = form_with(url: category_path(@category), method: :get) do |f|
+    = f.search_field :name, value: params[:name], placeholder: "Search for products",
+      class: "mb-2 mr-1 border border-gray-800 rounded-md p-2 w-32"
+    = f.number_field :min, value: params[:min], min: "0", max: "999999999", step: ".01", placeholder: "Min Price",
+      class: "mb-2 mr-1 border border-gray-800 rounded-md p-2 w-32"
+    = f.number_field :max, value: params[:max], min: "0", max: "999999999", step: ".01", placeholder: "Max Price",
+      class: "mr-1 border border-gray-800 rounded-md p-2 w-32"
+    = f.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer"
+  = form_with(url: category_path(@category), method: :get) do |f|
+    = f.submit "Clear", name: nil, class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer"
