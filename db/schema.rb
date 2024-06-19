@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_11_030258) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_19_032958) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_11_030258) do
     t.string "order_code", null: false
     t.decimal "total", precision: 12, scale: 2, default: "0.0", null: false
     t.index ["customer_email"], name: "index_orders_on_customer_email"
+    t.index ["customer_full_name"], name: "index_orders_on_customer_full_name"
     t.index ["fulfilled"], name: "index_orders_on_fulfilled"
     t.index ["order_code"], name: "index_orders_on_order_code", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
