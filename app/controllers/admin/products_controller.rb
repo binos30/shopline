@@ -7,7 +7,6 @@ module Admin
 
     # GET /admin/products or /admin/products.json
     def index
-      count_per_page = ITEMS_PER_PAGE_ARRAY.find { |e| e == params[:count_per_page].to_i } || 10
       @products =
         Product
           .filters(params.slice(:name))

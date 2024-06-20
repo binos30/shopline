@@ -6,7 +6,6 @@ module Admin
 
     # GET /admin/orders or /admin/orders.json
     def index
-      count_per_page = ITEMS_PER_PAGE_ARRAY.find { |e| e == params[:count_per_page].to_i } || 10
       @orders = Order.filters(params.slice(:order_code, :customer)).order(created_at: :desc)
       @pagy, @orders = pagy(@orders, items: count_per_page)
     end

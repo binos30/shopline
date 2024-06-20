@@ -24,4 +24,8 @@ class AdminController < ApplicationController
   def no_permission
     "You don't have enough permission to access <strong>#{controller_name.titleize}</strong>."
   end
+
+  def count_per_page
+    ITEMS_PER_PAGE_ARRAY.find { |el| el == params[:count_per_page].to_i } || 10
+  end
 end
