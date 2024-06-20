@@ -29,6 +29,7 @@
 
 en:
   title: "Shopline"
+  no_permission: "You don't have enough permission to access <strong>%{controller_name}</strong>."
   record:
     create: "%{record} <strong>%{name}</strong> was successfully created."
     update: "%{record} <strong>%{name}</strong> was successfully updated."

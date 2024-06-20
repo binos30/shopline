@@ -49,6 +49,10 @@ class User < ApplicationRecord
     update!(active: false) if active?
   end
 
+  def admin?
+    role.name.casecmp("administrator").zero?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
