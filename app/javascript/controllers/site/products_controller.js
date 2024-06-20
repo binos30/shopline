@@ -5,6 +5,10 @@ export default class extends Controller {
   static values = { product: Object, size: String };
 
   addToCart() {
+    if (!this.sizeValue) {
+      alert("Please select size");
+      return;
+    }
     const cart = localStorage.getItem("cart");
 
     if (cart) {
@@ -42,5 +46,10 @@ export default class extends Controller {
     this.sizeValue = e.target.value;
     const selectedSizeEl = document.getElementById("selected-size");
     selectedSizeEl.innerText = `Selected size: ${this.sizeValue}`;
+
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    if (addToCartBtn.hasAttribute("disabled")) {
+      addToCartBtn.removeAttribute("disabled");
+    }
   }
 }

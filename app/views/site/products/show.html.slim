@@ -29,7 +29,9 @@ div class="flex justify-center gap-20 py-10"
             = stock.size
     #selected-size
     button[
-      class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      id="addToCartBtn"
+      class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-white bg-gray-600 disabled:bg-gray-400 enabled:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+      disabled
       data-action="site--products#addToCart"
     ]
       | Add to Cart
