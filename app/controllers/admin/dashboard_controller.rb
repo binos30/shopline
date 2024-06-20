@@ -19,7 +19,7 @@ module Admin
       return unless @revenue_by_day.count < 7
       days_of_week = Date::DAYNAMES
       data_hash = @revenue_by_day.to_h
-      current_day_index = Date.current.wday
+      current_day_index = Time.current.localtime.wday
       next_day_index = (current_day_index + 1) % days_of_week.length
       ordered_days_with_current_last =
         days_of_week[next_day_index..] + days_of_week[0...next_day_index]
