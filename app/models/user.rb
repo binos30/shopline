@@ -42,8 +42,18 @@ class User < ApplicationRecord
   before_validation :set_role, on: :create, if: -> { role_id.blank? }
   before_create :set_defaults
 
+  # instead of deleting, indicate the user requested a delete & timestamp it
+  def soft_delete!
+    update!(active: false, deleted_at: Time.current)
+  end
+
   def active_for_authentication?
     super && active?
+  end
+
+  # provide a custom message for a deleted account
+  def inactive_message
+    deleted_at ? :deleted_account : super
   end
 
   def activate!

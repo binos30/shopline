@@ -13,9 +13,11 @@ Rails.application.routes.draw do
   devise_for :users,
              path: "",
              controllers: {
-               sessions: "sessions"
+               registrations: "users/registrations",
+               sessions: "users/sessions"
              },
              path_names: {
+               edit: "profile/edit",
                sign_in: "/login",
                sign_out: "/logout"
              }
