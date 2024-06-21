@@ -10,10 +10,15 @@ class User < ApplicationRecord
          :validatable,
          :trackable
 
+  # @NOTE:
+  # The column `gender` is supposed to be of type string in the database.
+  literal_enum :gender, %w[male female]
+
   belongs_to :role
 
   has_many :orders, dependent: :restrict_with_exception
 
+  validates :gender, presence: true, inclusion: { in: genders }
   validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,

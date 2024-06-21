@@ -6,6 +6,7 @@ RSpec.describe User do
   let!(:user) do
     described_class.new(
       role: Role.find_or_create_by!(name: "Administrator"),
+      gender: "male",
       email: "jd@gmail.com",
       password: "pass1234",
       first_name: "John",

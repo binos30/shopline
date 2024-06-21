@@ -34,3 +34,9 @@ en:
     create: "%{record} <strong>%{name}</strong> was successfully created."
     update: "%{record} <strong>%{name}</strong> was successfully updated."
     delete: "%{record} <strong>%{name}</strong> was successfully deleted."
+  activerecord:
+    attributes:
+      user:
+        genders:
+          male: "Male"
+          female: "Female"

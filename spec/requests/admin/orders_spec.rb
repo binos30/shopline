@@ -18,6 +18,7 @@ RSpec.describe "/admin/orders" do
   let!(:user) do
     User.create!(
       role: Role.find_or_create_by!(name: "Administrator"),
+      gender: "male",
       email: "jd@gmail.com",
       password: "pass123",
       first_name: "John",
