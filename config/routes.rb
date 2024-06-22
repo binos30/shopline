@@ -38,7 +38,7 @@ Rails.application.routes.draw do
     get "success" => "checkout#success"
     get "cancel" => "checkout#cancel"
     post "checkout" => "checkout#create"
-    resources :categories, only: :show, param: :slug
+    resources :categories, only: %i[index show], param: :slug
     resources :products, only: :show, param: :slug
   end
 

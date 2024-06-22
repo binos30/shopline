@@ -2,6 +2,17 @@
 
 module Site
   class CategoriesController < SiteController
+    def index
+      @categories =
+        Category.includes(image_attachment: :blob).filters(params.slice(:name)).active.order(:name)
+      @pagy, @categories = pagy_countless(@categories, items: 10)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
+
     def show # rubocop:disable Metrics/AbcSize
       @category = Category.active.find(params[:slug])
       @products =

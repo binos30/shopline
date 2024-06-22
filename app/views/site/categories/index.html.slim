@@ -1,0 +1,14 @@
+- title "Categories"
+
+= form_with(url: categories_path, method: :get,
+  data: { turbo_frame: :categories, controller: "site--categories", action: "input->site--categories#submitFilter" }) do |f|
+  = f.search_field :name, value: params[:name], placeholder: "Search for categories",
+    class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block p-2.5"
+
+= turbo_frame_tag :categories, "data-turbo-action": "advance",
+  class: "w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" do
+  == render @categories
+
+  = render "turbo_stream_replace_pagination"
+
+= turbo_frame_tag :pagination, loading: :lazy, src: categories_path(format: :turbo_stream, name: params[:name])

@@ -56,7 +56,7 @@
 
 # Countless extra: Paginate without any count, saving one query per rendering
 # See https://ddnexus.github.io/pagy/docs/extras/countless
-# require 'pagy/extras/countless'
+require "pagy/extras/countless"
 # Pagy::DEFAULT[:countless_minimal] = false   # default (eager loading)
 
 # Elasticsearch Rails extra: Paginate `ElasticsearchRails::Results` objects
@@ -142,7 +142,7 @@
 
 # Overflow extra: Allow for easy handling of overflowing pages
 # See https://ddnexus.github.io/pagy/docs/extras/overflow
-# require 'pagy/extras/overflow'
+require "pagy/extras/overflow"
 # Pagy::DEFAULT[:overflow] = :empty_page    # default  (other options: :last_page and :exception)
 
 # Trim extra: Remove the page=1 param from links

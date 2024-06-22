@@ -16,5 +16,8 @@ application.register("hello", HelloController);
 import Site__CartController from "./site/cart_controller";
 application.register("site--cart", Site__CartController);
 
+import Site__CategoriesController from "./site/categories_controller";
+application.register("site--categories", Site__CategoriesController);
+
 import Site__ProductsController from "./site/products_controller";
 application.register("site--products", Site__ProductsController);
