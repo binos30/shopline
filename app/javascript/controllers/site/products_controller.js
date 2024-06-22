@@ -1,8 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
+import debounce from "debounce";
 
 // Connects to data-controller="site--products"
 export default class extends Controller {
   static values = { product: Object, size: String };
+
+  initialize() {
+    this.submitFilter = debounce(this.submitFilter.bind(this), 400);
+  }
 
   addToCart() {
     if (!this.sizeValue) {
@@ -51,5 +56,9 @@ export default class extends Controller {
     if (addToCartBtn.hasAttribute("disabled")) {
       addToCartBtn.removeAttribute("disabled");
     }
+  }
+
+  submitFilter() {
+    this.element.requestSubmit();
   }
 }

@@ -39,7 +39,7 @@ Rails.application.routes.draw do
     get "cancel" => "checkout#cancel"
     post "checkout" => "checkout#create"
     resources :categories, only: %i[index show], param: :slug
-    resources :products, only: :show, param: :slug
+    resources :products, only: %i[index show], param: :slug
   end
 
   post "stripe_webhooks" => "webhooks#stripe"

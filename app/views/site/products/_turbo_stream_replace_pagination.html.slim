@@ -1,0 +1,6 @@
+= turbo_stream.replace :pagination do
+  - if @pagy.next.present?
+    = turbo_frame_tag :pagination, loading: :lazy,
+      src: products_path(format: :turbo_stream, page: @pagy.next, name: params[:name], min: params[:min], max: params[:max])
+  - else
+    = turbo_frame_tag :pagination

@@ -2,6 +2,22 @@
 
 module Site
   class ProductsController < SiteController
+    def index
+      @products =
+        Product
+          .includes(images_attachments: :blob)
+          .filters(params.slice(:name, :min, :max))
+          .available
+          .active
+          .order(:name)
+      @pagy, @products = pagy_countless(@products, items: 10)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+    end
+
     def show
       @product =
         Product

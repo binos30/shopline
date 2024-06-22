@@ -7,7 +7,7 @@ RSpec.describe "site/categories/show" do
 
   before do
     assign(:category, category)
-    assign(:products, category.products)
+    @pagy, @products = pagy(category.products)
   end
 
   it "renders attribute" do

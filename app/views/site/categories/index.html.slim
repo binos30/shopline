@@ -7,7 +7,11 @@
 
 = turbo_frame_tag :categories, "data-turbo-action": "advance",
   class: "w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" do
-  == render @categories
+  - if @categories.any?
+    == render @categories
+  - else
+    p class="text-2xl text-center text-gray-800"
+      | No categories found
 
   = render "turbo_stream_replace_pagination"
 

@@ -23,6 +23,12 @@ module Site
           .available
           .active
           .order(:name)
+      @pagy, @products = pagy_countless(@products, items: 10)
+
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
     rescue ActiveRecord::RecordNotFound
       logger.error "Category not found #{params[:slug]}"
       redirect_back(fallback_location: root_url)

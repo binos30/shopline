@@ -1,9 +1,6 @@
-- title @category.name
+- title "Products"
 
-h1 class="text-lg font-semibold" = @category.name
-h3 = @category.description
-
-== render "product_filter"
+== render "filter"
 
 = turbo_frame_tag :products, "data-turbo-action": "advance",
   class: "w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" do
@@ -13,6 +10,6 @@ h3 = @category.description
     p class="text-2xl text-center text-gray-800"
       | No products found
 
-  = render "turbo_stream_replace_pagination_product"
+  = render "turbo_stream_replace_pagination"
 
-= turbo_frame_tag :pagination, loading: :lazy, src: category_path(@category, format: :turbo_stream)
+= turbo_frame_tag :pagination, loading: :lazy, src: products_path(format: :turbo_stream)
