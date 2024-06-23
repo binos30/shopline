@@ -2,6 +2,7 @@
 
 E-commerce app. Shop online with Shopline. You shop, we ship!
 
+![Homepage](./docs/images/homepage.png)
 ![Dashboard](./docs/images/dashboard.png)
 ![Dashboard-Dark](./docs/images/dashboard-dark.png)
 ![Orders](./docs/images/orders.png)
