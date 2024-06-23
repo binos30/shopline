@@ -30,7 +30,9 @@ Rails.application.routes.draw do
     resources :products do
       resources :stocks
     end
-    resources :orders, only: %i[index show]
+    resources :orders, only: %i[index show] do
+      member { put :fulfill }
+    end
   end
 
   scope module: "site" do

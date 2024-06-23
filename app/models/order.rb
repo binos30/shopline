@@ -21,6 +21,16 @@ class Order < ApplicationRecord
   scope :filter_by_order_code, ->(order_code) { where("order_code ILIKE ?", "%#{order_code}%") }
   scope :filter_by_customer, ->(customer) { where("customer_full_name ILIKE ?", "%#{customer}%") }
 
+  def fulfill!
+    lock!
+
+    if fulfilled
+      errors.add(:order, "#{order_code} is already fulfilled.")
+      raise ActiveRecord::RecordInvalid, self
+    end
+    update!(fulfilled: true)
+  end
+
   private
 
   def generate_order_code

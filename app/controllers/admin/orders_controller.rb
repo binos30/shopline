@@ -2,7 +2,7 @@
 
 module Admin
   class OrdersController < AdminController
-    before_action :set_order, only: :show
+    before_action :set_order, only: %i[show fulfill]
 
     # GET /admin/orders or /admin/orders.json
     def index
@@ -12,6 +12,15 @@ module Admin
 
     # GET /admin/orders/1 or /admin/orders/1.json
     def show
+    end
+
+    def fulfill
+      @order.fulfill!
+      redirect_to admin_order_url(@order), notice: t("record.fulfill", code: @order.order_code)
+    rescue ActiveRecord::RecordInvalid => e
+      logger.tagged("Fulfill Order Error") { logger.error e.message }
+      flash.now[:alert] = e.message
+      render :show, status: :unprocessable_entity
     end
 
     private
