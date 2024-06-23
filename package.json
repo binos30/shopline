@@ -9,6 +9,7 @@
     "chart.js": "^4.4.3",
     "debounce": "^2.1.0",
     "esbuild": "^0.19.11",
+    "flowbite": "^2.3.0",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1"
   },

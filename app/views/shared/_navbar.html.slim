@@ -1,16 +1,58 @@
-nav class="fixed w-full top-0 bg-gray-100 z-10 py-4"
-  div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8"
-    div class="relative flex items-center justify-between h-16"
-      div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-between"
-        div class="hidden sm:flex items-center justify-center"
-          div class="flex space-x-10"
-            = link_to "Shop", root_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium"
-        div class="flex-shrink-0 flex items-center"
-          = link_to root_path do
-            = image_tag "logo-no-background.svg", class: "block lg:hidden h-20 w-auto", alt: "logo"
-          = link_to root_path do
-            = image_tag "logo-no-background.svg", class: "hidden lg:block h-20 w-auto", alt: "logo"
-        div class="hidden sm:flex sml:ml-6 items-center justify-center"
-          div class="flex space-x-10"
-            = link_to cart_path, class: "text-gray-500 hover:underline py-2 rounded-md text-md font-medium" do
-              i.fa-solid.fa-cart-shopping
+nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200"
+  div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+    = link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do
+      = image_tag "logo-no-background.svg", class: "h-8", alt: "Shopline Logo"
+      span class="self-center text-2xl font-semibold whitespace-nowrap" Shopline
+    div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+      = link_to cart_path, class: "text-gray-500 hover:text-gray-600 me-3 md:me-4" do
+        div class="relative py-2"
+          div class="t-0 absolute left-3"
+            p id="cart-count" class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+              | 0
+          i class="fa-solid fa-cart-shopping mt-4 h-6 w-6"
+      - if user_signed_in?
+        button[type="button" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom"
+          class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
+        ]
+          span class="sr-only" Open user menu
+          = image_tag avatar, class: "w-8 h-8 rounded-full", alt: "user photo"
+        <!-- Dropdown menu -->
+        div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown"
+          div class="px-4 py-3"
+            span class="block text-sm text-gray-900" = current_user.full_name
+            span class="block text-sm  text-gray-500 truncate" = current_user.email
+          ul class="py-2" aria-labelledby="user-menu-button"
+            - if current_user.admin?
+              li
+                = link_to "Dashboard", admin_dashboard_index_path,
+                  class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            li
+              = link_to "Edit Profile", edit_user_registration_path,
+                class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            li
+              = link_to "Sign Out", destroy_user_session_path,
+                data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },
+                class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+      button[data-collapse-toggle="navbar-user" type="button" aria-controls="navbar-user" aria-expanded="false"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+      ]
+        span class="sr-only" Open main menu
+        svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14"
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+    div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user"
+      ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white"
+        li
+          = link_to "Home", root_path, nav_link_attributes("home")
+        li
+          = link_to "Categories", categories_path, nav_link_attributes("categories")
+        li
+          = link_to "Products", products_path, nav_link_attributes("products")
+        li
+          = link_to "About", "#{root_path}#about", nav_link_attributes("about")
+        - unless user_signed_in?
+          li
+            = link_to "Sign In", new_user_session_path,
+              class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
+          li
+            = link_to "Sign Up", new_user_registration_path,
+              class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"

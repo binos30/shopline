@@ -6,6 +6,7 @@ module.exports = {
     "./app/views/**/*.{erb,haml,html,slim}",
     "./public/*.html"
   ],
+  plugins: [require("flowbite/plugin")],
   darkMode: "media",
   theme: {
     extend: {

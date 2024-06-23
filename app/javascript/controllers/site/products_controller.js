@@ -15,6 +15,7 @@ export default class extends Controller {
       return;
     }
     const cart = localStorage.getItem("cart");
+    const cartCountEl = document.getElementById("cart-count");
 
     if (cart) {
       const cartArray = JSON.parse(cart);
@@ -34,6 +35,7 @@ export default class extends Controller {
         });
       }
       localStorage.setItem("cart", JSON.stringify(cartArray));
+      cartCountEl.innerText = cartArray.length;
     } else {
       const cartArray = [];
       cartArray.push({
@@ -44,6 +46,7 @@ export default class extends Controller {
         quantity: 1
       });
       localStorage.setItem("cart", JSON.stringify(cartArray));
+      cartCountEl.innerText = cartArray.length;
     }
   }
 

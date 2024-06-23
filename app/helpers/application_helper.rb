@@ -23,6 +23,25 @@ module ApplicationHelper
     date.blank? ? "" : date.localtime.strftime(format)
   end
 
+  def nav_link_attributes(kontroller)
+    if kontroller.include?(controller_name)
+      {
+        "aria-current": "page",
+        class:
+          "text-white bg-blue-700 md:bg-transparent md:text-blue-700 block py-2 px-3 rounded md:p-0"
+      }
+    else
+      {
+        class:
+          "text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 block py-2 px-3 rounded md:p-0" # rubocop:disable Layout/LineLength
+      }
+    end
+  end
+
+  def avatar
+    current_user.male? ? "avatar-male.png" : "avatar-female.png"
+  end
+
   # rubocop:disable Rails/OutputSafety
   def items_option_selected
     case params[:count_per_page]
