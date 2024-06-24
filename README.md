@@ -12,9 +12,9 @@ E-commerce app. Shop online with Shopline. You shop, we ship!
 
 Prerequisites
 
-- [Ruby 3.3.0](https://www.ruby-lang.org/en/downloads/)
+- [Ruby 3.3.3](https://www.ruby-lang.org/en/downloads/)
 - [PostgreSQL](https://www.postgresql.org/download/)
-- [Node.js 20.10.0](https://nodejs.org/en/blog/release/v20.10.0)
+- [Node.js 20.15.0](https://nodejs.org/en/blog/release/v20.15.0)
 
 Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials. Get `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` from your [Stripe](https://dashboard.stripe.com) account
 
