@@ -16,13 +16,18 @@ section id="#{dom_id stock}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 
       span class="text-gray-900 dark:text-white"
         =< stock.quantity
     div
-      => link_to "Edit this stock", edit_admin_product_stock_path(@product, stock),
-        class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-      - if action_name == "show"
-        =< link_to "Back to stocks", admin_product_stocks_path(@product),
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        = button_to "Destroy this stock", admin_product_stock_path(@product, stock), method: :delete,
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-      - else
-        => link_to "Show this stock", admin_product_stock_path(@product, stock),
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+      => link_to edit_admin_product_stock_path(@product, stock),
+        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+        i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
+        | Edit this stock
+      =< link_to admin_product_stocks_path(@product),
+        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+        i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
+        | Back to stocks
+      button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
+        class="text-center inline-flex items-center border border-red-300 text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-800 dark:hover:bg-red-700 dark:focus:ring-red-700 dark:border-red-700"
+      ]
+        i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
+        | Delete this stock
+
+== render "admin/shared/modal", record: "stock", path: admin_product_stock_path(@product, stock)

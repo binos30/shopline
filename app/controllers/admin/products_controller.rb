@@ -76,7 +76,7 @@ module Admin
     end
 
     # DELETE /admin/products/1 or /admin/products/1.json
-    def destroy
+    def destroy # rubocop:disable Metrics/AbcSize
       @product.destroy!
 
       respond_to do |format|
@@ -86,6 +86,9 @@ module Admin
         end
         format.json { head :no_content }
       end
+    rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
+      logger.tagged("Delete Product##{@product.id} Error") { logger.error e }
+      redirect_to admin_products_url, alert: e
     end
 
     private

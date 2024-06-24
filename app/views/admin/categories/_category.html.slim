@@ -15,13 +15,18 @@ section id="#{dom_id category}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-
       span class="text-gray-900 dark:text-white"
         =< category.description
     div
-      => link_to "Edit this category", edit_admin_category_path(category),
-        class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-      - if action_name == "show"
-        =< link_to "Back to categories", admin_categories_path,
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-        = button_to "Destroy this category", admin_category_path(category), method: :delete,
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
-      - else
-        => link_to "Show this category", admin_category_path(category),
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+      => link_to edit_admin_category_path(category),
+        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+        i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
+        | Edit this category
+      =< link_to admin_categories_path,
+        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+        i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
+        | Back to categories
+      button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
+        class="text-center inline-flex items-center border border-red-300 text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-800 dark:hover:bg-red-700 dark:focus:ring-red-700 dark:border-red-700"
+      ]
+        i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
+        | Delete this category
+
+== render "admin/shared/modal", record: "category", path: admin_category_path(category)

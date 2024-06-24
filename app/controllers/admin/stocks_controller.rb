@@ -54,15 +54,18 @@ module Admin
     end
 
     # DELETE /admin/products/1/stocks/1
-    def destroy
+    def destroy # rubocop:disable Metrics/AbcSize
       @stock.destroy!
 
       respond_to do |format|
         format.html do
-          redirect_to admin_product_stocks_url,
+          redirect_to admin_product_stocks_url(@stock.product_id),
                       notice: t("record.delete", record: Stock.name, name: @stock.size)
         end
       end
+    rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
+      logger.tagged("Delete Stock##{@stock.id} Error") { logger.error e }
+      redirect_to admin_product_stocks_url(@stock.product_id), alert: e
     end
 
     private

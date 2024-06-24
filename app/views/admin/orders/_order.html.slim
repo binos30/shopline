@@ -37,13 +37,16 @@ section id="#{dom_id order}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 
           =< order.customer_address
     == render "order_items_table", order_items: order.order_items
     div
-      =< link_to "Back to orders", admin_orders_path,
-        class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
+      =< link_to admin_orders_path,
+        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+        i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
+        | Back to orders
       - unless order.fulfilled
         button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
-          class="inline-block border border-green-300 text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-700 dark:border-green-700"
+          class="text-center inline-flex items-center border border-green-300 text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-700 dark:border-green-700"
         ]
+          i class="fa-solid fa-check w-3.5 h-3.5 me-2"
           | Fulfill
 
         == render "admin/shared/modal", action: "fulfill", record: "order",
-          path: fulfill_admin_order_path(order), method: :put, color: "green"
+          path: fulfill_admin_order_path(order), method: :put

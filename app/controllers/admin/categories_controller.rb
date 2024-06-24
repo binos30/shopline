@@ -71,7 +71,7 @@ module Admin
     end
 
     # DELETE /admin/categories/1 or /admin/categories/1.json
-    def destroy
+    def destroy # rubocop:disable Metrics/AbcSize
       @category.destroy!
 
       respond_to do |format|
@@ -81,6 +81,9 @@ module Admin
         end
         format.json { head :no_content }
       end
+    rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
+      logger.tagged("Delete Category##{@category.id} Error") { logger.error e }
+      redirect_to admin_categories_url, alert: e
     end
 
     private
