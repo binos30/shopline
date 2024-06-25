@@ -9,12 +9,16 @@ html
     meta name="viewport" content="width=device-width,initial-scale=1"
     meta name="turbo-prefetch" content="false"
 
+    == render "shared/meta_tags"
+
     = csrf_meta_tags
     = csp_meta_tag
 
     = turbo_refreshes_with method: :morph, scroll: :preserve
     = yield :head
 
+    = tag.link(href: request.original_url, rel: "canonical")
+    = favicon_link_tag "logo-no-background.svg", rel: "apple-touch-icon", type: "image/svg+xml"
     = favicon_link_tag "logo-no-background.svg", rel: "shortcut icon", type: "image/svg+xml"
 
     = stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload"
