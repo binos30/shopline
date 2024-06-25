@@ -5,13 +5,10 @@
     "@fortawesome/fontawesome-free": "^6.5.2",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.4",
-    "autoprefixer": "^10.4.19",
     "chart.js": "^4.4.3",
     "debounce": "^2.1.0",
     "esbuild": "^0.21.5",
-    "flowbite": "^2.3.0",
-    "postcss": "^8.4.38",
-    "tailwindcss": "^3.4.4"
+    "flowbite": "^2.3.0"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^4.0.4",
@@ -20,8 +17,7 @@
     "prettier": "^3.3.2"
   },
   "scripts": {
-    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "prepare": "husky install"
   },
   "lint-staged": {
