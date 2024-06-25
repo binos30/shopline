@@ -13,6 +13,8 @@ class Category < ApplicationRecord
   end
   has_many :products, dependent: :destroy
 
+  broadcasts_refreshes
+
   validates :name, presence: true, uniqueness: { case_sensitive: false }
 
   before_save :sanitize_fields

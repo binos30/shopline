@@ -12,6 +12,7 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
           | Status
     tbody
       - @categories.each do |category|
+        = turbo_stream_from category
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           td class="px-6 py-4"
             = category.image.present? ? image_tag(category.image.variant(:thumb)) : image_tag("https://via.placeholder.com/50")

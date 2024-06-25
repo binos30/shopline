@@ -1,5 +1,7 @@
 - title "Admin | Order ##{@order.id}"
 
+= turbo_stream_from @order
+
 == render "shared/alert"
 == render "shared/notice"
 == render "admin/orders/order", order: @order

@@ -1,4 +1,5 @@
 div id="#{dom_id category}" class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
+  = turbo_stream_from category
   = link_to category_path(category), data: { turbo_frame: :_top } do
     = category.image.present? ? image_tag(category.image, class: "h-80 w-72 object-cover rounded-t-xl", alt: "Category") : image_tag("https://via.placeholder.com/500", class: "h-80 w-72 object-cover rounded-t-xl", alt: "Category")
     div class="px-4 py-3 w-72"

@@ -7,6 +7,8 @@ class Order < ApplicationRecord
 
   has_many :order_items, -> { order(:id) }, dependent: :destroy, inverse_of: :order
 
+  broadcasts_refreshes
+
   validates :customer_email, :customer_full_name, :customer_address, presence: true
   validate :validate_has_one_item
 

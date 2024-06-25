@@ -1,4 +1,6 @@
 - title "Admin | Product ##{@product.id} | Stock ##{@stock.id}"
 
+= turbo_stream_from @stock
+
 == render "shared/notice"
 == render "admin/stocks/stock", stock: @stock

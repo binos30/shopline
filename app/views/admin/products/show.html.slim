@@ -1,4 +1,6 @@
 - title "Admin | Product ##{@product.id}"
 
+= turbo_stream_from @product
+
 == render "shared/notice"
 == render "admin/products/product", product: @product

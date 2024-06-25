@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   # Set the attribute from which the slug would be generated
   slugify :name
 
-  belongs_to :category
+  belongs_to :category, touch: true
 
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [50, 50]
@@ -16,6 +16,8 @@ class Product < ApplicationRecord
   end
   has_many :stocks, dependent: :destroy
   has_many :order_items, dependent: :restrict_with_exception
+
+  broadcasts_refreshes
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :price,
@@ -29,8 +31,8 @@ class Product < ApplicationRecord
 
   scope :available, -> { joins(:stocks).where("quantity > 0").distinct }
   scope :filter_by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
-  scope :filter_by_min, ->(min) { where("price >= ?", min) }
-  scope :filter_by_max, ->(max) { where("price <= ?", max) }
+  scope :filter_by_min, ->(min) { where(price: min..) }
+  scope :filter_by_max, ->(max) { where(price: ..max) }
 
   private
 
