@@ -39,6 +39,11 @@ FriendlyId.defaults do |config|
 
   # config.treat_reserved_as_conflict = true
 
+  # FriendlyId's History module adds the ability to store a log of a model's slugs,
+  # so that when its friendly id changes, it's still possible to perform finds by the old id.
+  # The primary use case for this is avoiding broken URLs.
+  config.use :history
+
   #  ## Friendly Finders
   #
   # Uncomment this to use friendly finders in all models. By default, if
