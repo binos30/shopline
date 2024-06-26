@@ -8,7 +8,7 @@ class Product < ApplicationRecord
   # Set the attribute from which the slug would be generated
   slugify :name
 
-  belongs_to :category, touch: true
+  belongs_to :category
 
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [50, 50]
@@ -17,6 +17,7 @@ class Product < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :order_items, dependent: :restrict_with_exception
 
+  broadcasts_refreshes_to :category
   broadcasts_refreshes
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class Stock < ApplicationRecord
-  belongs_to :product, touch: true
+  belongs_to :product
 
+  broadcasts_refreshes_to :product
   broadcasts_refreshes
 
   validates :size, presence: true, uniqueness: { scope: :product_id, case_sensitive: false }
