@@ -37,8 +37,8 @@ Rails.application.routes.draw do
 
   scope module: "site" do
     get "cart" => "cart#show"
-    get "success" => "checkout#success"
-    get "cancel" => "checkout#cancel"
+    get "order/success" => "checkout#success"
+    get "order/cancel" => "checkout#cancel"
     post "checkout" => "checkout#create"
     resources :categories, only: %i[index show], param: :slug
     resources :products, only: %i[index show], param: :slug
