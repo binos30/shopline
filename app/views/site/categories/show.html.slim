@@ -17,4 +17,4 @@ h3 = @category.description
 
   = render "turbo_stream_replace_pagination_product"
 
-= turbo_frame_tag :pagination, loading: :lazy, src: category_path(@category, format: :turbo_stream)
+= turbo_frame_tag :pagination
