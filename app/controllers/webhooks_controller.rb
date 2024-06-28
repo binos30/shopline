@@ -3,7 +3,7 @@
 class WebhooksController < ApplicationController
   skip_forgery_protection
 
-  def stripe # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+  def stripe # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity
     payload = request.body.read
     sig_header = request.env["HTTP_STRIPE_SIGNATURE"]
     endpoint_secret = STRIPE_WEBHOOK_SECRET
@@ -63,8 +63,8 @@ class WebhooksController < ApplicationController
       user.update!(stripe_customer_id: customer.id)
     when "customer.deleted"
       customer = event.data.object
-      user = User.find_by!(email: customer.email)
-      user.update!(stripe_customer_id: nil)
+      user = User.find_by(stripe_customer_id: customer.id)
+      user&.update!(stripe_customer_id: nil)
     else
       logger.tagged("Stripe Checkout Webhook") do
         logger.error "Unhandled event type: #{event.type}"
