@@ -4,7 +4,7 @@ module Site
   class CheckoutController < SiteController
     before_action :check_and_authenticate_user
 
-    def create # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity
+    def create # rubocop:disable Metrics/AbcSize,Metrics/MethodLength,Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
       cart = params[:cart]
       items =
         cart.map do |item|
@@ -23,6 +23,7 @@ module Site
             price_data: {
               product_data: {
                 name: item["name"],
+                description: product.description.presence || nil,
                 images: product.images.map { |img| url_for(img) },
                 metadata: {
                   product_id: product.id,
