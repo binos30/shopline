@@ -78,6 +78,16 @@ module Site
     private
 
     def check_and_authenticate_user
+      if user_signed_in? && !current_user.customer?
+        return(
+          render(
+            json: {
+              error: "You're not authorized to checkout because you're not a customer"
+            },
+            status: :unauthorized
+          )
+        )
+      end
       return if user_signed_in?
       render json: { login_path: new_user_session_path }, status: :unauthorized
     end

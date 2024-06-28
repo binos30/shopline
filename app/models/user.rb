@@ -68,6 +68,10 @@ class User < ApplicationRecord
     role.name.casecmp("administrator").zero?
   end
 
+  def customer?
+    role.name.casecmp("customer").zero?
+  end
+
   def full_name
     "#{first_name} #{last_name}"
   end
