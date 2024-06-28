@@ -14,6 +14,13 @@ class Order < ApplicationRecord
 
   after_initialize :generate_order_code, if: :new_record?
 
+  scope :datatable,
+        -> do
+          select(
+            "orders.id, orders.order_code, orders.created_at, orders.fulfilled, orders.total,
+            CONCAT(users.first_name, ' ', users.last_name) AS customer_full_name"
+          ).from("orders JOIN users ON orders.user_id = users.id").order(created_at: :desc)
+        end
   scope :recent_unfulfilled, -> { where(fulfilled: false).order(created_at: :desc).take(5) }
   scope :today, -> { where(created_at: Time.current.midnight..Time.current) }
   scope :revenue, -> { today.sum(:total) }
@@ -21,7 +28,10 @@ class Order < ApplicationRecord
   scope :avg_sale, -> { today.average(:total).to_f }
   scope :per_sale, -> { joins(:order_items).today.average(:quantity).to_i }
   scope :filter_by_order_code, ->(order_code) { where("order_code ILIKE ?", "%#{order_code}%") }
-  scope :filter_by_customer, ->(customer) { where("customer_full_name ILIKE ?", "%#{customer}%") }
+  scope :filter_by_customer,
+        ->(customer) do
+          where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{customer}%")
+        end
 
   def fulfill!
     lock!

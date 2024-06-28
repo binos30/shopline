@@ -1,0 +1,28 @@
+div class="relative overflow-x-auto shadow-md sm:rounded-lg"
+  table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
+      tr
+        th scope="col" class="px-6 py-3"
+          | Full Name
+        th scope="col" class="px-6 py-3"
+          | Email
+        th scope="col" class="px-6 py-3"
+          | Total Orders
+        th scope="col" class="px-6 py-3"
+          | Total Spent
+        th scope="col" class="px-6 py-3"
+          | Status
+    tbody
+      - @customers.each do |customer|
+        tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+          th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+            = customer.fullname
+          td class="px-6 py-4 whitespace-nowrap"
+            = customer.email
+          td class="px-6 py-4 whitespace-nowrap"
+            = customer.total_orders
+          td class="px-6 py-4 whitespace-nowrap"
+            = number_to_currency(customer.total_spent, unit: "$")
+          td class="px-6 py-4"
+            = status_badge(customer.active)
+== render "admin/shared/pagination"

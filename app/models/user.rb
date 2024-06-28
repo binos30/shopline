@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  include Filterable
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -41,6 +43,25 @@ class User < ApplicationRecord
 
   before_validation :set_role, on: :create, if: -> { role_id.blank? }
   before_create :set_defaults
+
+  scope :customers,
+        -> do
+          select(
+            "users.id, users.email, users.active,
+            CONCAT(users.first_name, ' ', users.last_name) AS fullname,
+            COUNT(orders.id) AS total_orders, COALESCE(SUM(orders.total), 0) AS total_spent"
+          )
+            .from(
+              "users
+              JOIN roles ON roles.id = users.role_id
+              LEFT JOIN orders ON orders.user_id = users.id"
+            )
+            .where("LOWER(roles.name) = 'customer'")
+            .group("users.id")
+            .order(Arel.sql("CONCAT(users.first_name, ' ', users.last_name)"))
+        end
+  scope :filter_by_name,
+        ->(name) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{name}%") }
 
   # instead of deleting, indicate the user requested a delete & timestamp it
   def soft_delete!

@@ -6,7 +6,7 @@ module Admin
 
     # GET /admin/orders or /admin/orders.json
     def index
-      @orders = Order.filters(params.slice(:order_code, :customer)).order(created_at: :desc)
+      @orders = Order.datatable.filters(params.slice(:order_code, :customer))
       @pagy, @orders = pagy(@orders, items: count_per_page)
     end
 
@@ -27,7 +27,15 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_order
-      @order = Order.includes(:order_items).find(params[:id])
+      @order =
+        Order
+          .joins(:user)
+          .includes(:order_items)
+          .select(
+            "orders.*, users.email AS customer_email,
+            CONCAT(users.first_name, ' ', users.last_name) AS customer_full_name"
+          )
+          .find(params[:id])
     rescue ActiveRecord::RecordNotFound
       logger.error "Order not found #{params[:id]}"
       redirect_back(fallback_location: admin_orders_url)

@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :orders, only: %i[index show] do
       member { put :fulfill }
     end
+    resources :customers, only: :index
   end
 
   scope module: "site" do
