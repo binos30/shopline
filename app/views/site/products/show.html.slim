@@ -4,7 +4,7 @@
 
 div class="flex flex-wrap justify-center gap-10 py-10"
   div class="flex flex-wrap max-w-lg"
-    - if @product.images.any?
+    - if @product.images.attached?
       - @product.images.each do |image|
         = image_tag(image, class: "w-auto h-64", alt: "Product")
     - else

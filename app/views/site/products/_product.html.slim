@@ -1,7 +1,7 @@
 div id="#{dom_id product}" class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl"
   = turbo_stream_from product
   = link_to product_path(product), data: { turbo_frame: :_top } do
-    = product.images.any? ? image_tag(product.images.first, class: "h-80 w-72 object-cover rounded-t-xl", alt: "Product") : image_tag("https://via.placeholder.com/500", class: "h-80 w-72 object-cover rounded-t-xl", alt: "Product")
+    = product.images.attached? ? image_tag(product.images.first, class: "h-80 w-72 object-cover rounded-t-xl", alt: "Product") : image_tag("https://via.placeholder.com/500", class: "h-80 w-72 object-cover rounded-t-xl", alt: "Product")
     div class="px-4 py-3 w-72"
       h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 block capitalize"
         = product.name

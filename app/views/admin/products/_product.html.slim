@@ -24,7 +24,7 @@ section id="#{dom_id product}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-1
         | Price:
       span class="text-gray-900 dark:text-white"
         =< number_to_currency(product.price, unit: "$")
-    - if product.images.any?
+    - if product.images.attached?
       div class="grid gap-4"
         div
           = image_tag(product.images.first, class: "h-auto max-w-full rounded-lg")
