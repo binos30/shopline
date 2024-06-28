@@ -32,7 +32,7 @@ bin/dev
 
 Go to [http://localhost:3000](http://localhost:3000)
 
-Use Stripe CLI to simulate Stripe events in your local environment or [learn more about Webhooks](https://docs.stripe.com/webhooks)
+Use [Stripe CLI](https://docs.stripe.com/stripe-cli) to simulate Stripe events in your local environment or [learn more about Webhooks](https://docs.stripe.com/webhooks)
 
 ```bash
 stripe listen --forward-to localhost:3000/stripe_webhooks
