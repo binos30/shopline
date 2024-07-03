@@ -27,8 +27,7 @@ module ApplicationHelper
     if kontroller.include?(controller_name)
       {
         "aria-current": "page",
-        class:
-          "text-white bg-blue-700 md:bg-transparent md:text-blue-700 block py-2 px-3 rounded md:p-0"
+        class: "text-white bg-blue-700 md:bg-transparent md:text-blue-700 block py-2 px-3 rounded md:p-0"
       }
     else
       {
@@ -68,4 +67,9 @@ module ApplicationHelper
     end
   end
   # rubocop:enable Rails/OutputSafety
+
+  def site_form_input_class
+    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" \
+      " focus:border-primary-600 block p-2.5"
+  end
 end

@@ -1,30 +1,23 @@
 section id="#{dom_id category}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class="block mb-1 font-medium text-gray-900 dark:text-white"
-        | Status:
+      strong class=strong_label_class Status:
       = status_badge(category.active)
     p
-      strong class="block mb-1 font-medium text-gray-900 dark:text-white"
-        | Name:
-      span class="text-gray-900 dark:text-white"
-        =< category.name
+      strong class=strong_label_class Name:
+      span class=span_label_class =< category.name
     p
-      strong class="block mb-1 font-medium text-gray-900 dark:text-white"
-        | Description:
-      span class="text-gray-900 dark:text-white"
-        =< category.description
+      strong class=strong_label_class Description:
+      span class=span_label_class =< category.description
     div
-      => link_to edit_admin_category_path(category),
-        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+      => link_to edit_admin_category_path(category), class: button_with_icon_class do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
         | Edit this category
-      =< link_to admin_categories_path,
-        class: "text-center inline-flex items-center border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" do
+      =< link_to admin_categories_path, class: button_with_icon_class do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
         | Back to categories
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
-        class="text-center inline-flex items-center border border-red-300 text-white bg-red-800 hover:bg-red-900 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-800 dark:hover:bg-red-700 dark:focus:ring-red-700 dark:border-red-700"
+        class=delete_button_with_icon_class
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
         | Delete this category
