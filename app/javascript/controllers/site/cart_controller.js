@@ -15,9 +15,7 @@ export default class extends Controller {
 
       const div = document.createElement("div");
       div.classList.add("mt-2");
-      div.innerText = `Item: ${item.name} - $${price.toFixed(2)} - Size: ${item.size} - Qty: ${
-        item.quantity
-      }`;
+      div.innerText = `Item: ${item.name} - $${price.toFixed(2)} - Size: ${item.size} - Qty: ${item.quantity}`;
       const deleteButton = document.createElement("button");
       deleteButton.innerText = "Remove";
       deleteButton.value = i;
