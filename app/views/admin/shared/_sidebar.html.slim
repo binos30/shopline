@@ -29,6 +29,11 @@ aside.w-64.p-4.h-screen.bg-gray-800.sticky.top-0
         class: "#{sidebar_link_active_class("customers")} #{sidebar_link_class}" do
         i.fa-solid.fa-users
         span class=(sidebar_link_label_class) Customers
+    li
+      = link_to admin_subscribers_path,
+        class: "#{sidebar_link_active_class("subscribers")} #{sidebar_link_class}" do
+        i.fa-solid.fa-envelope-open-text
+        span class=(sidebar_link_label_class) Subscribers
   ul class="flex flex-col text-gray-50 pt-4 mt-4 space-y-2 font-medium border-t border-gray-700"
     li
       = link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },

@@ -41,3 +41,12 @@ en:
         genders:
           male: "Male"
           female: "Female"
+      subscriber:
+        email: "Email"
+    errors:
+      models:
+        subscriber:
+          attributes:
+            email:
+              blank: "is required"
+              taken: "has already been subscribed"
