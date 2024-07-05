@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       member { put :fulfill }
     end
     resources :customers, only: :index
+    resources :subscribers, only: :index
   end
 
   scope module: "site" do
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
     post "checkout" => "checkout#create"
     resources :categories, only: %i[index show], param: :slug
     resources :products, only: %i[index show], param: :slug
+    resources :subscribers, only: %i[new create]
   end
 
   post "stripe_webhooks" => "webhooks#stripe"

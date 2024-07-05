@@ -17,4 +17,18 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name gender])
     devise_parameter_sanitizer.permit(:account_update, keys: %i[first_name last_name gender])
   end
+
+  # Render turbo stream with our custom action `redirect` to solve "Turbo frame break out + redirect" problem.
+  def turbo_stream_redirect(url, flash_type: :alert, flash_message: "")
+    raise ArgumentError, "Invalid flash type '#{flash_type}'" unless flash_type.in?(%i[alert notice warning])
+    respond_to do |format|
+      format.turbo_stream do
+        if flash_message
+          flash.now[flash_type] = flash_message
+          flash.keep(flash_type)
+        end
+        render turbo_stream: turbo_stream.redirect(url)
+      end
+    end
+  end
 end
