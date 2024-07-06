@@ -23,4 +23,4 @@ production:
   <<: *default
   database: shopline_production
   advisory_locks: false
-  prepared_statements: true
+  prepared_statements: false
