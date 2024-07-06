@@ -10,21 +10,22 @@
 
 100.times.with_index do |i|
   Category.create(
-    name: Faker::Lorem.sentence(word_count: 3),
-    description: Faker::Lorem.paragraph(sentence_count: 3)
+    name: "Category #{i + 1}",
+    description: "Category #{i + 1} description"
   )
   puts "Created category #{i + 1}"
 end
 
 category_ids = Category.pluck(:id)
+prices = [30, 60, 90]
 sizes = %w[S M L].freeze
 100.times.with_index do |i|
   product =
     Product.create(
       category_id: category_ids.sample,
-      name: Faker::Lorem.sentence(word_count: 3),
-      description: Faker::Lorem.paragraph(sentence_count: 3),
-      price: 99
+      name: "Product #{i + 1}",
+      description: "Product #{i + 1} description",
+      price: prices.sample
     )
   product.stocks.create(size: sizes.sample, quantity: 3)
   puts "Created product #{i + 1}"
