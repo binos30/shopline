@@ -8,7 +8,8 @@
     "chart.js": "^4.4.3",
     "debounce": "^2.1.0",
     "esbuild": "^0.23.0",
-    "flowbite": "^2.4.1"
+    "flowbite": "^2.4.1",
+    "local-time": "^3.0.2"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^4.0.4",

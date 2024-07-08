@@ -3,6 +3,9 @@ import "@fortawesome/fontawesome-free/js/all.min";
 import "@hotwired/turbo-rails";
 import "./controllers";
 import "flowbite/dist/flowbite.turbo.min";
+import LocalTime from "local-time";
+
+LocalTime.start();
 
 /**
  * Turbo lets you define custom actions on top of the default actions that it provides (`append`, `replace`, `remove` etc).

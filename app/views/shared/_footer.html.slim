@@ -41,4 +41,4 @@ footer class="bg-gray-800 text-white"
       div class="border-t border-gray-700"
         div class="max-w-6xl mx-auto px-4 py-10 md:flex md:items-center md:justify-between"
           p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1"
-            | &copy; #{Time.now.getlocal.year} Shopline. All rights reserved.
+            | &copy; #{local_time(Time.current, "%Y")} Shopline. All rights reserved.

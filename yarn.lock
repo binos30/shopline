@@ -708,6 +708,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"local-time@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "local-time@npm:3.0.2"
+  checksum: 10c0/906d224bc09714293037df70286cee91f86a80023366922741808e43679a798400659f06451e9432ffbd4030b2fe957cfdeaa6ce6de5e2fecbf276b291986b08
+  languageName: node
+  linkType: hard
+
 "log-update@npm:^6.0.0":
   version: 6.0.0
   resolution: "log-update@npm:6.0.0"
@@ -914,6 +921,7 @@ __metadata:
     flowbite: "npm:^2.4.1"
     husky: "npm:^9.0.11"
     lint-staged: "npm:^15.2.7"
+    local-time: "npm:^3.0.2"
     prettier: "npm:^3.3.2"
   languageName: unknown
   linkType: soft

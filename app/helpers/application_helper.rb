@@ -20,7 +20,7 @@ module ApplicationHelper
         date_instance
       end
 
-    date.blank? ? "" : date.localtime.strftime(format)
+    date.blank? ? "" : local_time(date, format)
   end
 
   def nav_link_attributes(kontroller)
