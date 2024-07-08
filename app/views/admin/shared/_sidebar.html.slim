@@ -1,42 +1,49 @@
-aside.w-64.p-4.h-screen.bg-gray-800.sticky.top-0
-  = link_to root_path, class: "flex mb-2 items-center" do
-    = image_tag("logo-no-background.svg", class: "w-14", alt: "logo")
-    h1 class="ml-2 text-md py-2 text-white font-bold hidden md:block"
-      | Shopline
-  ul.flex.flex-col.text-gray-50.font-medium
-    li
-      = link_to admin_dashboard_index_path,
-        class: "#{sidebar_link_active_class("dashboard")} #{sidebar_link_class}" do
-        i.fa-solid.fa-gauge
-        span class=(sidebar_link_label_class) Dashboard
-    li
-      = link_to admin_categories_path,
-        class: "#{sidebar_link_active_class("categories")} #{sidebar_link_class}" do
-        i.fa-solid.fa-list
-        span class=(sidebar_link_label_class) Categories
-    li
-      = link_to admin_products_path,
-        class: "#{sidebar_link_active_class("products, stocks")} #{sidebar_link_class}" do
-        i.fa-solid.fa-cart-shopping
-        span class=(sidebar_link_label_class) Products
-    li
-      = link_to admin_orders_path,
-        class: "#{sidebar_link_active_class("orders")} #{sidebar_link_class}" do
-        i.fa-solid.fa-truck-fast
-        span class=(sidebar_link_label_class) Orders
-    li
-      = link_to admin_customers_path,
-        class: "#{sidebar_link_active_class("customers")} #{sidebar_link_class}" do
-        i.fa-solid.fa-users
-        span class=(sidebar_link_label_class) Customers
-    li
-      = link_to admin_subscribers_path,
-        class: "#{sidebar_link_active_class("subscribers")} #{sidebar_link_class}" do
-        i.fa-solid.fa-envelope-open-text
-        span class=(sidebar_link_label_class) Subscribers
-  ul class="flex flex-col text-gray-50 pt-4 mt-4 space-y-2 font-medium border-t border-gray-700"
-    li
-      = link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },
-        class: sidebar_link_class do
-        i.fa-solid.fa-arrow-right-from-bracket
-        span class=(sidebar_link_label_class) Sign Out
+button[data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button"
+  class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"]
+  <span class="sr-only">Open sidebar</span>
+  svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
+    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+
+aside[id="logo-sidebar" aria-label="Sidebar"
+  class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 border-r border-gray-200 dark:border-gray-700"]
+  div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800"
+    = link_to root_path, class: "flex items-center ps-2.5 mb-5" do
+      = image_tag("logo-no-background.svg", class: "h-6 me-3 sm:h-7", alt: "Shopline Logo")
+      span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white" Shopline
+    ul class="space-y-2 font-medium"
+      li
+        = link_to admin_dashboard_index_path,
+          class: "#{sidebar_link_active_class("dashboard")} #{sidebar_link_class}" do
+          i class="fa-solid fa-gauge #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("dashboard")}"
+          span class="ms-3" Dashboard
+      li
+        = link_to admin_categories_path,
+          class: "#{sidebar_link_active_class("categories")} #{sidebar_link_class}" do
+          i class="fa-solid fa-list #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("categories")}"
+          span class="ms-3" Categories
+      li
+        = link_to admin_products_path,
+          class: "#{sidebar_link_active_class("products, stocks")} #{sidebar_link_class}" do
+          i class="fa-solid fa-cart-shopping #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("products, stocks")}"
+          span class="ms-3" Products
+      li
+        = link_to admin_orders_path,
+          class: "#{sidebar_link_active_class("orders")} #{sidebar_link_class}" do
+          i class="fa-solid fa-truck-fast #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("orders")}"
+          span class="ms-3" Orders
+      li
+        = link_to admin_customers_path,
+          class: "#{sidebar_link_active_class("customers")} #{sidebar_link_class}" do
+          i class="fa-solid fa-users #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("customers")}"
+          span class="ms-3" Customers
+      li
+        = link_to admin_subscribers_path,
+          class: "#{sidebar_link_active_class("subscribers")} #{sidebar_link_class}" do
+          i class="fa-solid fa-envelope-open-text #{sidebar_link_icon_class} #{sidebar_link_icon_active_class("subscribers")}"
+          span class="ms-3" Subscribers
+    ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700"
+      li
+        = link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },
+          class: sidebar_link_class do
+          i class="fa-solid fa-arrow-right-from-bracket #{sidebar_link_icon_class}"
+          span class="ms-3" Sign Out

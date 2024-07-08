@@ -26,8 +26,7 @@ html
     = javascript_include_tag "application", "data-turbo-track": "reload", type: "module"
 
   body
-    main.main-admin.flex
-      .flex.w-full
-        == render "admin/shared/sidebar"
-        div class="w-full p-8 bg-gray-50 dark:bg-gray-900"
-          = yield
+    main class="main-admin bg-gray-50 dark:bg-gray-900"
+      == render "admin/shared/sidebar"
+      div class="p-4 sm:ml-64 min-h-screen"
+        = yield

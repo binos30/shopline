@@ -11,15 +11,20 @@ module AdminHelper
     "bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-yellow-900 dark:text-yellow-300" # rubocop:disable Layout/LineLength
 
   def sidebar_link_active_class(kontroller)
-    kontroller.include?(controller_name) ? "rounded bg-gray-900" : ""
+    kontroller.include?(controller_name) ? "bg-gray-100 dark:bg-gray-700" : ""
+  end
+
+  def sidebar_link_icon_active_class(kontroller)
+    kontroller.include?(controller_name) ? "text-gray-900 dark:text-white" : ""
   end
 
   def sidebar_link_class
-    "block px-4 py-2 hover:rounded hover:bg-gray-900 mb-1"
+    "flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
   end
 
-  def sidebar_link_label_class
-    "ml-2 hidden md:inline-block"
+  def sidebar_link_icon_class
+    "flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400" \
+      " group-hover:text-gray-900 dark:group-hover:text-white"
   end
 
   def h1_label_class
