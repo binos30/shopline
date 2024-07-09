@@ -29,9 +29,7 @@ class Order < ApplicationRecord
   scope :per_sale, -> { joins(:order_items).today.average(:quantity).to_i }
   scope :filter_by_order_code, ->(order_code) { where("order_code ILIKE ?", "%#{order_code}%") }
   scope :filter_by_customer,
-        ->(customer) do
-          where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{customer}%")
-        end
+        ->(customer) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{customer}%") }
 
   def fulfill!
     lock!
@@ -46,12 +44,9 @@ class Order < ApplicationRecord
   private
 
   def generate_order_code
-    current_time = Time.now.getlocal
-    current_year = current_time.year.to_s
-    current_month = current_time.strftime("%m")
-    epoch_time = current_time.to_i.to_s.last(6)
+    epoch_time = Time.now.to_i
 
-    self.order_code = "SL-#{current_year}-#{current_month}-#{epoch_time}"
+    self.order_code = "SL-#{epoch_time}-0#{rand(10)}"
   end
 
   def validate_has_one_item
