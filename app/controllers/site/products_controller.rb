@@ -19,8 +19,7 @@ module Site
     end
 
     def show
-      @product =
-        Product.includes([:stocks, { images_attachments: :blob }]).active.find(params[:slug])
+      @product = Product.includes([:stocks, { images_attachments: :blob }]).active.find_by!(slug: params[:slug])
     rescue ActiveRecord::RecordNotFound
       logger.error "Product not found #{params[:slug]}"
       redirect_back(fallback_location: root_url)
