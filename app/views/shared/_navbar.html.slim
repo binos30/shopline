@@ -26,6 +26,10 @@ nav class="bg-white fixed w-full z-20 top-0 start-0 border-b border-gray-200"
               li
                 = link_to "Dashboard", admin_dashboard_index_path,
                   class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+            - if current_user.customer?
+              li
+                = link_to "My Orders", orders_path,
+                  class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             li
               = link_to "Edit Profile", edit_user_registration_path,
                 class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

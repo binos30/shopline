@@ -31,4 +31,10 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  private
+
+  def count_per_page
+    [10, 25, 50, 100].find { |el| el == params[:count_per_page].to_i } || 10
+  end
 end

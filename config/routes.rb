@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     resources :categories, only: %i[index show], param: :slug
     resources :products, only: %i[index show], param: :slug
     resources :subscribers, only: %i[new create]
+    resources :orders, only: %i[index show], param: :order_code
   end
 
   post "stripe_webhooks" => "webhooks#stripe"

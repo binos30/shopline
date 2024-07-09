@@ -1,0 +1,29 @@
+section id="#{dom_id order}" class="mb-4 w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+  div class="p-6 space-y-4 md:space-y-6 sm:p-8"
+    div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
+      .w-full
+        strong class=strong_label_class Status:
+        = order_status_badge(order.fulfilled)
+      .w-full
+        strong class=strong_label_class Order ID:
+        span class=span_label_class =< order.order_code
+      .w-full
+        strong class=strong_label_class Date:
+        span class=span_label_class = format_date(order.created_at, "%b %e, %Y %l:%M %p")
+      .w-full
+        strong class=strong_label_class Total:
+        span class=span_label_class =< number_to_currency(order.total, unit: "$")
+      .w-full
+        strong class=strong_label_class Customer:
+        span class=span_label_class =< order.customer_full_name
+      .w-full
+        strong class=strong_label_class Email:
+        span class=span_label_class =< order.customer_email
+      div class="sm:col-span-2"
+        strong class=strong_label_class Address:
+        span class=span_label_class =< order.customer_address
+    == render "order_items_table", order_items: order.order_items
+    div
+      =< link_to orders_path, class: button_with_icon_class do
+        i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
+        | Back to orders
