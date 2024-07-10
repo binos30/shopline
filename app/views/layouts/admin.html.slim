@@ -1,6 +1,8 @@
 doctype html
 html
   head
+    = render "shared/google_tag"
+
     title
       = content_for?(:title) ? yield(:title) : t(:title)
 
