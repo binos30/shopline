@@ -5,7 +5,7 @@ module Site
     before_action :check_and_authenticate_user
 
     def index
-      @orders = current_user.orders.datatable.filters(params.slice(:order_code))
+      @orders = current_user.orders.filters(params.slice(:order_code)).order(created_at: :desc)
       @pagy, @orders = pagy(@orders, items: count_per_page)
     end
 
