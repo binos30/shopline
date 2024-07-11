@@ -6,8 +6,7 @@ module Admin
 
     # GET /admin/categories or /admin/categories.json
     def index
-      @categories =
-        Category.filters(params.slice(:name)).includes(image_attachment: :blob).order(:name)
+      @categories = Category.filters(params.slice(:name)).includes(image_attachment: :blob).order(:name)
       @pagy, @categories = pagy(@categories, items: count_per_page)
     end
 
@@ -76,8 +75,7 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_categories_url,
-                      notice: t("record.delete", record: Category.name, name: @category.name)
+          redirect_to admin_categories_url, notice: t("record.delete", record: Category.name, name: @category.name)
         end
         format.json { head :no_content }
       end

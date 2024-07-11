@@ -18,11 +18,11 @@ section id="#{dom_id product}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-1
     - if product.images.attached?
       div class="grid gap-4"
         div
-          = image_tag(product.images.first, class: "h-auto max-w-full rounded-lg")
+          = custom_image_tag(product.images.first, class: "h-auto max-w-full rounded-lg", alt: "Product")
         div class="grid grid-cols-5 gap-4"
           - product.images.each do |image|
             div
-              = image_tag(image, class: "h-auto max-w-full rounded-lg")
+              = custom_image_tag(image, class: "h-auto max-w-full rounded-lg", alt: "Product")
     div
       => link_to edit_admin_product_path(product), class: button_with_icon_class do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"

@@ -47,7 +47,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+gem "image_processing", ">= 1.2"
 
 # Use slim-rails for HTML templating
 gem "slim-rails"
@@ -67,6 +67,10 @@ gem "pagy"
 
 # Rails engine for cache-friendly, client-side local time
 gem "local_time"
+
+# The Cloudinary Ruby on Rails SDK allows you to quickly and easily integrate your application with Cloudinary.
+# Effortlessly optimize, transform, upload and manage your cloud's assets.
+gem "cloudinary"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

@@ -72,4 +72,29 @@ module ApplicationHelper
     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" \
       " focus:border-primary-600 block p-2.5"
   end
+
+  def custom_image_tag( # rubocop:disable Metrics/ParameterLists
+    image,
+    variant: nil,
+    width: nil,
+    height: nil,
+    class: nil,
+    alt: nil
+  )
+    if Rails.env.production?
+      cl_image_tag(
+        image.key,
+        gravity: :auto,
+        crop: :fill,
+        sign_url: true,
+        fetch_format: :auto,
+        width:,
+        height:,
+        class:,
+        alt:
+      )
+    else
+      image_tag(variant ? image.variant(variant) : image, width:, height:, class:, alt:)
+    end
+  end
 end

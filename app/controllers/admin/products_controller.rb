@@ -8,10 +8,7 @@ module Admin
     # GET /admin/products or /admin/products.json
     def index
       @products =
-        Product
-          .filters(params.slice(:name))
-          .includes([:category, { images_attachments: :blob }])
-          .order(:name)
+        Product.filters(params.slice(:name)).includes([:category, { images_attachments: :blob }]).order(:name)
       @pagy, @products = pagy(@products, items: count_per_page)
     end
 
@@ -55,8 +52,7 @@ module Admin
     # PATCH/PUT /admin/products/1 or /admin/products/1.json
     def update # rubocop:disable Metrics/AbcSize
       respond_to do |format|
-        if @product.update(product_params.reject { |k| k["images"] })
-          product_params["images"]&.each { |image| @product.images.attach(image) }
+        if @product.update(product_params)
           format.html do
             redirect_to admin_product_url(@product),
                         notice: t("record.update", record: Product.name, name: @product.name)
@@ -81,8 +77,7 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_products_url,
-                      notice: t("record.delete", record: Product.name, name: @product.name)
+          redirect_to admin_products_url, notice: t("record.delete", record: Product.name, name: @product.name)
         end
         format.json { head :no_content }
       end
