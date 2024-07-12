@@ -72,6 +72,9 @@ gem "local_time"
 # Effortlessly optimize, transform, upload and manage your cloud's assets.
 gem "cloudinary"
 
+# Validates active storage
+gem "active_storage_validations"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[mri windows]

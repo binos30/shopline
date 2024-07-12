@@ -27,10 +27,10 @@ section class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg s
           - if product.images.attached?
             div class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-2"
               - product.images.each do |image|
-                div
-                  = custom_image_tag(image, class: "w-20 h-20 object-cover rounded-md")
-          - product.images.each do |image|
-            = form.hidden_field :images, multiple: true, value: image.signed_id, id: nil
+                - if image.persisted?
+                  div
+                    = custom_image_tag(image, class: "w-20 h-20 object-cover rounded-md")
+                    = form.hidden_field :images, multiple: true, value: image.signed_id, id: nil
           = form.file_field :images, multiple: true, accept: "image/*",
             class: form_input_class
         div class="sm:col-span-2"

@@ -16,6 +16,7 @@ class Category < ApplicationRecord
   broadcasts_refreshes
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :image, content_type: %i[jpeg jpg png webp], size: { less_than_or_equal_to: 3.megabytes }
 
   before_save :sanitize_fields
 
