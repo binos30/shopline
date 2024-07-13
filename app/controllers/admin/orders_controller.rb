@@ -35,9 +35,9 @@ module Admin
             "orders.*, users.email AS customer_email,
             CONCAT(users.first_name, ' ', users.last_name) AS customer_full_name"
           )
-          .find(params[:id])
+          .find_by!(order_code: params[:order_code])
     rescue ActiveRecord::RecordNotFound
-      logger.error "Order not found #{params[:id]}"
+      logger.error "Order not found #{params[:order_code]}"
       redirect_back(fallback_location: admin_orders_url)
     end
   end

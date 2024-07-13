@@ -93,19 +93,21 @@ module Admin
     end
 
     # Use callbacks to share common setup or constraints between actions.
+    # rubocop:disable Rails/DynamicFindBy
     def set_product # rubocop:disable Metrics/AbcSize
       @product =
         if action_name == "show"
-          Product.includes([:category, { images_attachments: :blob }]).find(params[:id])
+          Product.includes([:category, { images_attachments: :blob }]).find_by_friendly_id(params[:slug])
         elsif action_name == "edit"
-          Product.includes([{ images_attachments: :blob }]).find(params[:id])
+          Product.includes([{ images_attachments: :blob }]).find_by_friendly_id(params[:slug])
         else
-          Product.find(params[:id])
+          Product.find_by_friendly_id(params[:slug])
         end
     rescue ActiveRecord::RecordNotFound
-      logger.error "Product not found #{params[:id]}"
+      logger.error "Product not found #{params[:slug]}"
       redirect_back(fallback_location: admin_products_url)
     end
+    # rubocop:enable Rails/DynamicFindBy
 
     # Only allow a list of trusted parameters through.
     def product_params

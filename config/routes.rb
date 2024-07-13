@@ -26,11 +26,11 @@ Rails.application.routes.draw do
     root to: redirect("admin/dashboard")
 
     resources :dashboard, only: :index, constraints: { format: :html }
-    resources :categories
-    resources :products do
+    resources :categories, param: :slug
+    resources :products, param: :slug do
       resources :stocks
     end
-    resources :orders, only: %i[index show] do
+    resources :orders, only: %i[index show], param: :order_code do
       member { put :fulfill }
     end
     resources :customers, only: :index

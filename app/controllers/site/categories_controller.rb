@@ -13,7 +13,7 @@ module Site
     end
 
     def show # rubocop:disable Metrics/AbcSize
-      @category = Category.active.find_by!(slug: params[:slug])
+      @category = Category.active.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
       @products =
         @category
           .products

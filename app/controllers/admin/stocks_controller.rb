@@ -2,7 +2,7 @@
 
 module Admin
   class StocksController < AdminController
-    before_action :set_product, only: %i[index show new edit create update]
+    before_action :set_product, only: %i[index show new edit create update destroy]
     before_action :set_stock, only: %i[show edit update destroy]
 
     # GET /admin/products/1/stocks
@@ -30,7 +30,7 @@ module Admin
       respond_to do |format|
         if @stock.save
           format.html do
-            redirect_to admin_product_stock_url(@product.id, @stock),
+            redirect_to admin_product_stock_url(@product, @stock),
                         notice: t("record.create", record: Stock.name, name: @stock.size)
           end
         else
@@ -44,7 +44,7 @@ module Admin
       respond_to do |format|
         if @stock.update(stock_params)
           format.html do
-            redirect_to admin_product_stock_url(@stock.product_id, @stock),
+            redirect_to admin_product_stock_url(@product, @stock),
                         notice: t("record.update", record: Stock.name, name: @stock.size)
           end
         else
@@ -54,26 +54,26 @@ module Admin
     end
 
     # DELETE /admin/products/1/stocks/1
-    def destroy # rubocop:disable Metrics/AbcSize
+    def destroy
       @stock.destroy!
 
       respond_to do |format|
         format.html do
-          redirect_to admin_product_stocks_url(@stock.product_id),
+          redirect_to admin_product_stocks_url(@product),
                       notice: t("record.delete", record: Stock.name, name: @stock.size)
         end
       end
     rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
       logger.tagged("Delete Stock##{@stock.id} Error") { logger.error e }
-      redirect_to admin_product_stocks_url(@stock.product_id), alert: e
+      redirect_to admin_product_stocks_url(@product), alert: e
     end
 
     private
 
     def set_product
-      @product = Product.find(params[:product_id])
+      @product = Product.find_by_friendly_id(params[:product_slug]) # rubocop:disable Rails/DynamicFindBy
     rescue ActiveRecord::RecordNotFound
-      logger.error "Product not found #{params[:product_id]}"
+      logger.error "Product not found #{params[:product_slug]}"
       redirect_back(fallback_location: admin_products_url)
     end
 

@@ -10,6 +10,6 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
       - @stocks.each do |stock|
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            = link_to stock.size, edit_admin_product_stock_path(stock.product_id, stock)
+            = link_to stock.size, edit_admin_product_stock_path(@product, stock)
           td class="px-6 py-4 whitespace-nowrap"
             = stock.quantity

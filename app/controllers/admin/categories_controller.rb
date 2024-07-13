@@ -88,9 +88,9 @@ module Admin
 
     # Use callbacks to share common setup or constraints between actions.
     def set_category
-      @category = Category.find(params[:id])
+      @category = Category.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
     rescue ActiveRecord::RecordNotFound
-      logger.error "Category not found #{params[:id]}"
+      logger.error "Category not found #{params[:slug]}"
       redirect_back(fallback_location: admin_categories_url)
     end
 

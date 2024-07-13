@@ -35,4 +35,4 @@ section id="#{dom_id order}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 
           | Fulfill
 
         == render "admin/shared/modal", action: "fulfill", record: "order",
-          path: fulfill_admin_order_path(order), method: :put
+          path: fulfill_admin_order_path(order.order_code), method: :put

@@ -60,7 +60,7 @@ RSpec.describe "/admin/orders" do
 
   describe "GET /show" do
     it "renders a successful response" do
-      get admin_order_url(order)
+      get admin_order_url(order.order_code)
       expect(response).to be_successful
     end
   end

@@ -17,7 +17,7 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
         = turbo_stream_from order
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            = link_to order.order_code, admin_order_path(order), data: { turbo_frame: :_top }
+            = link_to order.order_code, admin_order_path(order.order_code), data: { turbo_frame: :_top }
           td class="px-6 py-4 whitespace-nowrap"
             = order.customer_full_name
           td class="px-6 py-4 whitespace-nowrap"

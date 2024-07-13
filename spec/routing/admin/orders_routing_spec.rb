@@ -9,7 +9,10 @@ RSpec.describe Admin::OrdersController do
     end
 
     it "routes to #show" do
-      expect(get: "/admin/orders/1").to route_to("admin/orders#show", id: "1")
+      expect(get: "/admin/orders/SL-1718256776-05").to route_to(
+        "admin/orders#show",
+        order_code: "SL-1718256776-05"
+      )
     end
   end
 end

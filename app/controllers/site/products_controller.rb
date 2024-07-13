@@ -19,7 +19,8 @@ module Site
     end
 
     def show
-      @product = Product.includes([:stocks, { images_attachments: :blob }]).active.find_by!(slug: params[:slug])
+      @product =
+        Product.includes([:stocks, { images_attachments: :blob }]).active.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
     rescue ActiveRecord::RecordNotFound
       logger.error "Product not found #{params[:slug]}"
       redirect_back(fallback_location: root_url)

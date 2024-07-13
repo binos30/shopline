@@ -39,8 +39,8 @@ RSpec.describe "/admin/products/1/stocks" do
 
   describe "GET /index" do
     it "renders a successful response" do
-      stock = Stock.create! valid_attributes
-      get admin_product_stocks_url(stock.product_id)
+      Stock.create! valid_attributes
+      get admin_product_stocks_url(product)
       expect(response).to be_successful
     end
   end
@@ -48,14 +48,14 @@ RSpec.describe "/admin/products/1/stocks" do
   describe "GET /show" do
     it "renders a successful response" do
       stock = Stock.create! valid_attributes
-      get admin_product_stock_url(stock.product_id, stock)
+      get admin_product_stock_url(product, stock)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_admin_product_stock_url(product.id)
+      get new_admin_product_stock_url(product)
       expect(response).to be_successful
     end
   end
@@ -63,7 +63,7 @@ RSpec.describe "/admin/products/1/stocks" do
   describe "GET /edit" do
     it "renders a successful response" do
       stock = Stock.create! valid_attributes
-      get edit_admin_product_stock_url(stock.product_id, stock)
+      get edit_admin_product_stock_url(product, stock)
       expect(response).to be_successful
     end
   end
@@ -72,25 +72,31 @@ RSpec.describe "/admin/products/1/stocks" do
     context "with valid parameters" do
       it "creates a new Stock" do
         expect do
-          post admin_product_stocks_url(product.id), params: { stock: valid_attributes }
-        end.to change(Stock, :count).by(1)
+ post admin_product_stocks_url(product), params: { stock: valid_attributes } 
+end.to change(
+          Stock,
+          :count
+        ).by(1)
       end
 
       it "redirects to the created stock" do
-        post admin_product_stocks_url(product.id), params: { stock: valid_attributes }
-        expect(response).to redirect_to(admin_product_stock_url(product.id, Stock.last))
+        post admin_product_stocks_url(product), params: { stock: valid_attributes }
+        expect(response).to redirect_to(admin_product_stock_url(product, Stock.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new Stock" do
         expect do
-          post admin_product_stocks_url(product.id), params: { stock: invalid_attributes }
-        end.not_to change(Stock, :count)
+ post admin_product_stocks_url(product), params: { stock: invalid_attributes } 
+end.not_to change(
+          Stock,
+          :count
+        )
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post admin_product_stocks_url(product.id), params: { stock: invalid_attributes }
+        post admin_product_stocks_url(product), params: { stock: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -102,26 +108,23 @@ RSpec.describe "/admin/products/1/stocks" do
 
       it "updates the requested stock" do
         stock = Stock.create! valid_attributes
-        patch admin_product_stock_url(stock.product_id, stock), params: { stock: new_attributes }
+        patch admin_product_stock_url(product, stock), params: { stock: new_attributes }
         stock.reload
         expect(stock.quantity).to eq(8)
       end
 
       it "redirects to the stock" do
         stock = Stock.create! valid_attributes
-        patch admin_product_stock_url(stock.product_id, stock), params: { stock: new_attributes }
+        patch admin_product_stock_url(product, stock), params: { stock: new_attributes }
         stock.reload
-        expect(response).to redirect_to(admin_product_stock_url(stock.product_id, stock))
+        expect(response).to redirect_to(admin_product_stock_url(product, stock))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         stock = Stock.create! valid_attributes
-        patch admin_product_stock_url(stock.product_id, stock),
-              params: {
-                stock: invalid_attributes
-              }
+        patch admin_product_stock_url(product, stock), params: { stock: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -130,15 +133,12 @@ RSpec.describe "/admin/products/1/stocks" do
   describe "DELETE /destroy" do
     it "destroys the requested stock" do
       stock = Stock.create! valid_attributes
-      expect { delete admin_product_stock_url(stock.product_id, stock) }.to change(
-        Stock,
-        :count
-      ).by(-1)
+      expect { delete admin_product_stock_url(product, stock) }.to change(Stock, :count).by(-1)
     end
 
     it "redirects to the stocks list" do
       stock = Stock.create! valid_attributes
-      delete admin_product_stock_url(stock.product_id, stock)
+      delete admin_product_stock_url(product, stock)
       expect(response).to redirect_to(admin_product_stocks_url)
     end
   end
