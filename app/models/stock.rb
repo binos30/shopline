@@ -10,7 +10,7 @@ class Stock < ApplicationRecord
   validates :quantity,
             presence: true,
             numericality: {
-              greater_than_or_equal: 0,
-              less_than_or_equal: 999_999_999
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 999_999_999
             }
 end

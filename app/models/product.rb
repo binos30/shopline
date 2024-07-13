@@ -21,7 +21,12 @@ class Product < ApplicationRecord
   broadcasts_refreshes
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :price, presence: true, numericality: { greater_than_or_equal: 0, less_than_or_equal: 999_999_999 }
+  validates :price,
+            presence: true,
+            numericality: {
+              greater_than_or_equal_to: 0,
+              less_than_or_equal_to: 999_999_999
+            }
   validates :images, content_type: %i[jpeg jpg png webp], size: { less_than_or_equal_to: 3.megabytes }
 
   before_save :sanitize_fields

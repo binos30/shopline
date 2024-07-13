@@ -7,5 +7,5 @@ class OrderItem < ApplicationRecord
 
   validates :order_code, :product_name, :size, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }
-  validates :product_price, presence: true, numericality: { greater_than_or_equal: 0 }
+  validates :product_price, presence: true, numericality: { greater_than_or_equal_to: 0 }
 end
