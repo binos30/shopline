@@ -72,11 +72,8 @@ RSpec.describe "/admin/products" do
     context "with valid parameters" do
       it "creates a new Product" do
         expect do
- post admin_products_url, params: { product: valid_attributes } 
-end.to change(
-          Product,
-          :count
-        ).by(1)
+          post admin_products_url, params: { product: valid_attributes }
+        end.to change(Product, :count).by(1)
       end
 
       it "redirects to the created product" do
@@ -121,7 +118,10 @@ end.to change(
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         product = Product.create! valid_attributes
-        patch admin_product_url(product), params: { product: invalid_attributes }
+        patch admin_product_url(product),
+              params: {
+                product: invalid_attributes
+              }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -130,7 +130,10 @@ end.to change(
   describe "DELETE /destroy" do
     it "destroys the requested product" do
       product = Product.create! valid_attributes
-      expect { delete admin_product_url(product) }.to change(Product, :count).by(-1)
+      expect { delete admin_product_url(product) }.to change(
+        Product,
+        :count
+      ).by(-1)
     end
 
     it "redirects to the products list" do

@@ -6,8 +6,8 @@
 
 # Pagy Variables
 # See https://ddnexus.github.io/pagy/docs/api/pagy#variables
-# You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them to
-# Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
+# You can set any pagy variable as a Pagy::DEFAULT. They can also be overridden per instance by just passing them
+# to Pagy.new|Pagy::Countless.new|Pagy::Calendar::*.new or any of the #pagy* controller methods
 # Here are the few that make more sense as DEFAULTs:
 # Pagy::DEFAULT[:items]       = 20                    # default
 # Pagy::DEFAULT[:size]        = [1,4,4,1]             # default in pagy < 7.0

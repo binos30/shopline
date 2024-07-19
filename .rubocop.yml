@@ -1,12 +1,12 @@
 # RuboCop Configuration
 
 require:
-  - rubocop-performance
-  - rubocop-rails
   - rubocop-rspec
+  - rubocop-rspec_rails
 
-inherit_from:
-  - node_modules/@prettier/plugin-ruby/rubocop.yml
+# Omakase Ruby styling for Rails
+inherit_gem:
+  rubocop-rails-omakase: rubocop.yml
 
 AllCops:
   NewCops: enable
@@ -26,6 +26,9 @@ Layout/LineLength:
   Description: "Limit lines to 115 characters."
   StyleGuide: "https://github.com/bbatsov/ruby-style-guide#80-character-limits"
   Max: 115
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space
 
 # Metrics Cops
 
@@ -80,9 +83,6 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   EnforcedStyle: double_quotes
   Enabled: true
-
-Style/SymbolArray:
-  EnforcedStyle: brackets
 
 Style/HashSyntax:
   EnforcedStyle: ruby19_no_mixed_keys

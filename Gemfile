@@ -101,10 +101,9 @@ group :development do
 
   # Code Formatting & Linting
   gem "prettier_print"
-  gem "rubocop"
-  gem "rubocop-performance"
-  gem "rubocop-rails"
-  gem "rubocop-rspec"
+  gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rspec_rails", require: false
   gem "slim_lint"
   gem "syntax_tree"
   gem "syntax_tree-haml"
@@ -112,4 +111,9 @@ group :development do
 
   # Optimize queries
   gem "bullet"
+end
+
+group :test do
+  gem "capybara"
+  gem "selenium-webdriver"
 end
