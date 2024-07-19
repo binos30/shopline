@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Homepage" do
+RSpec.describe "Homepage", type: :system do
   it "passes" do
     visit root_path
 
