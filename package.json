@@ -2,9 +2,9 @@
   "name": "shopline",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-free": "^6.6.0",
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.4",
+    "@hotwired/turbo-rails": "^8.0.5",
     "chart.js": "^4.4.3",
     "debounce": "^2.1.0",
     "esbuild": "^0.23.0",
@@ -12,9 +12,9 @@
     "local-time": "^3.0.2"
   },
   "devDependencies": {
-    "husky": "^9.0.11",
+    "husky": "^9.1.1",
     "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2"
+    "prettier": "^3.3.3"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
