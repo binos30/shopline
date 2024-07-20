@@ -5,7 +5,7 @@ module Admin
     # GET /admin/subscribers
     def index
       @subscribers = Subscriber.filters(params.slice(:email)).order(:email)
-      @pagy, @subscribers = pagy(@subscribers, items: count_per_page)
+      @pagy, @subscribers = pagy(@subscribers, limit: count_per_page)
     end
   end
 end

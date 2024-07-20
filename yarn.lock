@@ -173,10 +173,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fortawesome/fontawesome-free@npm:^6.5.2":
-  version: 6.5.2
-  resolution: "@fortawesome/fontawesome-free@npm:6.5.2"
-  checksum: 10c0/932a8119376eab45da6c0702e955dcea55b916bbd7e118a365a8b3356a6322e725536f28f78e039bd47f4e1650b69bf9a85c2e40d0fdd69f9f0c138a5ef07e67
+"@fortawesome/fontawesome-free@npm:^6.6.0":
+  version: 6.6.0
+  resolution: "@fortawesome/fontawesome-free@npm:6.6.0"
+  checksum: 10c0/35c55bfecac9eb4943cf94f4380093dbe286fa29ce593488252644322b83e28eecbac757cef3eabdff7b3df67fc531c4f6dce6a3b00236f5de0174e186a9b5bb
   languageName: node
   linkType: hard
 
@@ -187,20 +187,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@hotwired/turbo-rails@npm:^8.0.4":
-  version: 8.0.4
-  resolution: "@hotwired/turbo-rails@npm:8.0.4"
+"@hotwired/turbo-rails@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "@hotwired/turbo-rails@npm:8.0.5"
   dependencies:
-    "@hotwired/turbo": "npm:^8.0.4"
+    "@hotwired/turbo": "npm:^8.0.5"
     "@rails/actioncable": "npm:^7.0"
-  checksum: 10c0/c35fdcc79876f3ceaed7100f2e6965bcf9aa647309dce7a6ed685e880ffc1ac475299e00538ecc926addfa4023704c9bd1ea37e70fbef3a77697f7f01d4e344f
+  checksum: 10c0/eed67bcf4258500897772d38831bce5954a851e457a584e377518e10c5b09bab81eaa2902f5e689bdb60f4433ef9765c2cd6cd6760033e39b962fdc2d4fc08aa
   languageName: node
   linkType: hard
 
-"@hotwired/turbo@npm:^8.0.4":
-  version: 8.0.4
-  resolution: "@hotwired/turbo@npm:8.0.4"
-  checksum: 10c0/3e7174d550adf3b9a0a4c45ff5d1b71d47c20de6ae01f646fbbaf8ed447677bd1a5fb6dbd46e95b14645a663fe58a6187c1c6d2a688b0981b5cf437379c5e00a
+"@hotwired/turbo@npm:^8.0.5":
+  version: 8.0.5
+  resolution: "@hotwired/turbo@npm:8.0.5"
+  checksum: 10c0/fc8d1bcb2707c601f98c47d7598b538faaa894f0b16a00e88de0d9d514ebc105631261381acef1ba5c1fa2b8c638a1f4ff2583c881f8da520afa42931884bd88
   languageName: node
   linkType: hard
 
@@ -587,12 +587,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.0.11":
-  version: 9.0.11
-  resolution: "husky@npm:9.0.11"
+"husky@npm:^9.1.1":
+  version: 9.1.1
+  resolution: "husky@npm:9.1.1"
   bin:
-    husky: bin.mjs
-  checksum: 10c0/2c787dcf74a837fc9a4fea7da907509d4bd9a289f4ea10ecc9d86279e4d4542b0f5f6443a619bccae19e265f2677172cc2b86aae5c932a35a330cc227d914605
+    husky: bin.js
+  checksum: 10c0/56394f5a08201badece23a8599bd76fe8c41e4510a956022fe54897645900c5c5a96a740ffb0604e99e808dffc3714bae982f1cbda4a069082cc713414f17ad3
   languageName: node
   linkType: hard
 
@@ -830,12 +830,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^3.3.2":
-  version: 3.3.2
-  resolution: "prettier@npm:3.3.2"
+"prettier@npm:^3.3.3":
+  version: 3.3.3
+  resolution: "prettier@npm:3.3.3"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/39ed27d17f0238da6dd6571d63026566bd790d3d0edac57c285fbab525982060c8f1e01955fe38134ab10f0951a6076da37f015db8173c02f14bc7f0803a384c
+  checksum: 10c0/b85828b08e7505716324e4245549b9205c0cacb25342a030ba8885aba2039a115dbcf75a0b7ca3b37bc9d101ee61fab8113fc69ca3359f2a226f1ecc07ad2e26
   languageName: node
   linkType: hard
 
@@ -902,17 +902,17 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "shopline@workspace:."
   dependencies:
-    "@fortawesome/fontawesome-free": "npm:^6.5.2"
+    "@fortawesome/fontawesome-free": "npm:^6.6.0"
     "@hotwired/stimulus": "npm:^3.2.2"
-    "@hotwired/turbo-rails": "npm:^8.0.4"
+    "@hotwired/turbo-rails": "npm:^8.0.5"
     chart.js: "npm:^4.4.3"
     debounce: "npm:^2.1.0"
     esbuild: "npm:^0.23.0"
     flowbite: "npm:^2.4.1"
-    husky: "npm:^9.0.11"
+    husky: "npm:^9.1.1"
     lint-staged: "npm:^15.2.7"
     local-time: "npm:^3.0.2"
-    prettier: "npm:^3.3.2"
+    prettier: "npm:^3.3.3"
   languageName: unknown
   linkType: soft
 

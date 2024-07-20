@@ -10,7 +10,7 @@ module Site
           .available
           .active
           .order(:name)
-      @pagy, @products = pagy_countless(@products, items: 10)
+      @pagy, @products = pagy_countless(@products, limit: 10)
 
       respond_to do |format|
         format.html
@@ -20,7 +20,10 @@ module Site
 
     def show
       @product =
-        Product.includes([:stocks, { images_attachments: :blob }]).active.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
+        Product
+          .includes([:stocks, { images_attachments: :blob }])
+          .active
+          .find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
     rescue ActiveRecord::RecordNotFound
       logger.error "Product not found #{params[:slug]}"
       redirect_back(fallback_location: root_url)

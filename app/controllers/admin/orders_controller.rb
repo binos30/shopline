@@ -7,7 +7,7 @@ module Admin
     # GET /admin/orders or /admin/orders.json
     def index
       @orders = Order.datatable.filters(params.slice(:order_code, :customer))
-      @pagy, @orders = pagy(@orders, items: count_per_page)
+      @pagy, @orders = pagy(@orders, limit: count_per_page)
     end
 
     # GET /admin/orders/1 or /admin/orders/1.json
@@ -16,7 +16,8 @@ module Admin
 
     def fulfill
       @order.fulfill!
-      redirect_to admin_order_url(@order), notice: t("record.fulfill", code: @order.order_code)
+      redirect_to admin_order_url(@order),
+                  notice: t("record.fulfill", code: @order.order_code)
     rescue ActiveRecord::RecordInvalid => e
       logger.tagged("Fulfill Order Error") { logger.error e.message }
       flash.now[:alert] = e.message

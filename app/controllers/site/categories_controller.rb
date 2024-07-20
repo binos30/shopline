@@ -3,8 +3,13 @@
 module Site
   class CategoriesController < SiteController
     def index
-      @categories = Category.includes(image_attachment: :blob).filters(params.slice(:name)).active.order(:name)
-      @pagy, @categories = pagy_countless(@categories, items: 10)
+      @categories =
+        Category
+          .includes(image_attachment: :blob)
+          .filters(params.slice(:name))
+          .active
+          .order(:name)
+      @pagy, @categories = pagy_countless(@categories, limit: 10)
 
       respond_to do |format|
         format.html
@@ -22,7 +27,7 @@ module Site
           .available
           .active
           .order(:name)
-      @pagy, @products = pagy_countless(@products, items: 10)
+      @pagy, @products = pagy_countless(@products, limit: 10)
 
       respond_to do |format|
         format.html
