@@ -1,6 +1,6 @@
 # Shopline
 
-[![CI](https://github.com/binos30/shopline/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/shopline/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/binos30/shopline/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/shopline/actions/workflows/ci.yml)
 [![Dependabot Status](https://badgen.net/github/dependabot/binos30/shopline?icon=dependabot)](https://dependabot.com)
 
 E-commerce app. Shop online with Shopline. You shop, we ship!
