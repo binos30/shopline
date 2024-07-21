@@ -69,9 +69,10 @@ RSpec.describe "/admin/categories" do
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Category" do
-        expect do
-          post admin_categories_url, params: { category: valid_attributes }
-        end.to change(Category, :count).by(1)
+        expect do post admin_categories_url, params: { category: valid_attributes } end.to change(
+          Category,
+          :count
+        ).by(1)
       end
 
       it "redirects to the created category" do
@@ -82,9 +83,10 @@ RSpec.describe "/admin/categories" do
 
     context "with invalid parameters" do
       it "does not create a new Category" do
-        expect do
-          post admin_categories_url, params: { category: invalid_attributes }
-        end.not_to change(Category, :count)
+        expect do post admin_categories_url, params: { category: invalid_attributes } end.not_to change(
+          Category,
+          :count
+        )
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
@@ -116,10 +118,7 @@ RSpec.describe "/admin/categories" do
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         category = Category.create! valid_attributes
-        patch admin_category_url(category),
-              params: {
-                category: invalid_attributes
-              }
+        patch admin_category_url(category), params: { category: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -128,10 +127,7 @@ RSpec.describe "/admin/categories" do
   describe "DELETE /destroy" do
     it "destroys the requested category" do
       category = Category.create! valid_attributes
-      expect { delete admin_category_url(category) }.to change(
-        Category,
-        :count
-      ).by(-1)
+      expect { delete admin_category_url(category) }.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do

@@ -6,11 +6,7 @@ module Admin
 
     # GET /admin/categories or /admin/categories.json
     def index
-      @categories =
-        Category
-          .filters(params.slice(:name))
-          .includes(image_attachment: :blob)
-          .order(:name)
+      @categories = Category.filters(params.slice(:name)).includes(image_attachment: :blob).order(:name)
       @pagy, @categories = pagy(@categories, limit: count_per_page)
     end
 
@@ -35,32 +31,19 @@ module Admin
         if @category.save
           format.html do
             redirect_to admin_category_url(@category),
-                        notice:
-                          t(
-                            "record.create",
-                            record: Category.name,
-                            name: @category.name
-                          )
+                        notice: t("record.create", record: Category.name, name: @category.name)
           end
-          format.json do
-            render :show,
-                   status: :created,
-                   location: admin_category_url(@category)
-          end
+          format.json { render :show, status: :created, location: admin_category_url(@category) }
         else
           format.html { render :new, status: :unprocessable_entity }
-          format.json do
-            render json: @category.errors, status: :unprocessable_entity
-          end
+          format.json { render json: @category.errors, status: :unprocessable_entity }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json do
-          render json: @category.errors, status: :unprocessable_entity
-        end
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
 
@@ -70,30 +53,19 @@ module Admin
         if @category.update(category_params)
           format.html do
             redirect_to admin_category_url(@category),
-                        notice:
-                          t(
-                            "record.update",
-                            record: Category.name,
-                            name: @category.name
-                          )
+                        notice: t("record.update", record: Category.name, name: @category.name)
           end
-          format.json do
-            render :show, status: :ok, location: admin_category_url(@category)
-          end
+          format.json { render :show, status: :ok, location: admin_category_url(@category) }
         else
           format.html { render :edit, status: :unprocessable_entity }
-          format.json do
-            render json: @category.errors, status: :unprocessable_entity
-          end
+          format.json { render json: @category.errors, status: :unprocessable_entity }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
       respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
-        format.json do
-          render json: @category.errors, status: :unprocessable_entity
-        end
+        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
 
@@ -103,18 +75,11 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_categories_url,
-                      notice:
-                        t(
-                          "record.delete",
-                          record: Category.name,
-                          name: @category.name
-                        )
+          redirect_to admin_categories_url, notice: t("record.delete", record: Category.name, name: @category.name)
         end
         format.json { head :no_content }
       end
-    rescue ActiveRecord::DeleteRestrictionError,
-           ActiveRecord::InvalidForeignKey => e
+    rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
       logger.tagged("Delete Category##{@category.id} Error") { logger.error e }
       redirect_to admin_categories_url, alert: e
     end

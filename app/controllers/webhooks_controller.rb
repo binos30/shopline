@@ -66,9 +66,7 @@ class WebhooksController < ApplicationController
       user = User.find_by(stripe_customer_id: customer.id)
       user&.update!(stripe_customer_id: nil)
     else
-      logger.tagged("Stripe Checkout Webhook") do
-        logger.error "Unhandled event type: #{event.type}"
-      end
+      logger.tagged("Stripe Checkout Webhook") { logger.error "Unhandled event type: #{event.type}" }
     end
 
     logger.tagged("Stripe Checkout Webhook") { logger.info "Checkout Success!" }

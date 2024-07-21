@@ -21,7 +21,10 @@
     "postinstall": "husky"
   },
   "lint-staged": {
-    "{app,lib,spec,test}/**/*.rb": "./bin/rubocop -a",
+    "{app,lib,spec,test}/**/*.rb": [
+      "./bin/bundle exec stree write",
+      "./bin/rubocop -a"
+    ],
     "spec/**/*_spec.rb": "./bin/rspec",
     "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },

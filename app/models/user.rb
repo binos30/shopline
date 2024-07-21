@@ -5,12 +5,7 @@ class User < ApplicationRecord
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
-         :registerable,
-         :recoverable,
-         :rememberable,
-         :validatable,
-         :trackable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :validatable, :trackable
 
   # @NOTE:
   # The column `gender` is supposed to be of type string in the database.
@@ -31,12 +26,7 @@ class User < ApplicationRecord
             if: proc { |user| user.encrypted_password_changed? }
   validate :new_and_old_password_must_be_different
 
-  with_options presence: true,
-               length: {
-                 minimum: 2,
-                 maximum: 100
-               },
-               format: /\A([^\d\W]|-|\s)*\z/ do
+  with_options presence: true, length: { minimum: 2, maximum: 100 }, format: /\A([^\d\W]|-|\s)*\z/ do
     validates :first_name
     validates :last_name
   end
@@ -60,8 +50,7 @@ class User < ApplicationRecord
             .group("users.id")
             .order(Arel.sql("CONCAT(users.first_name, ' ', users.last_name)"))
         end
-  scope :filter_by_name,
-        ->(name) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{name}%") }
+  scope :filter_by_name, ->(name) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{name}%") }
 
   # instead of deleting, indicate the user requested a delete & timestamp it
   def soft_delete!

@@ -8,10 +8,7 @@ module Admin
     # GET /admin/products or /admin/products.json
     def index
       @products =
-        Product
-          .filters(params.slice(:name))
-          .includes([:category, { images_attachments: :blob }])
-          .order(:name)
+        Product.filters(params.slice(:name)).includes([:category, { images_attachments: :blob }]).order(:name)
       @pagy, @products = pagy(@products, limit: count_per_page)
     end
 
@@ -36,32 +33,19 @@ module Admin
         if @product.save
           format.html do
             redirect_to admin_product_url(@product),
-                        notice:
-                          t(
-                            "record.create",
-                            record: Product.name,
-                            name: @product.name
-                          )
+                        notice: t("record.create", record: Product.name, name: @product.name)
           end
-          format.json do
-            render :show,
-                   status: :created,
-                   location: admin_product_url(@product)
-          end
+          format.json { render :show, status: :created, location: admin_product_url(@product) }
         else
           format.html { render :new, status: :unprocessable_entity }
-          format.json do
-            render json: @product.errors, status: :unprocessable_entity
-          end
+          format.json { render json: @product.errors, status: :unprocessable_entity }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
       respond_to do |format|
         format.html { render :new, status: :unprocessable_entity }
-        format.json do
-          render json: @product.errors, status: :unprocessable_entity
-        end
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
 
@@ -71,30 +55,19 @@ module Admin
         if @product.update(product_params)
           format.html do
             redirect_to admin_product_url(@product),
-                        notice:
-                          t(
-                            "record.update",
-                            record: Product.name,
-                            name: @product.name
-                          )
+                        notice: t("record.update", record: Product.name, name: @product.name)
           end
-          format.json do
-            render :show, status: :ok, location: admin_product_url(@product)
-          end
+          format.json { render :show, status: :ok, location: admin_product_url(@product) }
         else
           format.html { render :edit, status: :unprocessable_entity }
-          format.json do
-            render json: @product.errors, status: :unprocessable_entity
-          end
+          format.json { render json: @product.errors, status: :unprocessable_entity }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
       respond_to do |format|
         format.html { render :edit, status: :unprocessable_entity }
-        format.json do
-          render json: @product.errors, status: :unprocessable_entity
-        end
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
 
@@ -104,18 +77,11 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_products_url,
-                      notice:
-                        t(
-                          "record.delete",
-                          record: Product.name,
-                          name: @product.name
-                        )
+          redirect_to admin_products_url, notice: t("record.delete", record: Product.name, name: @product.name)
         end
         format.json { head :no_content }
       end
-    rescue ActiveRecord::DeleteRestrictionError,
-           ActiveRecord::InvalidForeignKey => e
+    rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e
       logger.tagged("Delete Product##{@product.id} Error") { logger.error e }
       redirect_to admin_products_url, alert: e
     end
@@ -131,13 +97,9 @@ module Admin
     def set_product # rubocop:disable Metrics/AbcSize
       @product =
         if action_name == "show"
-          Product.includes(
-            [:category, { images_attachments: :blob }]
-          ).find_by_friendly_id(params[:slug])
+          Product.includes([:category, { images_attachments: :blob }]).find_by_friendly_id(params[:slug])
         elsif action_name == "edit"
-          Product.includes([{ images_attachments: :blob }]).find_by_friendly_id(
-            params[:slug]
-          )
+          Product.includes([{ images_attachments: :blob }]).find_by_friendly_id(params[:slug])
         else
           Product.find_by_friendly_id(params[:slug])
         end

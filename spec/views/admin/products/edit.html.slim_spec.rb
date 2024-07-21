@@ -6,9 +6,7 @@ RSpec.describe "admin/products/edit" do
   let!(:categories) { Category.active }
   let!(:category) { Category.create!(name: "Category") }
 
-  let(:product) do
-    Product.create!(name: "MyString", description: "MyText", price: "9.99", category:)
-  end
+  let(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
 
   before do
     assign(:categories, categories)

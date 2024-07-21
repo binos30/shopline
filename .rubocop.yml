@@ -4,9 +4,13 @@ require:
   - rubocop-rspec
   - rubocop-rspec_rails
 
-# Omakase Ruby styling for Rails
 inherit_gem:
+  # Omakase Ruby styling for Rails
   rubocop-rails-omakase: rubocop.yml
+
+  # RuboCop and Syntax Tree serve different purposes, but there is overlap with some of RuboCop's functionality.
+  # Syntax Tree provides a RuboCop configuration file to disable rules that are redundant with Syntax Tree.
+  syntax_tree: config/rubocop.yml
 
 AllCops:
   NewCops: enable

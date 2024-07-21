@@ -16,8 +16,7 @@ module Admin
 
     def fulfill
       @order.fulfill!
-      redirect_to admin_order_url(@order),
-                  notice: t("record.fulfill", code: @order.order_code)
+      redirect_to admin_order_url(@order), notice: t("record.fulfill", code: @order.order_code)
     rescue ActiveRecord::RecordInvalid => e
       logger.tagged("Fulfill Order Error") { logger.error e.message }
       flash.now[:alert] = e.message

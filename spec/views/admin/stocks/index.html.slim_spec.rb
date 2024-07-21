@@ -4,18 +4,13 @@ require "rails_helper"
 
 RSpec.describe "admin/stocks/index" do
   let!(:category) { Category.create!(name: "Category") }
-  let!(:product) do
-    Product.create!(name: "MyString", description: "MyText", price: "9.99", category:)
-  end
+  let!(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
 
   before do
     assign(:product, product)
     assign(
       :stocks,
-      [
-        Stock.create!(product:, size: "M", quantity: 2),
-        Stock.create!(product:, size: "L", quantity: 2)
-      ]
+      [Stock.create!(product:, size: "M", quantity: 2), Stock.create!(product:, size: "L", quantity: 2)]
     )
   end
 

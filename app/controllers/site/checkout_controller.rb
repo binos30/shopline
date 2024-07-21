@@ -8,8 +8,7 @@ module Site
       cart = params[:cart]
       items =
         cart.map do |item|
-          product =
-            Product.includes([:stocks, { images_attachments: :blob }]).active.find(item["id"])
+          product = Product.includes([:stocks, { images_attachments: :blob }]).active.find(item["id"])
           product_stock = product.stocks.find { |s| s.size == item["size"] }
 
           if product_stock.quantity < item["quantity"].to_i

@@ -20,19 +20,12 @@ module HtmlScrubbers
 
     def scrub_attribute(node, attr_node) # rubocop:disable Metrics/AbcSize, Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
       attr_name =
-        if attr_node.namespace
-          "#{attr_node.namespace.prefix}:#{attr_node.node_name}"
-        else
-          attr_node.node_name
-        end
+        (attr_node.namespace ? "#{attr_node.namespace.prefix}:#{attr_node.node_name}" : attr_node.node_name)
 
       if Loofah::HTML5::SafeList::ATTR_VAL_IS_URI.include?(attr_name)
         # this block lifted nearly verbatim from HTML5 sanitization
         val_unescaped =
-          CGI
-            .unescapeHTML(attr_node.value)
-            .gsub(Loofah::HTML5::Scrub::CONTROL_CHARACTERS, "")
-            .downcase
+          CGI.unescapeHTML(attr_node.value).gsub(Loofah::HTML5::Scrub::CONTROL_CHARACTERS, "").downcase
         url_parts = val_unescaped.split(Loofah::HTML5::SafeList::PROTOCOL_SEPARATOR)
 
         # URL parts should only have two parts. If there's more,
@@ -54,8 +47,8 @@ module HtmlScrubbers
         attr_node.value = attr_node.value.gsub(/url\s*\(\s*[^#\s][^)]+?\)/m, " ")
       end
 
-      if Loofah::HTML5::SafeList::SVG_ALLOW_LOCAL_HREF.include?(node.name) &&
-           attr_name == "xlink:href" && attr_node.value =~ /^\s*[^#\s].*/m
+      if Loofah::HTML5::SafeList::SVG_ALLOW_LOCAL_HREF.include?(node.name) && attr_name == "xlink:href" &&
+           attr_node.value =~ /^\s*[^#\s].*/m
         attr_node.remove
       end
 

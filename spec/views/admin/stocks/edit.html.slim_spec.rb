@@ -4,9 +4,7 @@ require "rails_helper"
 
 RSpec.describe "admin/stocks/edit" do
   let!(:category) { Category.create!(name: "Category") }
-  let!(:product) do
-    Product.create!(name: "MyString", description: "MyText", price: "9.99", category:)
-  end
+  let!(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
   let(:stock) { Stock.create!(product:, size: "MyString", quantity: 1) }
 
   before do
