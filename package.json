@@ -21,12 +21,12 @@
     "postinstall": "husky"
   },
   "lint-staged": {
-    "{app,lib,spec,test}/**/*.rb": [
+    "{app,config,lib,spec,test}/**/*.rb": [
       "./bin/bundle exec stree write",
       "./bin/rubocop -a"
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
-    "app/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
+    "{app,config}/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
   },
   "packageManager": "yarn@4.3.1"
 }
