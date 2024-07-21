@@ -88,6 +88,9 @@ group :development, :test do
   # A library for generating fake data such as names, addresses, and phone numbers
   gem "faker"
 
+  # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
+  gem "brakeman", require: false
+
   ## Code Formatting & Linting
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false

@@ -6,8 +6,24 @@ on:
     branches: [main]
 
 jobs:
+  scan_ruby:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Scan for security vulnerabilities in Ruby dependencies
+        run: bin/brakeman --no-pager
+
   lint:
     runs-on: ubuntu-latest
+    needs: scan_ruby
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,7 +41,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    needs: lint
+    needs: [scan_ruby, lint]
     services:
       postgres:
         image: postgres
@@ -70,7 +86,7 @@ jobs:
   deploy:
     if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
-    needs: [lint, test]
+    needs: [scan_ruby, lint, test]
     steps:
       - name: Deploy to Render
         env:
