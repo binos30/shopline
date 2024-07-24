@@ -714,6 +714,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"eslint-formatter-gha@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "eslint-formatter-gha@npm:1.5.0"
+  dependencies:
+    eslint-formatter-json: "npm:^8.40.0"
+    eslint-formatter-stylish: "npm:^8.40.0"
+  checksum: 10c0/5e04b77f5f8df8f2d55b40f2adc04443ea1ea7a0873a53900baae79700df9b108e3e43b80411cfc5be2785136df41bbc49270c3ecf05a826571448b046377cdf
+  languageName: node
+  linkType: hard
+
+"eslint-formatter-json@npm:^8.40.0":
+  version: 8.40.0
+  resolution: "eslint-formatter-json@npm:8.40.0"
+  checksum: 10c0/5e9f75ed4c54f7bf8f64deb4c96394c8c45a3052b8a9813f36958676489c3d04d6c9c7e1d58bdbfb2ad5ed92f351a890b7e221befd029101e83d3a4e1c44e1c4
+  languageName: node
+  linkType: hard
+
+"eslint-formatter-stylish@npm:^8.40.0":
+  version: 8.40.0
+  resolution: "eslint-formatter-stylish@npm:8.40.0"
+  dependencies:
+    chalk: "npm:^4.0.0"
+    strip-ansi: "npm:^6.0.1"
+    text-table: "npm:^0.2.0"
+  checksum: 10c0/ad7f7fcacb5fff5fc1709df8e1d42aeb958f5451dcfc58e77aab5ab064d4f1af61153ba46900e7f8daf5f35c9200afa3128f0ebb55895094353719f23bd3de4b
+  languageName: node
+  linkType: hard
+
 "eslint-scope@npm:^8.0.2":
   version: 8.0.2
   resolution: "eslint-scope@npm:8.0.2"
@@ -1564,6 +1592,7 @@ __metadata:
     debounce: "npm:^2.1.0"
     esbuild: "npm:^0.23.0"
     eslint: "npm:9.x"
+    eslint-formatter-gha: "npm:^1.5.0"
     flowbite: "npm:^2.4.1"
     globals: "npm:^15.8.0"
     husky: "npm:^9.1.1"
