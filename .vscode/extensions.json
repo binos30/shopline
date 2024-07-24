@@ -1,0 +1,18 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 to learn about workspace recommendations.
+  // Extension identifier format: ${publisher}.${name}. Example: vscode.csharp
+
+  // List of extensions which should be recommended for users of this workspace.
+  "recommendations": [
+    "aliariff.slim-lint",
+    "bradlc.vscode-tailwindcss",
+    "castwide.solargraph",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "github.vscode-github-actions",
+    "redhat.vscode-yaml",
+    "ruby-syntax-tree.vscode-syntax-tree",
+    "shopify.ruby-lsp",
+    "sianglim.slim"
+  ]
+}

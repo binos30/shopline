@@ -1,0 +1,11 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.tabSize": 2, // Use 2 spaces for indentation
+  "editor.formatOnSave": true, // Format files automatically when saving
+  "editor.insertSpaces": true, // Use spaces and not tabs for indentantion
+  "editor.semanticHighlighting.enabled": true, // Enable semantic highlighting
+  "editor.formatOnType": true, // Enable formatting while typing
+  "[ruby]": {
+    "editor.defaultFormatter": "ruby-syntax-tree.vscode-syntax-tree"
+  }
+}
