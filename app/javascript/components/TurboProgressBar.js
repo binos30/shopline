@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export default class TurboProgressBar {
   constructor() {
     this.adapter = Turbo.navigator.delegate.adapter;

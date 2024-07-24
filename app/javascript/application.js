@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // Entry point for the build script in your package.json
 import "@fortawesome/fontawesome-free/js/all.min";
 import "@hotwired/turbo-rails";

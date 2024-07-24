@@ -37,3 +37,16 @@
 /public/assets
 
 /docs/
+
+# Ignore yarn files
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+.cache/

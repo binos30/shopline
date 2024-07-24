@@ -12,12 +12,16 @@
     "local-time": "^3.0.2"
   },
   "devDependencies": {
+    "@eslint/js": "^9.7.0",
+    "eslint": "9.x",
+    "globals": "^15.8.0",
     "husky": "^9.1.1",
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.3"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
     "postinstall": "husky"
   },
   "lint-staged": {
@@ -26,7 +30,8 @@
       "./bin/rubocop -a"
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
-    "{app,config}/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown"
+    "{app,config}/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown",
+    "**/*.js": "./node_modules/.bin/eslint --cache --cache-strategy content --cache-location .cache/eslint --fix"
   },
   "packageManager": "yarn@4.3.1"
 }
