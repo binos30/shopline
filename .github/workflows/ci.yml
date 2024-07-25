@@ -5,6 +5,10 @@ on:
   push:
     branches: [main]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
+
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
@@ -74,10 +78,36 @@ jobs:
           path: .cache/eslint
           key: eslint-main-cache
 
-      - name: Lint code for consistent style
+      - name: Restore prettier cache
+        uses: actions/cache/restore@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: .cache/prettier
+          key: prettier-main-cache
+
+      - name: Run prettier
+        run: yarn prettier-ci
+
+      - name: Remove prettier cache
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.event.repository.full_name }}
         run: |
-          bin/bundle exec stree check "{app,config,lib,spec,test}/**/*.rb"
-          bin/rubocop -f github
+          gh api --method DELETE /repos/{owner}/{repo}/actions/caches?key=prettier-main-cache ||
+            echo "Prettier cache not found"
+
+      - name: Save prettier cache
+        if: github.event_name == 'push'
+        uses: actions/cache/save@0c45773b623bea8c8e75f6c82b208c3cf94ea4f9 # v4.0.2
+        with:
+          path: .cache/prettier
+          key: prettier-main-cache
+
+      - name: Run RuboCop
+        run: yarn rubocop-ci
+
+      - name: Run Syntax Tree
+        run: yarn stree-ci
 
   test:
     runs-on: ubuntu-latest

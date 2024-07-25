@@ -100,6 +100,9 @@ group :development, :test do
   gem "rubocop-rspec_rails", require: false
   # Interact with the Ruby syntax tree [https://github.com/ruby-syntax-tree/syntax_tree]
   gem "syntax_tree"
+  # Provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation,
+  # and type checking [https://github.com/castwide/solargraph]
+  gem "solargraph"
 end
 
 group :development do

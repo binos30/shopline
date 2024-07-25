@@ -6,12 +6,14 @@ export default [
   pluginJs.configs.recommended,
   {
     ignores: [
+      ".cache/",
       ".yarn/",
       "app/assets/builds/*",
       "db/",
       "docs/",
       "lib/",
       "log/*",
+      "node_modules/",
       "public/assets/*",
       "spec/",
       "storage/",

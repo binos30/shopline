@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateOrderItems < ActiveRecord::Migration[7.1]
   def change
     create_table :order_items do |t|
@@ -30,12 +32,6 @@ class CreateOrderItems < ActiveRecord::Migration[7.1]
     add_index :orders, :customer_email
     add_column :orders, :order_code, :string, null: false
     add_index :orders, :order_code, unique: true
-    add_column :orders,
-               :total,
-               :decimal,
-               null: false,
-               precision: 12,
-               scale: 2,
-               default: 0
+    add_column :orders, :total, :decimal, null: false, precision: 12, scale: 2, default: 0
   end
 end

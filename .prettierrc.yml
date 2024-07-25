@@ -3,8 +3,3 @@ requirePragma: false
 singleQuote: false
 tabWidth: 2
 trailingComma: "none"
-
-rubyHashLabel: true
-rubyModifier: true
-rubySingleQuote: false
-rubyToProc: false

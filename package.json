@@ -22,17 +22,23 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
+    "eslint": "eslint . --cache --cache-location .cache/eslint --report-unused-disable-directives",
+    "eslint-fix": "eslint --cache --cache-location .cache/eslint --fix . --report-unused-disable-directives",
     "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
+    "prettier-fix": "prettier --write --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
+    "prettier-ci": "prettier --check --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
+    "rubocop-ci": "bin/rubocop -f github",
+    "stree-ci": "bin/bundle exec stree check '**/*.rb'",
     "postinstall": "husky"
   },
   "lint-staged": {
-    "{app,config,lib,spec,test}/**/*.rb": [
+    "**/*.rb": [
       "./bin/bundle exec stree write",
       "./bin/rubocop -a"
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
-    "{app,config}/**/*.{json,js,jsx,ts,tsx,css,scss}": "./node_modules/.bin/prettier --write --ignore-unknown",
-    "**/*.js": "./node_modules/.bin/eslint --cache --cache-strategy content --cache-location .cache/eslint --fix"
+    "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier --ignore-unknown",
+    "**/*.js": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
   },
   "packageManager": "yarn@4.3.1"
 }

@@ -15,14 +15,22 @@ inherit_gem:
 AllCops:
   NewCops: enable
   Exclude:
-    - "vendor/**/*"
-    - "test/fixtures/**/*"
-    - "db/**/*"
-    - "bin/**/*"
-    - "log/**/*"
-    - "tmp/**/*"
+    - ".cache/**/*"
+    - ".git/**/*"
+    - ".github/**/*"
+    - ".husky/**/*"
+    - ".ruby-lsp/**/*"
+    - ".vscode/**/*"
+    - ".yarn/**/*"
     - "app/views/**/*"
+    - "bin/**/*"
+    - "db/schema.rb"
+    - "docs/**/*"
+    - "log/**/*"
     - "node_modules/**/*"
+    - "storage/**/*"
+    - "tmp/**/*"
+    - "vendor/**/*"
 
 # Layout Cops
 
@@ -100,6 +108,9 @@ Style/SignalException:
 Style/InlineComment:
   Description: "Avoid inline comments."
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: always_true
 
 # Rails Cops
 
