@@ -40,7 +40,7 @@
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
     "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier --ignore-unknown",
-    "**/*.js": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
+    "**/*.{cjs,js,mjs}": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
   },
   "packageManager": "yarn@4.3.1"
 }

@@ -2,6 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 
 export default [
+  { files: ["**/*.{cjs,js,mjs}"] },
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
   {
