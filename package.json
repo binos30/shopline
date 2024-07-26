@@ -27,7 +27,9 @@
     "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
     "prettier-fix": "prettier --write --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
     "prettier-ci": "prettier --check --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
+    "rubocop-fix": "bin/rubocop -a",
     "rubocop-ci": "bin/rubocop -f github",
+    "stree-fix": "bin/bundle exec stree write '**/*.rb'",
     "stree-ci": "bin/bundle exec stree check '**/*.rb'",
     "postinstall": "husky"
   },
