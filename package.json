@@ -1,6 +1,40 @@
 {
   "name": "shopline",
+  "description": "Shopline is a leading online marketplace, offering a wide range of products to cater to all your needs.",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binos30/shopline.git"
+  },
+  "keywords": [
+    "ruby",
+    "rails",
+    "ecommerce",
+    "mvc",
+    "rails-application",
+    "web-framework",
+    "mvc-framework",
+    "e-commerce",
+    "ruby-on-rails",
+    "rails-crud",
+    "e-commerce-project",
+    "ecommerce-app",
+    "e-commerce-app",
+    "hotwire-turbo",
+    "turbo-rails",
+    "hotwire-stimulus",
+    "stimulus-rails"
+  ],
+  "author": "Venus Lumanglas (https://binos30.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/binos30/shopline/issues"
+  },
+  "engines": {
+    "yarn": "^4.3.1",
+    "node": "^20.15.1"
+  },
+  "homepage": "https://shopline-t6yk.onrender.com",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@hotwired/stimulus": "^3.2.2",
