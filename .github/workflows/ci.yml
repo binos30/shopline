@@ -9,9 +9,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
-env:
-  CI: true
-
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
@@ -147,6 +144,7 @@ jobs:
         env:
           RAILS_ENV: test
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          CI: true
         run: |
           bin/rails db:test:prepare
           bin/rspec
