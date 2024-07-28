@@ -5,7 +5,6 @@
 --ignore-files='.vscode/*'
 --ignore-files='.yarn/*'
 --ignore-files='app/views/*'
---ignore-files='bin/*'
 --ignore-files='db/schema.rb'
 --ignore-files='docs/*'
 --ignore-files='log/*'

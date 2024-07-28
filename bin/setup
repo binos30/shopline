@@ -17,6 +17,10 @@ FileUtils.chdir APP_ROOT do
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
 
+  # The preferred way to manage Yarn is by-project and through Corepack, a tool shipped by default with Node.js.
+  # Start by enabling Corepack, if it isn't already; this will add the yarn binary to your PATH.
+  system! "corepack enable"
+
   # Install JavaScript dependencies
   system!("yarn install")
 

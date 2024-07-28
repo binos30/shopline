@@ -19,7 +19,7 @@ export default [
       "spec/",
       "storage/",
       "tmp/",
-      "vendor/"
-    ]
-  }
+      "vendor/",
+    ],
+  },
 ];

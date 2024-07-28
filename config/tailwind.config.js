@@ -7,7 +7,7 @@ module.exports = {
     "./app/javascript/**/*.js",
     "./app/views/**/*.{erb,haml,html,slim}",
     "./node_modules/flowbite/**/*.js",
-    "./public/*.html"
+    "./public/*.html",
   ],
   darkMode: "media",
   theme: {
@@ -24,8 +24,8 @@ module.exports = {
           700: "#1d4ed8",
           800: "#1e40af",
           900: "#1e3a8a",
-          950: "#172554"
-        }
+          950: "#172554",
+        },
       },
       fontFamily: {
         body: [
@@ -43,7 +43,7 @@ module.exports = {
           "Apple Color Emoji",
           "Segoe UI Emoji",
           "Segoe UI Symbol",
-          "Noto Color Emoji"
+          "Noto Color Emoji",
         ],
         sans: [
           "Inter",
@@ -62,15 +62,15 @@ module.exports = {
           "Segoe UI Symbol",
           "Noto Color Emoji",
           "Inter var",
-          ...defaultTheme.fontFamily.sans
-        ]
-      }
-    }
+          ...defaultTheme.fontFamily.sans,
+        ],
+      },
+    },
   },
   plugins: [
-    require("flowbite/plugin"),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    require("@tailwindcss/container-queries")
-  ]
+    require("@tailwindcss/container-queries"),
+    require("flowbite/plugin"),
+  ],
 };

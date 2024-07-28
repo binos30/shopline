@@ -21,33 +21,33 @@ export default class extends Controller {
             label: "Revenue $",
             data,
             borderWidth: 3,
-            fill: true
-          }
-        ]
+            fill: true,
+          },
+        ],
       },
       options: {
         plugins: {
           legend: {
-            display: false
-          }
+            display: false,
+          },
         },
         scales: {
           x: {
             grid: {
-              display: false
-            }
+              display: false,
+            },
           },
           y: {
             border: {
-              dash: [5, 5]
+              dash: [5, 5],
             },
             grid: {
-              color: "#d4f3ef"
+              color: "#d4f3ef",
             },
-            beginAtZero: true
-          }
-        }
-      }
+            beginAtZero: true,
+          },
+        },
+      },
     });
   }
 }

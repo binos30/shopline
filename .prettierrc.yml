@@ -2,4 +2,4 @@ printWidth: 115
 requirePragma: false
 singleQuote: false
 tabWidth: 2
-trailingComma: "none"
+trailingComma: "all"

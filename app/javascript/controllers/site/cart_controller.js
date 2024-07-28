@@ -32,7 +32,7 @@ export default class extends Controller {
         "hover:bg-red-700",
         "focus:ring-4",
         "focus:outline-none",
-        "focus:ring-red-300"
+        "focus:ring-red-300",
       );
       deleteButton.addEventListener("click", this.removeFromCart);
       div.appendChild(deleteButton);
@@ -62,16 +62,16 @@ export default class extends Controller {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const payload = {
       authenticity_token: "",
-      cart
+      cart,
     };
 
     fetch("/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "X-CSRF-Token": csrfToken
+        "X-CSRF-Token": csrfToken,
       },
-      body: JSON.stringify(payload)
+      body: JSON.stringify(payload),
     }).then((response) => {
       if (response.ok) {
         response.json().then((res) => (window.location.href = res.url));
@@ -82,7 +82,7 @@ export default class extends Controller {
             window.location.href = res.login_path;
           } else {
             this.showError(
-              `There was an error while processing your order: ${response.status} ${response.statusText} - ${res.error}`
+              `There was an error while processing your order: ${response.status} ${response.statusText} - ${res.error}`,
             );
           }
         });

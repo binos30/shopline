@@ -20,7 +20,7 @@ export default class extends Controller {
     if (cart) {
       const cartArray = JSON.parse(cart);
       const foundIndex = cartArray.findIndex(
-        (item) => item.id === this.productValue.id && item.size === this.sizeValue
+        (item) => item.id === this.productValue.id && item.size === this.sizeValue,
       );
 
       if (foundIndex >= 0) {
@@ -31,7 +31,7 @@ export default class extends Controller {
           name: this.productValue.name,
           price: this.productValue.price,
           size: this.sizeValue,
-          quantity: 1
+          quantity: 1,
         });
       }
       localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -43,7 +43,7 @@ export default class extends Controller {
         name: this.productValue.name,
         price: this.productValue.price,
         size: this.sizeValue,
-        quantity: 1
+        quantity: 1,
       });
       localStorage.setItem("cart", JSON.stringify(cartArray));
       cartCountEl.innerText = cartArray.length;

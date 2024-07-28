@@ -23,7 +23,6 @@ AllCops:
     - ".vscode/**/*"
     - ".yarn/**/*"
     - "app/views/**/*"
-    - "bin/**/*"
     - "db/schema.rb"
     - "docs/**/*"
     - "log/**/*"
