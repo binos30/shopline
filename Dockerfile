@@ -40,7 +40,7 @@ RUN corepack enable && \
     corepack prepare yarn@${YARN_VERSION} --activate
 
 # Install node modules
-COPY .yarnrc.yml package.json yarn.lock ./
+COPY package.json yarn.lock ./
 RUN yarn install --immutable
 
 # Copy application code
