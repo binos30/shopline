@@ -118,6 +118,9 @@ group :development do
   ## Code Formatting & Linting
   # Configurable tool for analyzing Slim templates [https://github.com/sds/slim-lint]
   gem "slim_lint"
+  # A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates
+  # [https://github.com/threedaymonk/htmlbeautifier]
+  gem "htmlbeautifier"
 
   # Optimize queries
   gem "bullet"

@@ -5,6 +5,7 @@
   // List of extensions which should be recommended for users of this workspace.
   "recommendations": [
     "aliariff.slim-lint",
+    "aliariff.vscode-erb-beautify",
     "bradlc.vscode-tailwindcss",
     "castwide.solargraph",
     "dbaeumer.vscode-eslint",

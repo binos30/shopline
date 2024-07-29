@@ -5,7 +5,14 @@
   "editor.insertSpaces": true, // Use spaces and not tabs for indentantion
   "editor.semanticHighlighting.enabled": true, // Enable semantic highlighting
   "editor.formatOnType": true, // Enable formatting while typing
+  "rubyLsp.formatter": "syntax_tree",
   "[ruby]": {
     "editor.defaultFormatter": "ruby-syntax-tree.vscode-syntax-tree"
+  },
+  "[erb]": {
+    "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+  },
+  "files.associations": {
+    "*.html.erb": "erb"
   }
 }
