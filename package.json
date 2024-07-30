@@ -64,7 +64,7 @@
     "rubocop": "bin/rubocop",
     "rubocop-fix": "bin/rubocop -a",
     "rubocop-ci": "bin/rubocop -f github",
-    "slim-lint": "slim-lint 'app/views/**/*.slim'",
+    "slim-lint": "bin/bundle exec slim-lint 'app/views/**/*.slim'",
     "stree-fix": "bin/bundle exec stree write '**/*.rb'",
     "stree": "bin/bundle exec stree check '**/*.rb'",
     "postinstall": "husky"
@@ -75,7 +75,7 @@
       "./bin/rubocop -a"
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
-    "app/views/**/*.slim": "slim-lint",
+    "app/views/**/*.slim": "./bin/bundle exec slim-lint",
     "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier",
     "**/*.{cjs,js,mjs}": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
   },
