@@ -1,23 +1,23 @@
-section id="#{dom_id category}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+section id="#{dom_id category}" class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class=strong_label_class Status:
+      strong class="strong-label" Status:
       = status_badge(category.active)
     p
-      strong class=strong_label_class Name:
-      span class=span_label_class =< category.name
+      strong class="strong-label" Name:
+      span class="text-gray-900 dark:text-white" =< category.name
     p
-      strong class=strong_label_class Description:
-      span class=span_label_class =< category.description
+      strong class="strong-label" Description:
+      span class="text-gray-900 dark:text-white" =< category.description
     div
-      => link_to edit_admin_category_path(category), class: button_with_icon_class do
+      => link_to edit_admin_category_path(category), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
         | Edit this category
-      =< link_to admin_categories_path, class: button_with_icon_class do
+      =< link_to admin_categories_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
         | Back to categories
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
-        class=delete_button_with_icon_class
+        class="btn-danger border border-red-300 dark:border-red-700 me-2 mb-2"
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
         | Delete this category

@@ -1,6 +1,6 @@
-section class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+section class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
-    h1 class=h1_label_class = product.id? ? "Editing product" : "New product"
+    h1 class="h1-label" = product.id? ? "Editing product" : "New product"
     = form_with(model: [:admin, product], class: "contents") do |form|
       == render "shared/errors", errors: product&.errors&.full_messages || []
       div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
@@ -8,22 +8,22 @@ section class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg s
           = form.label :active, class: "inline-flex items-center cursor-pointer"
             = form.check_box :active, class: "sr-only peer"
             span class="text-sm font-medium text-gray-900 dark:text-white" Status
-            div class="ms-3 relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-600"
+            div class="peer form-switch"
         div class="sm:col-span-2"
-          = form.label :name, class: form_label_class
+          = form.label :name, class: "form-label"
           = form.text_field :name, required: true, placeholder: "Product 1",
-            class: form_input_class
+            class: "form-input"
         .w-full
-          = form.label :category_id, class: form_label_class
+          = form.label :category_id, class: "form-label"
           = form.collection_select(:category_id, @categories, :id, :name,
             { include_blank: "Select a Category" }, required: true,
-            class: form_input_class)
+            class: "form-input")
         .w-full
-          = form.label :price, class: form_label_class
+          = form.label :price, class: "form-label"
           = form.number_field :price, min: "0", max: "999999999", step: ".01", required: true, placeholder: "0.0",
-            class: form_input_class
+            class: "form-input"
         div class="sm:col-span-2"
-          = form.label :images, class: form_label_class
+          = form.label :images, class: "form-label"
           - if product.images.attached?
             div class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-2"
               - product.images.each do |image|
@@ -32,20 +32,20 @@ section class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg s
                     = custom_image_tag(image, class: "w-20 h-20 object-cover rounded-md")
                     = form.hidden_field :images, multiple: true, value: image.signed_id, id: nil
           = form.file_field :images, multiple: true, accept: "image/*",
-            class: form_input_class
+            class: "form-input"
         div class="sm:col-span-2"
-          = form.label :description, class: form_label_class
+          = form.label :description, class: "form-label"
           = form.text_area :description, rows: 8, placeholder: "Your description here",
-            class: form_input_class
-      = form.submit class: form_button_class
+            class: "form-input"
+      = form.submit class: "btn-primary"
     div
       - if product.id?
-        => link_to admin_product_stocks_path(product), class: button_with_icon_class do
+        => link_to admin_product_stocks_path(product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-boxes-stacked w-3.5 h-3.5 me-2"
           | Product Stocks
-        => link_to admin_product_path(product), class: button_with_icon_class do
+        => link_to admin_product_path(product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-eye w-3.5 h-3.5 me-2"
           | Show this product
-      =< link_to admin_products_path, class: button_with_icon_class do
+      =< link_to admin_products_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
         | Back to products

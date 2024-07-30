@@ -99,7 +99,7 @@ export default class extends Controller {
     if (errorContainer.hasChildNodes()) {
       [...errorContainer.childNodes].forEach((el) => el.remove());
     }
-    errorContainer.classList.add("p-4");
+    errorContainer.classList.add("p-3");
     errorEl.classList.add("text-sm", "font-medium");
     errorEl.innerText = error;
     errorContainer.appendChild(errorEl);

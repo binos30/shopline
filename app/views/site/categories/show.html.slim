@@ -8,7 +8,7 @@ h3 = @category.description
 == render "product_filter"
 
 = turbo_frame_tag :products, "data-turbo-action": "advance",
-  class: "w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" do
+  class: "card-wrapper" do
   - if @products.any?
     == render @products
   - else

@@ -68,11 +68,6 @@ module ApplicationHelper
   end
   # rubocop:enable Rails/OutputSafety
 
-  def site_form_input_class
-    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600" \
-      " focus:border-primary-600 block p-2.5"
-  end
-
   def custom_image_tag( # rubocop:disable Metrics/ParameterLists
     image,
     variant: nil,

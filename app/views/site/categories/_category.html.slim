@@ -10,6 +10,7 @@ div id="#{dom_id category}" class="w-72 bg-white shadow-md rounded-xl duration-5
         = category.name
       p class="mb-3 font-normal text-gray-700 truncate block"
         = category.description
-      div class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+      div class=("inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg" \
+        " hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300")
         | Browse products
         i class="fa-solid fa-arrow-right rtl:rotate-180 w-3.5 h-3.5 ms-2"

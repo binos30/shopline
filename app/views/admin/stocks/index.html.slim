@@ -5,11 +5,11 @@
 
   == render "shared/alert"
   == render "shared/notice"
-  h1 class="underline #{h1_label_class}"
+  h1 class="underline h1-label"
     =< link_to @product.name, edit_admin_product_path(@product)
   .flex.justify-between.items-center.mb-4
-    h1 class=h1_label_class Stocks
-    = link_to new_admin_product_stock_path(@product), class: new_record_button_with_icon_class do
+    h1 class="h1-label" Stocks
+    = link_to new_admin_product_stock_path(@product), class: "btn-primary" do
       i class="fa-solid fa-plus w-3.5 h-3.5 me-2"
       | New Stock
   == render "table"

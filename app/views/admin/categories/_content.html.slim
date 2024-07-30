@@ -7,9 +7,9 @@
         div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
           i class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400"
         = f.search_field :name, value: params[:name], id: "name-search", placeholder: "Search for categories",
-          class: "ps-10 #{form_input_class}"
+          class: "ps-10 form-input"
     div class="mb-1"
-      select name="count_per_page" class=form_input_class
+      select name="count_per_page" class="form-input"
         == items_option_selected
 = turbo_frame_tag "data-table", "data-turbo-action": "advance" do
   == render "table"

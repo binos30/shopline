@@ -4,8 +4,8 @@
   == render "shared/alert"
   == render "shared/notice"
   .flex.justify-between.items-center.mb-4
-    h1 class=h1_label_class Categories
-    = link_to new_admin_category_path, class: new_record_button_with_icon_class do
+    h1 class="h1-label" Categories
+    = link_to new_admin_category_path, class: "btn-primary" do
       i class="fa-solid fa-plus w-3.5 h-3.5 me-2"
       | New Category
   == render "content"

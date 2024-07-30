@@ -1,35 +1,35 @@
-section id="#{dom_id order}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+section id="#{dom_id order}" class="order-section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
       .w-full
-        strong class=strong_label_class Status:
+        strong class="strong-label" Status:
         = order_status_badge(order.fulfilled)
       .w-full
-        strong class=strong_label_class Order ID:
-        span class=span_label_class =< order.order_code
+        strong class="strong-label" Order ID:
+        span class="text-gray-900 dark:text-white" =< order.order_code
       .w-full
-        strong class=strong_label_class Date:
-        span class=span_label_class = format_date(order.created_at, "%b %e, %Y %l:%M %p")
+        strong class="strong-label" Date:
+        span class="text-gray-900 dark:text-white" = format_date(order.created_at, "%b %e, %Y %l:%M %p")
       .w-full
-        strong class=strong_label_class Total:
-        span class=span_label_class =< number_to_currency(order.total, unit: "$")
+        strong class="strong-label" Total:
+        span class="text-gray-900 dark:text-white" =< number_to_currency(order.total, unit: "$")
       .w-full
-        strong class=strong_label_class Customer:
-        span class=span_label_class =< order.customer_full_name
+        strong class="strong-label" Customer:
+        span class="text-gray-900 dark:text-white" =< order.customer_full_name
       .w-full
-        strong class=strong_label_class Email:
-        span class=span_label_class =< order.customer_email
+        strong class="strong-label" Email:
+        span class="text-gray-900 dark:text-white" =< order.customer_email
       div class="sm:col-span-2"
-        strong class=strong_label_class Address:
-        span class=span_label_class =< order.customer_address
+        strong class="strong-label" Address:
+        span class="text-gray-900 dark:text-white" =< order.customer_address
     == render "order_items_table", order_items: order.order_items
     div
-      =< link_to admin_orders_path, class: button_with_icon_class do
+      =< link_to admin_orders_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
         | Back to orders
       - unless order.fulfilled
         button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
-          class="text-center inline-flex items-center border border-green-300 text-white bg-green-800 hover:bg-green-900 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-800 dark:hover:bg-green-700 dark:focus:ring-green-700 dark:border-green-700"
+          class="btn-success"
         ]
           i class="fa-solid fa-check w-3.5 h-3.5 me-2"
           | Fulfill

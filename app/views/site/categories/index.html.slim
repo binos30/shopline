@@ -8,10 +8,10 @@
       div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
         i class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400"
       = f.search_field :name, value: params[:name], id: "name-search", placeholder: "Search for categories",
-        class: "ps-10 #{site_form_input_class}"
+        class: "ps-10 site-form-input"
 
 = turbo_frame_tag :categories, "data-turbo-action": "advance",
-  class: "w-fit mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5" do
+  class: "card-wrapper" do
   - if @categories.any?
     == render @categories
   - else

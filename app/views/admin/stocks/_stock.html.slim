@@ -1,23 +1,24 @@
-section id="#{dom_id stock}" class="w-full py-8 px-4 mx-auto max-w-2xl lg:py-16 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md md:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+section id="#{dom_id stock}" class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class=strong_label_class Product:
-      span class=span_label_class =< @product.name
+      strong class="strong-label" Product:
+      span class="text-gray-900 dark:text-white" =< @product.name
     p
-      strong class=strong_label_class Size:
-      span class=span_label_class =< stock.size
+      strong class="strong-label" Size:
+      span class="text-gray-900 dark:text-white" =< stock.size
     p
-      strong class=strong_label_class Quantity:
-      span class=span_label_class =< stock.quantity
+      strong class="strong-label" Quantity:
+      span class="text-gray-900 dark:text-white" =< stock.quantity
     div
-      => link_to edit_admin_product_stock_path(@product, stock), class: button_with_icon_class do
+      => link_to edit_admin_product_stock_path(@product, stock),
+        class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
         | Edit this stock
-      =< link_to admin_product_stocks_path(@product), class: button_with_icon_class do
+      =< link_to admin_product_stocks_path(@product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
         | Back to stocks
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
-        class=delete_button_with_icon_class
+        class="btn-danger border border-red-300 dark:border-red-700 me-2 mb-2"
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
         | Delete this stock

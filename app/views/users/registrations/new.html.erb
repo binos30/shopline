@@ -1,5 +1,4 @@
 <%- title "Sign Up" %>
-
 <section class="bg-gray-50 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
     <%= link_to root_path,
@@ -10,40 +9,40 @@
       class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 class="<%= h1_label_class %>">Create an account</h1>
+        <h1 class="h1-label">Create an account</h1>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "space-y-4 md:space-y-6" }) do |f| %>
           <%= render "users/shared/error_messages", resource: resource %>
           <div class="mt-10 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :first_name, class: form_label_class %>
+              <%= f.label :first_name, class: "form-label" %>
               <%= f.text_field :first_name, autocomplete: "first_name", required: true,
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :last_name, class: form_label_class %>
+              <%= f.label :last_name, class: "form-label" %>
               <%= f.text_field :last_name, autocomplete: "last_name", required: true,
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :email, class: form_label_class %>
+              <%= f.label :email, class: "form-label" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email",
                 required: true, placeholder: "name@company.com",
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :gender, class: form_label_class %>
+              <%= f.label :gender, class: "form-label" %>
               <%= f.select :gender, enum_for_select(User, :gender), { include_blank: "Select gender" }, required: true,
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :password, class: form_label_class %>
+              <%= f.label :password, class: "form-label" %>
               <%= f.password_field :password, required: true, placeholder: "••••••••",
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :password_confirmation, class: form_label_class %>
+              <%= f.label :password_confirmation, class: "form-label" %>
               <%= f.password_field :password_confirmation, required: true, placeholder: "••••••••",
-                class: form_input_class %>
+                class: "form-input" %>
             </div>
           </div>
           <%# <div class="flex items-start">
@@ -67,7 +66,7 @@
               >
             </div>
           </div> %>
-          <%= f.submit "Sign up", class: form_button_class %>
+          <%= f.submit "Sign up", class: "btn-primary" %>
           <p class="text-sm font-light text-gray-500 dark:text-gray-400">
             Already have an account?
             <%= link_to "Log in", new_session_path(resource_name), class: "font-medium text-primary-600 hover:underline dark:text-primary-500" %>
