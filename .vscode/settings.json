@@ -13,6 +13,7 @@
     "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
   },
   "files.associations": {
+    ".streerc": "plaintext",
     "*.html.erb": "erb"
   }
 }
