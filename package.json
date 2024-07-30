@@ -59,12 +59,14 @@
     "eslint": "eslint . --cache --cache-location .cache/eslint --report-unused-disable-directives",
     "eslint-fix": "eslint --cache --cache-location .cache/eslint --fix . --report-unused-disable-directives",
     "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
-    "prettier-fix": "prettier --write --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
-    "prettier-ci": "prettier --check --cache --cache-location .cache/prettier --ignore-unknown '**/*.{css,html,js,json,md,mjs,yml}'",
+    "prettier-fix": "prettier --write --cache --cache-location .cache/prettier '**/*.{css,html,js,json,md,mjs,yml}'",
+    "prettier": "prettier --check --cache --cache-location .cache/prettier '**/*.{css,html,js,json,md,mjs,yml}'",
+    "rubocop": "bin/rubocop",
     "rubocop-fix": "bin/rubocop -a",
     "rubocop-ci": "bin/rubocop -f github",
+    "slim-lint": "slim-lint 'app/views/**/*.slim'",
     "stree-fix": "bin/bundle exec stree write '**/*.rb'",
-    "stree-ci": "bin/bundle exec stree check '**/*.rb'",
+    "stree": "bin/bundle exec stree check '**/*.rb'",
     "postinstall": "husky"
   },
   "lint-staged": {
@@ -73,7 +75,8 @@
       "./bin/rubocop -a"
     ],
     "spec/**/*_spec.rb": "./bin/rspec",
-    "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier --ignore-unknown",
+    "app/views/**/*.slim": "slim-lint",
+    "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier",
     "**/*.{cjs,js,mjs}": "./node_modules/.bin/eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives"
   },
   "packageManager": "yarn@4.3.1"

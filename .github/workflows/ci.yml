@@ -81,7 +81,7 @@ jobs:
           key: prettier-main-cache
 
       - name: Run prettier
-        run: yarn prettier-ci
+        run: yarn prettier
 
       - name: Remove prettier cache
         if: github.event_name == 'push'
@@ -103,7 +103,10 @@ jobs:
         run: yarn rubocop-ci
 
       - name: Run Syntax Tree
-        run: yarn stree-ci
+        run: yarn stree
+
+      - name: Run Slim-Lint
+        run: yarn slim-lint
 
       - name: Run zeitwerk check
         run: bin/rails zeitwerk:check
