@@ -97,9 +97,13 @@ module Admin
     def set_product # rubocop:disable Metrics/AbcSize
       @product =
         if action_name == "show"
-          Product.includes([:category, { images_attachments: :blob }]).find_by_friendly_id(params[:slug])
+          Product.includes([:category, :rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
+            params[:slug]
+          )
         elsif action_name == "edit"
-          Product.includes([{ images_attachments: :blob }]).find_by_friendly_id(params[:slug])
+          Product.includes([:rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
+            params[:slug]
+          )
         else
           Product.find_by_friendly_id(params[:slug])
         end

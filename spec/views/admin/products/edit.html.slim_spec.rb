@@ -21,7 +21,7 @@ RSpec.describe "admin/products/edit" do
 
       assert_select "input[name=?]", "product[name]"
 
-      assert_select "textarea[name=?]", "product[description]"
+      assert_select "input[name=?]", "product[description]"
 
       assert_select "input[name=?]", "product[price]"
 

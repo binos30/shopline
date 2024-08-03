@@ -14,7 +14,7 @@ section class="section-container"
           class: "form-input"
       .my-5
         = form.label :description, class: "form-label"
-        = form.text_area :description,
+        = form.rich_text_area :description, placeholder: "Your description here",
           class: "form-input"
       .my-5
         = form.label :image, class: "form-label"

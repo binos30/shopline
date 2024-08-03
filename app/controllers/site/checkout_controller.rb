@@ -22,7 +22,6 @@ module Site
             price_data: {
               product_data: {
                 name: item["name"],
-                description: product.description.presence || nil,
                 images: product.images.map { |img| url_for(img) },
                 metadata: {
                   product_id: product.id,

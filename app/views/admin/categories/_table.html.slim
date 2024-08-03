@@ -21,7 +21,7 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
               = image_tag("https://via.placeholder.com/50")
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             = link_to category.name, edit_admin_category_path(category), data: { turbo_frame: :_top }
-          td class="px-6 py-4 whitespace-nowrap"
+          td class="px-6 py-4 line-clamp-1"
             = category.description
           td class="px-6 py-4"
             = status_badge(category.active)

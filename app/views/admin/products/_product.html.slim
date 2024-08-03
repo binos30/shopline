@@ -9,9 +9,10 @@ section id="#{dom_id product}" class="section-container"
     p
       strong class="strong-label" Name:
       span class="text-gray-900 dark:text-white" =< product.name
-    p
+    div
       strong class="strong-label" Description:
-      span class="text-gray-900 dark:text-white" =< product.description
+      span class="text-gray-900 dark:text-white"
+        = product.description
     p
       strong class="strong-label" Price:
       span class="text-gray-900 dark:text-white" =< number_to_currency(product.price, unit: "$")

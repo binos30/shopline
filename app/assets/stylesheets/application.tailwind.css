@@ -2,6 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  trix-editor {
+    @apply w-full;
+  }
+
+  trix-editor h1 {
+    font-size: 1.25rem !important;
+    line-height: 1.25rem !important;
+    @apply leading-5 font-semibold mb-4;
+  }
+
+  trix-editor a:not(.no-underline) {
+    @apply underline;
+  }
+
+  trix-editor a:visited {
+    color: green;
+  }
+
+  trix-editor ul {
+    list-style-type: disc;
+    padding-left: 1rem;
+  }
+
+  trix-editor ol {
+    list-style-type: decimal;
+    padding-left: 1rem;
+  }
+
+  trix-editor pre {
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+    font-family: monospace;
+    font-size: 1.5em;
+    padding: 0.5em;
+    white-space: pre;
+    background-color: #eee;
+    overflow-x: auto;
+  }
+
+  trix-editor blockquote {
+    border: 0 solid #ccc;
+    border-left-width: 0px;
+    border-left-width: 0.3em;
+    margin-left: 0.3em;
+    padding-left: 0.6em;
+  }
+}
+
 @layer components {
   #navbar-links {
     @apply flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white;

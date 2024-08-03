@@ -6,9 +6,10 @@ section id="#{dom_id category}" class="section-container"
     p
       strong class="strong-label" Name:
       span class="text-gray-900 dark:text-white" =< category.name
-    p
+    div
       strong class="strong-label" Description:
-      span class="text-gray-900 dark:text-white" =< category.description
+      span class="text-gray-900 dark:text-white"
+        = category.description
     div
       => link_to edit_admin_category_path(category), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"

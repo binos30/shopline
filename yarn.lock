@@ -326,6 +326,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rails/actiontext@npm:7.1.3-4":
+  version: 7.1.3-4
+  resolution: "@rails/actiontext@npm:7.1.3-4"
+  dependencies:
+    "@rails/activestorage": "npm:>= 7.1.0-alpha"
+  peerDependencies:
+    trix: ^2.0.0
+  checksum: 10c0/c904f912c6212f524e79f9f99bca5f7194f939a2d68d0d9238587c6c8f8e95c01eab5e7fa91a3aab3cffd0be9d71178033fd3e09d8d0fd4550222ddaf47d8436
+  languageName: node
+  linkType: hard
+
+"@rails/activestorage@npm:>= 7.1.0-alpha":
+  version: 7.1.3
+  resolution: "@rails/activestorage@npm:7.1.3"
+  dependencies:
+    spark-md5: "npm:^3.0.1"
+  checksum: 10c0/a4c2540b3a108a12cbfc62cd020ce202f66c0e8d50a23bbadb8f47abeb16393fd2a34aa3719053bc95611c2981fcb06b7fb3e12026db80d6ed715d143f8e7fee
+  languageName: node
+  linkType: hard
+
 "@rollup/plugin-node-resolve@npm:^15.2.3":
   version: 15.2.3
   resolution: "@rollup/plugin-node-resolve@npm:15.2.3"
@@ -1588,6 +1608,7 @@ __metadata:
     "@fortawesome/fontawesome-free": "npm:^6.6.0"
     "@hotwired/stimulus": "npm:^3.2.2"
     "@hotwired/turbo-rails": "npm:^8.0.5"
+    "@rails/actiontext": "npm:7.1.3-4"
     chart.js: "npm:^4.4.3"
     debounce: "npm:^2.1.0"
     esbuild: "npm:^0.23.0"
@@ -1599,6 +1620,7 @@ __metadata:
     lint-staged: "npm:^15.2.7"
     local-time: "npm:^3.0.2"
     prettier: "npm:^3.3.3"
+    trix: "npm:^2.1.4"
   languageName: unknown
   linkType: soft
 
@@ -1633,6 +1655,13 @@ __metadata:
     ansi-styles: "npm:^6.2.1"
     is-fullwidth-code-point: "npm:^5.0.0"
   checksum: 10c0/631c971d4abf56cf880f034d43fcc44ff883624867bf11ecbd538c47343911d734a4656d7bc02362b40b89d765652a7f935595441e519b59e2ad3f4d5d6fe7ca
+  languageName: node
+  linkType: hard
+
+"spark-md5@npm:^3.0.1":
+  version: 3.0.2
+  resolution: "spark-md5@npm:3.0.2"
+  checksum: 10c0/3fd11735eac5e7d60d6006d99ac0a055f148a89e9baf5f0b51ac103022dec30556b44190b37f6737ca50f81e8e50dc13e724f9edf6290c412ff5ab2101ce7780
   languageName: node
   linkType: hard
 
@@ -1715,6 +1744,13 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"trix@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "trix@npm:2.1.4"
+  checksum: 10c0/06979e1b2a11654b2ba3d166c5b4bab3b96c6aff7bb9d14d686b2a95a653ce6656b11200ee646212f67837b77e19c6b2548d4d49c2e348746130204ddfc3f7c5
   languageName: node
   linkType: hard
 

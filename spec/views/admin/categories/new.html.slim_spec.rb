@@ -11,7 +11,7 @@ RSpec.describe "admin/categories/new" do
     assert_select "form[action=?][method=?]", admin_categories_path, "post" do
       assert_select "input[name=?]", "category[name]"
 
-      assert_select "textarea[name=?]", "category[description]"
+      assert_select "input[name=?]", "category[description]"
     end
   end
 end

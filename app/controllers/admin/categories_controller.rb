@@ -6,7 +6,11 @@ module Admin
 
     # GET /admin/categories or /admin/categories.json
     def index
-      @categories = Category.filters(params.slice(:name)).includes(image_attachment: :blob).order(:name)
+      @categories =
+        Category
+          .filters(params.slice(:name))
+          .includes([:rich_text_description, { image_attachment: :blob }])
+          .order(:name)
       @pagy, @categories = pagy(@categories, limit: count_per_page)
     end
 
@@ -87,12 +91,19 @@ module Admin
     private
 
     # Use callbacks to share common setup or constraints between actions.
+    # rubocop:disable Rails/DynamicFindBy
     def set_category
-      @category = Category.find_by_friendly_id(params[:slug]) # rubocop:disable Rails/DynamicFindBy
+      @category =
+        if action_name == "show" || action_name == "edit"
+          Category.includes(:rich_text_description).find_by_friendly_id(params[:slug])
+        else
+          Category.find_by_friendly_id(params[:slug])
+        end
     rescue ActiveRecord::RecordNotFound
       logger.error "Category not found #{params[:slug]}"
       redirect_back(fallback_location: admin_categories_url)
     end
+    # rubocop:enable Rails/DynamicFindBy
 
     # Only allow a list of trusted parameters through.
     def category_params

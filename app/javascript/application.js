@@ -4,6 +4,8 @@ import "@fortawesome/fontawesome-free/js/all.min";
 import "@hotwired/turbo-rails";
 import "./controllers";
 import "flowbite/dist/flowbite.turbo.min";
+import "trix";
+import "@rails/actiontext";
 import LocalTime from "local-time";
 
 LocalTime.start();

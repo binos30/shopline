@@ -2,7 +2,6 @@
 
 class Product < ApplicationRecord
   include Filterable
-  include Sanitizable
   include Sluggable
 
   # Set the attribute from which the slug would be generated
@@ -17,6 +16,8 @@ class Product < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :order_items, dependent: :restrict_with_exception
 
+  has_rich_text :description
+
   broadcasts_refreshes_to :category
   broadcasts_refreshes
 
@@ -29,16 +30,8 @@ class Product < ApplicationRecord
             }
   validates :images, content_type: %i[jpeg jpg png webp], size: { less_than_or_equal_to: 3.megabytes }
 
-  before_save :sanitize_fields
-
   scope :available, -> { joins(:stocks).where("quantity > 0").distinct }
   scope :filter_by_name, ->(name) { where("name ILIKE ?", "%#{name}%") }
   scope :filter_by_min, ->(min) { where(price: min..) }
   scope :filter_by_max, ->(max) { where(price: ..max) }
-
-  private
-
-  def sanitize_fields
-    self.description = sanitize(description, scrubber: HtmlScrubbers::WysiwygScrubber.new)
-  end
 end

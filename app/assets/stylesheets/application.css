@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+
+.line-clamp {
+  display: -webkit-box;
+  line-clamp: 3; /* number of lines */
+  -webkit-line-clamp: 3; /* number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-1 {
+  display: -webkit-box;
+  line-clamp: 1; /* number of lines */
+  -webkit-line-clamp: 1; /* number of lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
