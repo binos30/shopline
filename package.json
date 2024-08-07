@@ -67,13 +67,13 @@
     "rubocop-fix": "bin/rubocop -a",
     "rubocop-ci": "bin/rubocop -f github",
     "slim-lint": "bin/bundle exec slim-lint 'app/views/**/*.slim'",
-    "stree-fix": "bin/bundle exec stree write '**/*.rb'",
-    "stree": "bin/bundle exec stree check '**/*.rb'",
+    "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'",
+    "stree": "bin/bundle exec stree check '**/*.{rake,rb}'",
     "postinstall": "husky"
   },
   "lint-staged": {
-    "{app,config,db/migrate,lib,spec}/**/*.rb": "./bin/bundle exec stree write",
-    "**/*.rb": "./bin/rubocop --force-exclusion -a",
+    "{app,config,db/migrate,lib,spec}/**/*.{rake,rb}": "./bin/bundle exec stree write",
+    "**/*.{rake,rb}": "./bin/rubocop --force-exclusion -a",
     "spec/**/*_spec.rb": "./bin/rspec",
     "app/views/**/*.slim": "./bin/bundle exec slim-lint",
     "**/*.{css,html,js,json,md,mjs,yml}": "./node_modules/.bin/prettier --write --cache --cache-location .cache/prettier",
