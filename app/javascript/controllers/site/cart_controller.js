@@ -53,8 +53,8 @@ export default class extends Controller {
       minValue = minValue ? parseInt(minValue) : null;
       maxValue = maxValue ? parseInt(maxValue) : null;
 
-      incrementEl.removeEventListener("click", this.incrementClickHandler.bind(null, targetEl, maxValue), false);
-      decrementEl.removeEventListener("click", this.decrementClickHandler.bind(null, targetEl, minValue), false);
+      incrementEl.removeEventListener("click", this.incrementClickHandler.bind(this, targetEl, maxValue), false);
+      decrementEl.removeEventListener("click", this.decrementClickHandler.bind(this, targetEl, minValue), false);
     });
   }
 
