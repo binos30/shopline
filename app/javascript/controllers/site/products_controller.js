@@ -32,6 +32,8 @@ export default class extends Controller {
           price: this.productValue.price,
           size: this.sizeValue,
           quantity: 1,
+          slug: this.productValue.slug,
+          imageUrl: this.productValue.image_url,
         });
       }
       localStorage.setItem("cart", JSON.stringify(cartArray));
@@ -44,6 +46,8 @@ export default class extends Controller {
         price: this.productValue.price,
         size: this.sizeValue,
         quantity: 1,
+        slug: this.productValue.slug,
+        imageUrl: this.productValue.image_url,
       });
       localStorage.setItem("cart", JSON.stringify(cartArray));
       cartCountEl.innerText = cartArray.length;

@@ -92,4 +92,12 @@ module ApplicationHelper
       image_tag(variant ? image.variant(variant) : image, width:, height:, class:, alt:)
     end
   end
+
+  def product_image_url(images)
+    if images.attached?
+      Rails.env.production? ? cl_image_path(images.first.key) : rails_blob_url(images.first)
+    else
+      "https://via.placeholder.com/20"
+    end
+  end
 end

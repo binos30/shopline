@@ -14,8 +14,10 @@ div class="flex flex-wrap justify-center gap-10 py-10"
               = custom_image_tag(image, class: "h-auto max-w-full rounded-lg", alt: "Product")
     - else
       = image_tag("https://via.placeholder.com/500", class: "w-auto h-64", alt: "Product")
-  div[class="flex flex-col items-start max-w-sm"
-    data-controller="site--products" data-site--products-product-value="#{@product.to_json}"
+  div[
+    class="flex flex-col items-start max-w-sm"
+    data-controller="site--products"
+    data-site--products-product-value="#{@product_data.merge(image_url: product_image_url(@product.images)).to_json}"
   ]
     h1 class="font-bold text-4xl uppercase"
       = @product.name
