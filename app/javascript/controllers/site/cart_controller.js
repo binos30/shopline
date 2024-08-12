@@ -44,10 +44,10 @@ export default class extends Controller {
   }
 
   disconnect() {
-    document.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
+    this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
       const targetId = targetEl.id;
-      const incrementEl = document.querySelector('[data-input-quantity-increment="' + targetId + '"]');
-      const decrementEl = document.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
+      const incrementEl = this.element.querySelector('[data-input-quantity-increment="' + targetId + '"]');
+      const decrementEl = this.element.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
       let minValue = targetEl.getAttribute("data-input-quantity-min");
       let maxValue = targetEl.getAttribute("data-input-quantity-max");
       minValue = minValue ? parseInt(minValue) : null;
@@ -120,10 +120,10 @@ export default class extends Controller {
   }
 
   initInputQuantity() {
-    document.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
+    this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
       const targetId = targetEl.id;
-      const incrementEl = document.querySelector('[data-input-quantity-increment="' + targetId + '"]');
-      const decrementEl = document.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
+      const incrementEl = this.element.querySelector('[data-input-quantity-increment="' + targetId + '"]');
+      const decrementEl = this.element.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
       let minValue = targetEl.getAttribute("data-input-quantity-min");
       let maxValue = targetEl.getAttribute("data-input-quantity-max");
       minValue = minValue ? parseInt(minValue) : null;
