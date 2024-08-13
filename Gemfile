@@ -2,10 +2,8 @@
 
 source "https://rubygems.org"
 
-ruby file: ".ruby-version"
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.1.3.4"
+gem "rails", "~> 7.2.0"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -99,10 +97,10 @@ group :development, :test do
   # Code style checking for Rails-related RSpec files [https://github.com/rubocop/rubocop-rspec_rails]
   gem "rubocop-rspec_rails", require: false
   # Interact with the Ruby syntax tree [https://github.com/ruby-syntax-tree/syntax_tree]
-  gem "syntax_tree"
+  gem "syntax_tree", require: false
   # Provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation,
   # and type checking [https://github.com/castwide/solargraph]
-  gem "solargraph"
+  gem "solargraph", require: false
 end
 
 group :development do
@@ -117,10 +115,10 @@ group :development do
 
   ## Code Formatting & Linting
   # Configurable tool for analyzing Slim templates [https://github.com/sds/slim-lint]
-  gem "slim_lint"
+  gem "slim_lint", require: false
   # A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates
   # [https://github.com/threedaymonk/htmlbeautifier]
-  gem "htmlbeautifier"
+  gem "htmlbeautifier", require: false
 
   # Optimize queries
   gem "bullet"
