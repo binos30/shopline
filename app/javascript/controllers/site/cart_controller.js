@@ -135,8 +135,9 @@ export default class extends Controller {
   }
 
   incrementClickHandler(targetEl, maxValue) {
-    if (maxValue !== null && this.getCurrentValue(targetEl) >= maxValue) return;
-    targetEl.value = (this.getCurrentValue(targetEl) + 1).toString();
+    const quantity = this.getCurrentValue(targetEl);
+    if (maxValue !== null && quantity >= maxValue) return;
+    targetEl.value = (quantity + 1).toString();
 
     const itemSubtotalElement = document.getElementById(`${targetEl.id}-subtotal`);
     const subtotalElement = document.getElementById("order-subtotal");
@@ -158,8 +159,9 @@ export default class extends Controller {
   }
 
   decrementClickHandler(targetEl, minValue) {
-    if (minValue !== null && this.getCurrentValue(targetEl) <= minValue) return;
-    targetEl.value = (this.getCurrentValue(targetEl) - 1).toString();
+    const quantity = this.getCurrentValue(targetEl);
+    if (minValue !== null && quantity <= minValue) return;
+    targetEl.value = (quantity - 1).toString();
 
     const itemSubtotalElement = document.getElementById(`${targetEl.id}-subtotal`);
     const subtotalElement = document.getElementById("order-subtotal");
