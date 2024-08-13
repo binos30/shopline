@@ -44,7 +44,7 @@ class Order < ApplicationRecord
   private
 
   def generate_order_code
-    epoch_time = Time.now.to_i
+    epoch_time = Time.current.to_i
 
     self.order_code = "SL-#{epoch_time}-0#{rand(10)}"
   end
