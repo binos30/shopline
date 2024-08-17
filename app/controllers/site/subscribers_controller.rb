@@ -10,7 +10,8 @@ module Site
 
     def create
       Subscriber.transaction do
-        @subscriber = Subscriber.new(subscriber_params)
+        @subscriber =
+          Subscriber.new(subscriber_params.merge(ip_address: request.remote_ip, user_agent: request.user_agent))
         @subscriber.save!
       end
     rescue StandardError => e

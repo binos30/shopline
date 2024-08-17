@@ -5,12 +5,23 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
         th scope="col" class="px-6 py-3"
           | Email
         th scope="col" class="px-6 py-3"
+          | IP Address
+        th scope="col" class="px-6 py-3"
+          | User Agent
+        th scope="col" class="px-6 py-3"
           | Date Subscribed
     tbody
       - @subscribers.each do |subscriber|
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           td class="px-6 py-4 whitespace-nowrap"
             = subscriber.email
+          td class="px-6 py-4 whitespace-nowrap"
+            = subscriber.ip_address
+          td class="px-6 py-4" title="#{subscriber.user_agent}"
+            - if subscriber.user_agent.length > 50
+              = truncate(subscriber.user_agent, length: 50)
+            - else
+              = subscriber.user_agent
           td class="px-6 py-4 whitespace-nowrap"
             = format_date(subscriber.created_at, "%b %e, %Y %l:%M %p")
 == render "admin/shared/pagination"
