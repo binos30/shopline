@@ -1,6 +1,6 @@
 div class="flex flex-wrap items-center mt-5"
   = form_with(url: category_path(@category), method: :get, class: "flex flex-wrap items-center",
-    data: { turbo_frame: :products, controller: "site--categories", action: "input->site--categories#submitFilter" }) do |f|
+    data: { turbo_frame: :products, controller: "filter", action: "input->filter#submitFilter" }) do |f|
     div class="me-1 mb-1"
       label for="name-search" class="sr-only" Search
       div class="relative"

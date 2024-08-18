@@ -1,5 +1,5 @@
 = form_with(url: admin_customers_path, method: "GET",
-  data: { turbo_frame: "data-table", controller: "admin--table", action: "input->admin--table#submitFilter" }) do |f|
+  data: { turbo_frame: "data-table", controller: "filter", action: "input->filter#submitFilter" }) do |f|
   div class="flex flex-wrap items-center justify-between pb-4"
     div class="mb-1"
       label for="name-search" class="sr-only" Search

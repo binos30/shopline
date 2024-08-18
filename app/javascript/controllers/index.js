@@ -7,17 +7,14 @@ import { application } from "./application";
 import Admin__DashboardController from "./admin/dashboard_controller";
 application.register("admin--dashboard", Admin__DashboardController);
 
-import Admin__TableController from "./admin/table_controller";
-application.register("admin--table", Admin__TableController);
+import FilterController from "./filter_controller";
+application.register("filter", FilterController);
 
 import HelloController from "./hello_controller";
 application.register("hello", HelloController);
 
 import Site__CartController from "./site/cart_controller";
 application.register("site--cart", Site__CartController);
-
-import Site__CategoriesController from "./site/categories_controller";
-application.register("site--categories", Site__CategoriesController);
 
 import Site__ProductsController from "./site/products_controller";
 application.register("site--products", Site__ProductsController);

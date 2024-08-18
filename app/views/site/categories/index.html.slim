@@ -1,7 +1,7 @@
 - title "Categories"
 
 = form_with(url: categories_path, method: :get,
-  data: { turbo_frame: :categories, controller: "site--categories", action: "input->site--categories#submitFilter" }) do |f|
+  data: { turbo_frame: :categories, controller: "filter", action: "input->filter#submitFilter" }) do |f|
   div
     label for="name-search" class="sr-only" Search
     div class="relative"
