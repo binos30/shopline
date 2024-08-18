@@ -13,6 +13,9 @@ export default class extends Controller {
     // https://turbo.hotwired.dev/reference/events#turbo%3Abefore-fetch-request
     document.addEventListener("turbo:before-fetch-request", this.showProgressBar.bind(this), false);
 
+    // https://turbo.hotwired.dev/reference/events#turbo%3Abefore-stream-render
+    document.addEventListener("turbo:before-stream-render", this.hideProgressBar.bind(this), false);
+
     // https://turbo.hotwired.dev/reference/events#turbo%3Abefore-frame-render
     document.addEventListener("turbo:before-frame-render", this.hideProgressBar.bind(this), false);
 
@@ -22,6 +25,7 @@ export default class extends Controller {
 
   disconnect() {
     document.removeEventListener("turbo:before-fetch-request", this.showProgressBar.bind(this), false);
+    document.removeEventListener("turbo:before-stream-render", this.hideProgressBar.bind(this), false);
     document.removeEventListener("turbo:before-frame-render", this.hideProgressBar.bind(this), false);
     document.removeEventListener("turbo:render", this.hideProgressBar.bind(this), false);
   }
