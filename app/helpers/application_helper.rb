@@ -68,28 +68,11 @@ module ApplicationHelper
   end
   # rubocop:enable Rails/OutputSafety
 
-  def custom_image_tag( # rubocop:disable Metrics/ParameterLists
-    image,
-    variant: nil,
-    width: nil,
-    height: nil,
-    class: nil,
-    alt: nil
-  )
+  def custom_image_tag(image, options = {})
     if Rails.env.production?
-      cl_image_tag(
-        image.key,
-        gravity: :auto,
-        crop: :fill,
-        sign_url: true,
-        fetch_format: :auto,
-        width:,
-        height:,
-        class:,
-        alt:
-      )
+      cl_image_tag(image.key, gravity: :auto, crop: :fill, sign_url: true, fetch_format: :auto, **options)
     else
-      image_tag(variant ? image.variant(variant) : image, width:, height:, class:, alt:)
+      image_tag(options[:variant] ? image.variant(options[:variant]) : image, options)
     end
   end
 
