@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Pagy initializer file (9.0.5)
+# Pagy initializer file (9.0.9)
 # Customize only what you really need and notice that the core Pagy works also without any of the following lines.
 # Should you just cherry pick part of this file, please maintain the require-order of the extras
 
@@ -68,7 +68,7 @@ require "pagy/extras/countless"
 # require 'pagy/extras/elasticsearch_rails'
 
 # Headers extra: http response headers (and other helpers) useful for API pagination
-# See http://ddnexus.github.io/pagy/extras/headers
+# See https://ddnexus.github.io/pagy/docs/extras/headers
 # require 'pagy/extras/headers'
 # Pagy::DEFAULT[:headers] = { page: 'Current-Page',
 #                            limit: 'Page-Items',
@@ -76,7 +76,7 @@ require "pagy/extras/countless"
 #                            pages: 'Total-Pages' }     # default
 
 # Keyset extra: Paginate with the Pagy keyset pagination technique
-# See http://ddnexus.github.io/pagy/extras/keyset
+# See https://ddnexus.github.io/pagy/docs/extras/keyset
 # require 'pagy/extras/keyset'
 
 # Meilisearch extra: Paginate `Meilisearch` result objects
@@ -100,7 +100,7 @@ require "pagy/extras/countless"
 # See https://ddnexus.github.io/pagy/docs/extras/searchkick
 # Default :pagy_search method: change only if you use also
 # the elasticsearch_rails or meilisearch extra that defines the same
-# DEFAULT[:searchkick_pagy_search] = :pagy_search
+# Pagy::DEFAULT[:searchkick_pagy_search] = :pagy_search
 # Default original :search method called internally to do the actual search
 # Pagy::DEFAULT[:searchkick_search] = :search
 # require 'pagy/extras/searchkick'

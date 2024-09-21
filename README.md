@@ -15,7 +15,7 @@ E-commerce app. Shop online with Shopline. You shop, we ship!
 
 Prerequisites
 
-- [Ruby 3.3.4](https://github.com/rbenv/rbenv)
+- [Ruby 3.3.5](https://github.com/rbenv/rbenv)
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Node.js ^20.15.1](https://github.com/nvm-sh/nvm)
 
@@ -79,6 +79,12 @@ Run a single spec file
 
 ```bash
 bin/rspec spec/models/product_spec.rb
+```
+
+Use the plain-English descriptions to generate a report of where the application conforms to (or fails to meet) the spec
+
+```bash
+bin/rspec --format documentation spec/models/product_spec.rb
 ```
 
 Run a single example from a spec file (by line number)
