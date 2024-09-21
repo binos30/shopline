@@ -12,7 +12,6 @@
     "esbenp.prettier-vscode",
     "github.vscode-github-actions",
     "redhat.vscode-yaml",
-    "ruby-syntax-tree.vscode-syntax-tree",
     "shopify.ruby-lsp",
     "sianglim.slim"
   ]
