@@ -41,6 +41,20 @@ Use [Stripe CLI](https://docs.stripe.com/stripe-cli) to simulate Stripe events i
 stripe listen --forward-to localhost:3000/stripe_webhooks
 ```
 
+## Testing Payments
+
+To test Stripe payments, use the following test card details:
+
+- Card Number: `4242 4242 4242 4242`
+- Expiration: Any future date
+- CVC: Any 3-digit number
+
+## Set up a production Stripe webhook
+
+1. Go to the [Stripe Dashboard](https://dashboard.stripe.com) and create a new webhook for your production environment.
+2. Set the endpoint URL to your production route (e.g., `https://yourdomain.com/stripe_webhooks`).
+3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.created`).
+
 ## Testing
 
 Setup test database
