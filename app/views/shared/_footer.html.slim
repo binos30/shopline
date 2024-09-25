@@ -26,6 +26,9 @@ footer class="bg-gray-800 text-white"
               li
                 = link_to "LinkedIn", "https://www.linkedin.com/in/binos30",
                   class: "text-base leading-6 text-white hover:text-gray-300", target: :_blank, rel: :noopener
+              li
+                = link_to "Source Code", "https://github.com/binos30/shopline",
+                  class: "text-base leading-6 text-white hover:text-gray-300", target: :_blank, rel: :noopener
       <!-- Contact Info -->
       div class="md:grid md:grid-cols-2 md:gap-8 my-8"
         div
@@ -39,6 +42,8 @@ footer class="bg-gray-800 text-white"
             li
               p class="text-base leading-6 text-white" Phone: 123-456
       div class="border-t border-gray-700"
-        div class="max-w-6xl mx-auto px-4 py-10 md:flex md:items-center md:justify-between"
-          p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1"
+        div class="py-8 text-center"
+          p class="text-base leading-6 text-gray-400 md:order-1"
+            | Glory is all His &#9757;
+            br/
             | &copy; #{local_time(Time.current, "%Y")} Shopline. All rights reserved.
