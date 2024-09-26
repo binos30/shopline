@@ -47,9 +47,9 @@
     "trix": "^2.1.5"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.0",
-    "esbuild": "^0.23.1",
-    "eslint": "^9.11.0",
+    "@eslint/js": "^9.11.1",
+    "esbuild": "^0.24.0",
+    "eslint": "^9.11.1",
     "eslint-formatter-gha": "^1.5.1",
     "globals": "^15.9.0",
     "husky": "^9.1.6",
@@ -59,16 +59,17 @@
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --format=esm --outdir=app/assets/builds --public-path=/assets",
     "eslint": "eslint . --cache --cache-location .cache/eslint --report-unused-disable-directives",
-    "eslint-fix": "eslint --cache --cache-location .cache/eslint --fix . --report-unused-disable-directives",
     "eslint-ci": "eslint . --cache --cache-strategy content --cache-location .cache/eslint --format gha",
-    "prettier-fix": "prettier --write --cache --cache-location .cache/prettier '**/*.{css,html,js,json,md,mjs,yml}'",
-    "prettier": "prettier --check --cache --cache-location .cache/prettier '**/*.{css,html,js,json,md,mjs,yml}'",
+    "eslint-fix": "eslint . --cache --cache-location .cache/eslint --fix --report-unused-disable-directives",
+    "prettier": "prettier . --check --cache --cache-location .cache/prettier",
+    "prettier-ci": "prettier . --check --cache --cache-strategy content --cache-location .cache/prettier",
+    "prettier-fix": "prettier . --write --cache --cache-location .cache/prettier",
     "rubocop": "bin/rubocop",
-    "rubocop-fix": "bin/rubocop -A",
     "rubocop-ci": "bin/rubocop -f github",
+    "rubocop-fix": "bin/rubocop -A",
     "slim-lint": "bin/bundle exec slim-lint 'app/views/**/*.slim'",
-    "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'",
     "stree": "bin/bundle exec stree check '**/*.{rake,rb}'",
+    "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'",
     "postinstall": "husky"
   },
   "lint-staged": {
