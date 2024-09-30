@@ -42,7 +42,7 @@
     "@rails/actiontext": "7.2.100",
     "chart.js": "^4.4.4",
     "debounce": "^2.1.1",
-    "flowbite": "^2.5.1",
+    "flowbite": "^2.5.2",
     "local-time": "^3.0.2",
     "trix": "^2.1.5"
   },

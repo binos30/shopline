@@ -1019,7 +1019,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"flowbite@npm:^2.0.0, flowbite@npm:^2.5.1":
+"flowbite@npm:^2.0.0":
   version: 2.5.1
   resolution: "flowbite@npm:2.5.1"
   dependencies:
@@ -1027,6 +1027,17 @@ __metadata:
     flowbite-datepicker: "npm:^1.3.0"
     mini-svg-data-uri: "npm:^1.4.3"
   checksum: 10c0/e862b8b05998bb6c1301320c78af732da554456ea90f8e6e0de07f15fdf88ecd6268b3922ca4b4ae5ae9d1146effaba21c26bcc5543ce93d9d3b3ead17238904
+  languageName: node
+  linkType: hard
+
+"flowbite@npm:^2.5.2":
+  version: 2.5.2
+  resolution: "flowbite@npm:2.5.2"
+  dependencies:
+    "@popperjs/core": "npm:^2.9.3"
+    flowbite-datepicker: "npm:^1.3.0"
+    mini-svg-data-uri: "npm:^1.4.3"
+  checksum: 10c0/7de6311d4aef16b4854d88bab7943d59db16077a90a1da757fee06c70ef8bba8bb2579d3c5b3d5ceab85d9b9500b16d13eb4c55521f3a02989620f9a4ba3a2ed
   languageName: node
   linkType: hard
 
@@ -1635,7 +1646,7 @@ __metadata:
     esbuild: "npm:^0.24.0"
     eslint: "npm:^9.11.1"
     eslint-formatter-gha: "npm:^1.5.1"
-    flowbite: "npm:^2.5.1"
+    flowbite: "npm:^2.5.2"
     globals: "npm:^15.9.0"
     husky: "npm:^9.1.6"
     lint-staged: "npm:^15.2.10"
