@@ -38,20 +38,20 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
     "@hotwired/stimulus": "^3.2.2",
-    "@hotwired/turbo-rails": "^8.0.10",
-    "@rails/actiontext": "7.2.100",
-    "chart.js": "^4.4.4",
-    "debounce": "^2.1.1",
-    "flowbite": "^2.5.1",
+    "@hotwired/turbo-rails": "^8.0.12",
+    "@rails/actiontext": "7.2.102",
+    "chart.js": "^4.4.6",
+    "debounce": "^2.2.0",
+    "flowbite": "^2.5.2",
     "local-time": "^3.0.2",
-    "trix": "^2.1.5"
+    "trix": "^2.1.7"
   },
   "devDependencies": {
-    "@eslint/js": "^9.11.1",
+    "@eslint/js": "^9.13.0",
     "esbuild": "^0.24.0",
-    "eslint": "^9.11.1",
+    "eslint": "^9.13.0",
     "eslint-formatter-gha": "^1.5.1",
-    "globals": "^15.9.0",
+    "globals": "^15.11.0",
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3"
