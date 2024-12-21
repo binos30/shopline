@@ -55,6 +55,32 @@ To test Stripe payments, use the following test card details:
 2. Set the endpoint URL to your production route (e.g., `https://yourdomain.com/stripe_webhooks`).
 3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.created`).
 
+## GitHub Actions, Linting and Security Auditing
+
+GitHub actions are setup to lint and test the application on pushes to **main** and **feature** branches. It's also setup to deploy the application on pushes to **main**
+
+You can also run these actions locally before pushing to see if your run is likely to fail. See the following gems / commands for more info.
+
+- [Brakeman](https://brakemanscanner.org/) - Security audit application code
+
+  ```bash
+  bin/brakeman -q -w2
+  ```
+
+- [Brakeman: Ignoring False Positives](https://brakemanscanner.org/docs/ignoring_false_positives) - Creating and Managing an Ignore File
+
+  ```bash
+  bin/brakeman -I -q -w2
+  ```
+
+- [Rubocop Rails Omakase](https://github.com/rails/rubocop-rails-omakase) - Ruby Linter
+
+  ```bash
+  bin/rubocop
+  ```
+
+  **Note:** Some linters like `ESLint`, `Prettier`, etc. will automatically run on `pre-commit` git hook.
+
 ## Testing
 
 Setup test database
@@ -69,6 +95,12 @@ Default: Run all spec files (i.e., those matching spec/\*\*/\*\_spec.rb)
 bin/rspec
 ```
 
+or with `--fail-fast` option to stop running the test suite on the first failed test. You may add a parameter to tell RSpec to stop running the test suite after N failed tests, for example: `--fail-fast=3`
+
+```bash
+bin/rspec --fail-fast
+```
+
 Run all spec files in a single directory (recursively)
 
 ```bash
@@ -81,16 +113,20 @@ Run a single spec file
 bin/rspec spec/models/product_spec.rb
 ```
 
-Use the plain-English descriptions to generate a report of where the application conforms to (or fails to meet) the spec
-
-```bash
-bin/rspec --format documentation spec/models/product_spec.rb
-```
-
 Run a single example from a spec file (by line number)
 
 ```bash
-bin/rspec spec/models/product_spec.rb:8
+bin/rspec spec/models/product_spec.rb:6
+```
+
+Use the plain-English descriptions to generate a report of where the application conforms to (or fails to meet) the spec
+
+```bash
+bin/rspec --format documentation
+```
+
+```bash
+bin/rspec --format documentation spec/models/product_spec.rb
 ```
 
 See all options for running specs
@@ -98,3 +134,19 @@ See all options for running specs
 ```bash
 bin/rspec --help
 ```
+
+After running your tests, open `coverage/index.html` in the browser of your choice. For example, in a Mac Terminal,
+run the following command from your application's root directory:
+
+```bash
+open coverage/index.html
+```
+
+in a debian/ubuntu Terminal,
+
+```bash
+xdg-open coverage/index.html
+```
+
+**Note:** [This guide](https://dwheeler.com/essays/open-files-urls.html) can help if you're unsure which command your particular
+operating system requires.

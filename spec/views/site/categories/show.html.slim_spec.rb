@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "site/categories/show" do
-  let!(:category) { Category.create!(name: "Name2", description: "MyText") }
+RSpec.describe "site/categories/show", type: :view do
+  let!(:category) { create :category }
 
   before do
     assign(:category, category)
@@ -12,6 +12,6 @@ RSpec.describe "site/categories/show" do
 
   it "renders attribute" do
     render
-    expect(rendered).to match(/Name2/)
+    expect(rendered).to match(/Category/)
   end
 end

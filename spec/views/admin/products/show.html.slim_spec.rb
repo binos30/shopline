@@ -2,16 +2,15 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/products/show" do
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "Name", description: "MyText", price: "9.99", category:) }
+RSpec.describe "admin/products/show", type: :view do
+  let!(:product) { create :product }
 
   before { assign(:product, product) }
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Name/)
-    expect(rendered).to match(/MyText/)
-    expect(rendered).to match(/9.99/)
+    expect(rendered).to match(/Product/)
+    expect(rendered).to match(/Description/)
+    expect(rendered).to match(/100/)
   end
 end

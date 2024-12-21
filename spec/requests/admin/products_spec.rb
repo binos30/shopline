@@ -14,19 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/products" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
-
-  let!(:category) { Category.create!(name: "Category") }
+RSpec.describe "/admin/products", type: :request do
+  let!(:admin) { create :user, :as_admin }
+  let!(:category) { create :category }
 
   # This should return the minimal set of attributes required to create a valid
   # Product. As you add validations to Product, be sure to
@@ -35,20 +25,25 @@ RSpec.describe "/admin/products" do
 
   let(:invalid_attributes) { { name: "" } }
 
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      Product.create! valid_attributes
+    before do
+      create_list(:product, 2)
       get admin_products_url
+    end
+
+    it "renders a successful response" do
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
+    let!(:product) { create :product }
+
+    before { get admin_product_url(product) }
+
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get admin_product_url(product)
       expect(response).to be_successful
     end
   end
@@ -61,9 +56,11 @@ RSpec.describe "/admin/products" do
   end
 
   describe "GET /edit" do
+    let!(:product) { create :product }
+
+    before { get edit_admin_product_url(product) }
+
     it "renders a successful response" do
-      product = Product.create! valid_attributes
-      get edit_admin_product_url(product)
       expect(response).to be_successful
     end
   end
@@ -98,18 +95,17 @@ RSpec.describe "/admin/products" do
   end
 
   describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) { { name: "Product2" } }
+    let!(:product) { create :product }
+    let(:new_attributes) { { name: "Product2" } }
 
+    context "with valid parameters" do
       it "updates the requested product" do
-        product = Product.create! valid_attributes
-        patch admin_product_url(product), params: { product: new_attributes }
-        product.reload
-        expect(product.name).to eq("Product2")
+        expect { patch admin_product_url(product), params: { product: new_attributes } }.to(
+          change { product.reload.name }.to("Product2")
+        )
       end
 
       it "redirects to the product" do
-        product = Product.create! valid_attributes
         patch admin_product_url(product), params: { product: new_attributes }
         product.reload
         expect(response).to redirect_to(admin_product_url(product))
@@ -118,7 +114,6 @@ RSpec.describe "/admin/products" do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        product = Product.create! valid_attributes
         patch admin_product_url(product), params: { product: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -126,13 +121,13 @@ RSpec.describe "/admin/products" do
   end
 
   describe "DELETE /destroy" do
+    let!(:product) { create :product }
+
     it "destroys the requested product" do
-      product = Product.create! valid_attributes
       expect { delete admin_product_url(product) }.to change(Product, :count).by(-1)
     end
 
     it "redirects to the products list" do
-      product = Product.create! valid_attributes
       delete admin_product_url(product)
       expect(response).to redirect_to(admin_products_url)
     end

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Admin::StocksController do
+RSpec.describe Admin::StocksController, type: :routing do
   describe "routing" do
     it "routes to #index" do
       expect(get: "/admin/products/1/stocks").to route_to("admin/stocks#index", product_slug: "1")

@@ -2,12 +2,12 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/products/new" do
+RSpec.describe "admin/products/new", type: :view do
   let!(:categories) { Category.active }
 
   before do
     assign(:categories, categories)
-    assign(:product, Product.new(name: "MyString", description: "MyText", price: "9.99"))
+    assign(:product, build(:product))
   end
 
   it "renders new product form" do

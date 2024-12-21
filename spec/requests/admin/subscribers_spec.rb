@@ -14,29 +14,18 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/subscribers" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
+RSpec.describe "/admin/subscribers", type: :request do
+  let!(:admin) { create :user, :as_admin }
 
-  # This should return the minimal set of attributes required to create a valid
-  # Subscriber. As you add validations to Subscriber, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { { email: "jd@gmail.com" } }
-
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      Subscriber.create! valid_attributes
+    before do
+      create_list(:subscriber, 2)
       get admin_subscribers_url
+    end
+
+    it "renders a successful response" do
       expect(response).to be_successful
     end
   end

@@ -14,17 +14,8 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/categories" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
+RSpec.describe "/admin/categories", type: :request do
+  let!(:admin) { create :user, :as_admin }
 
   # This should return the minimal set of attributes required to create a valid
   # Category. As you add validations to Category, be sure to
@@ -33,20 +24,25 @@ RSpec.describe "/admin/categories" do
 
   let(:invalid_attributes) { { name: "" } }
 
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
-    it "renders a successful response" do
-      Category.create! valid_attributes
+    before do
+      create_list(:category, 2)
       get admin_categories_url
+    end
+
+    it "renders a successful response" do
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
+    let!(:category) { create :category }
+
+    before { get admin_category_url(category) }
+
     it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get admin_category_url(category)
       expect(response).to be_successful
     end
   end
@@ -59,9 +55,11 @@ RSpec.describe "/admin/categories" do
   end
 
   describe "GET /edit" do
+    let!(:category) { create :category }
+
+    before { get edit_admin_category_url(category) }
+
     it "renders a successful response" do
-      category = Category.create! valid_attributes
-      get edit_admin_category_url(category)
       expect(response).to be_successful
     end
   end
@@ -97,18 +95,17 @@ RSpec.describe "/admin/categories" do
   end
 
   describe "PATCH /update" do
-    context "with valid parameters" do
-      let(:new_attributes) { { name: "Category2" } }
+    let!(:category) { create :category }
+    let(:new_attributes) { { name: "Category2" } }
 
+    context "with valid parameters" do
       it "updates the requested category" do
-        category = Category.create! valid_attributes
-        patch admin_category_url(category), params: { category: new_attributes }
-        category.reload
-        expect(category.name).to eq("Category2")
+        expect { patch admin_category_url(category), params: { category: new_attributes } }.to(
+          change { category.reload.name }.to("Category2")
+        )
       end
 
       it "redirects to the category" do
-        category = Category.create! valid_attributes
         patch admin_category_url(category), params: { category: new_attributes }
         category.reload
         expect(response).to redirect_to(admin_category_url(category))
@@ -117,7 +114,6 @@ RSpec.describe "/admin/categories" do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        category = Category.create! valid_attributes
         patch admin_category_url(category), params: { category: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -125,13 +121,13 @@ RSpec.describe "/admin/categories" do
   end
 
   describe "DELETE /destroy" do
+    let!(:category) { create :category }
+
     it "destroys the requested category" do
-      category = Category.create! valid_attributes
       expect { delete admin_category_url(category) }.to change(Category, :count).by(-1)
     end
 
     it "redirects to the categories list" do
-      category = Category.create! valid_attributes
       delete admin_category_url(category)
       expect(response).to redirect_to(admin_categories_url)
     end

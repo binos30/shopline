@@ -2,10 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/edit" do
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
-  let(:stock) { Stock.create!(product:, size: "MyString", quantity: 1) }
+RSpec.describe "admin/stocks/edit", type: :view do
+  let!(:product) { create :product, :with_stocks, stocks_count: 1 }
+  let(:stock) { product.stocks.first }
 
   before do
     assign(:product, product)

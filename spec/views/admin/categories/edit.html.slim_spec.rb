@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/categories/edit" do
-  let(:category) { Category.create!(name: "MyString", description: "MyText") }
+RSpec.describe "admin/categories/edit", type: :view do
+  let!(:category) { create :category }
 
   before { assign(:category, category) }
 

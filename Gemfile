@@ -86,8 +86,14 @@ group :development, :test do
   # A library for generating fake data such as names, addresses, and phone numbers
   gem "faker"
 
+  # A fixtures replacement with a straightforward definition syntax, support for multiple build strategies [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails"
+
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
+
+  # Optimize queries [https://github.com/flyerhzm/bullet]
+  gem "bullet"
 
   ## Code Formatting & Linting
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
@@ -119,13 +125,15 @@ group :development do
   # A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates
   # [https://github.com/threedaymonk/htmlbeautifier]
   gem "htmlbeautifier", require: false
-
-  # Optimize queries
-  gem "bullet"
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+
+  gem "shoulda-matchers", "~> 6.0"
+
+  # A code coverage analysis tool for Ruby [https://github.com/simplecov-ruby/simplecov]
+  gem "simplecov", require: false
 end

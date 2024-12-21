@@ -2,11 +2,13 @@
 
 require "rails_helper"
 
-RSpec.describe "/categories" do
+RSpec.describe "/categories", type: :request do
   describe "GET /show" do
+    let!(:category) { create :category }
+
+    before { get category_url(category) }
+
     it "renders a successful response" do
-      category = Category.create!(name: "Category")
-      get category_url(category)
       expect(response).to be_successful
     end
   end

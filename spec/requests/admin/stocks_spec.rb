@@ -14,19 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/products/1/stocks" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "Product", category:) }
+RSpec.describe "/admin/products/1/stocks", type: :request do
+  let!(:admin) { create :user, :as_admin }
+  let!(:product) { create :product, :with_stocks }
 
   # This should return the minimal set of attributes required to create a valid
   # Stock. As you add validations to Stock, be sure to
@@ -35,20 +25,22 @@ RSpec.describe "/admin/products/1/stocks" do
 
   let(:invalid_attributes) { { size: "" } }
 
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
+    before { get admin_product_stocks_url(product) }
+
     it "renders a successful response" do
-      Stock.create! valid_attributes
-      get admin_product_stocks_url(product)
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
+    let(:stock) { product.stocks.first }
+
+    before { get admin_product_stock_url(product, stock) }
+
     it "renders a successful response" do
-      stock = Stock.create! valid_attributes
-      get admin_product_stock_url(product, stock)
       expect(response).to be_successful
     end
   end
@@ -61,9 +53,11 @@ RSpec.describe "/admin/products/1/stocks" do
   end
 
   describe "GET /edit" do
+    let(:stock) { product.stocks.first }
+
+    before { get edit_admin_product_stock_url(product, stock) }
+
     it "renders a successful response" do
-      stock = Stock.create! valid_attributes
-      get edit_admin_product_stock_url(product, stock)
       expect(response).to be_successful
     end
   end
@@ -99,18 +93,17 @@ RSpec.describe "/admin/products/1/stocks" do
   end
 
   describe "PATCH /update" do
-    context "with valid parameters" do # rubocop:disable RSpec/MultipleMemoizedHelpers
-      let(:new_attributes) { { quantity: 8 } }
+    let(:stock) { product.stocks.first }
+    let(:new_attributes) { { quantity: 8 } }
 
+    context "with valid parameters" do # rubocop:disable RSpec/MultipleMemoizedHelpers
       it "updates the requested stock" do
-        stock = Stock.create! valid_attributes
-        patch admin_product_stock_url(product, stock), params: { stock: new_attributes }
-        stock.reload
-        expect(stock.quantity).to eq(8)
+        expect { patch admin_product_stock_url(product, stock), params: { stock: new_attributes } }.to(
+          change { stock.reload.quantity }.to(8)
+        )
       end
 
       it "redirects to the stock" do
-        stock = Stock.create! valid_attributes
         patch admin_product_stock_url(product, stock), params: { stock: new_attributes }
         stock.reload
         expect(response).to redirect_to(admin_product_stock_url(product, stock))
@@ -119,7 +112,6 @@ RSpec.describe "/admin/products/1/stocks" do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        stock = Stock.create! valid_attributes
         patch admin_product_stock_url(product, stock), params: { stock: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
@@ -127,13 +119,13 @@ RSpec.describe "/admin/products/1/stocks" do
   end
 
   describe "DELETE /destroy" do
+    let(:stock) { product.stocks.first }
+
     it "destroys the requested stock" do
-      stock = Stock.create! valid_attributes
       expect { delete admin_product_stock_url(product, stock) }.to change(Stock, :count).by(-1)
     end
 
     it "redirects to the stocks list" do
-      stock = Stock.create! valid_attributes
       delete admin_product_stock_url(product, stock)
       expect(response).to redirect_to(admin_product_stocks_url)
     end

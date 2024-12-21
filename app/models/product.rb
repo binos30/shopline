@@ -7,14 +7,14 @@ class Product < ApplicationRecord
   # Set the attribute from which the slug would be generated
   slugify :name
 
-  belongs_to :category
+  belongs_to :category, inverse_of: :products
 
   has_many_attached :images do |attachable|
     attachable.variant :thumb, resize_to_limit: [50, 50]
     attachable.variant :medium, resize_to_limit: [250, 250]
   end
-  has_many :stocks, dependent: :destroy
-  has_many :order_items, dependent: :restrict_with_exception
+  has_many :stocks, inverse_of: :product, dependent: :destroy
+  has_many :order_items, inverse_of: :product, dependent: :restrict_with_exception
 
   has_rich_text :description
 
@@ -22,12 +22,7 @@ class Product < ApplicationRecord
   broadcasts_refreshes
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
-  validates :price,
-            presence: true,
-            numericality: {
-              greater_than_or_equal_to: 0,
-              less_than_or_equal_to: 999_999_999
-            }
+  validates :price, presence: true, numericality: { in: 0..999_999_999 }
   validates :images, content_type: %i[jpeg jpg png webp], size: { less_than_or_equal_to: 3.megabytes }
 
   scope :available, -> { joins(:stocks).where("quantity > 0").distinct }

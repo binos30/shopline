@@ -14,42 +14,11 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/orders" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "Product", category:) }
-  let!(:stock) { product.stocks.create!(size: "L", quantity: 3) }
-  let!(:order) do
-    order =
-      Order.new(
-        user:,
-        customer_email: user.email,
-        customer_full_name: user.full_name,
-        customer_address: "my address 1"
-      )
-    order.order_items.build(
-      product:,
-      stock:,
-      order_code: order.order_code,
-      product_name: product.name,
-      product_price: product.price,
-      size: stock.size,
-      quantity: 2
-    )
-    order.save!
-    order
-  end
+RSpec.describe "/admin/orders", type: :request do
+  let!(:admin) { create :user, :as_admin }
+  let!(:order) { create :order }
 
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
     it "renders a successful response" do

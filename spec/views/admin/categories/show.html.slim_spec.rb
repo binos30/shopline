@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/categories/show" do
-  let!(:category) { Category.create!(name: "Name1", description: "MyText") }
+RSpec.describe "admin/categories/show", type: :view do
+  let!(:category) { create :category }
 
   before do
     assign(:category, category)
@@ -16,7 +16,7 @@ RSpec.describe "admin/categories/show" do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Name1/)
-    expect(rendered).to match(/MyText/)
+    expect(rendered).to match(/Category/)
+    expect(rendered).to match(/Description/)
   end
 end

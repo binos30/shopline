@@ -2,11 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/products/edit" do
+RSpec.describe "admin/products/edit", type: :view do
   let!(:categories) { Category.active }
-  let!(:category) { Category.create!(name: "Category") }
-
-  let(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
+  let!(:product) { create :product }
 
   before do
     assign(:categories, categories)

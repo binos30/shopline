@@ -2,24 +2,14 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/products/index" do
-  let!(:category) { Category.create!(name: "Category") }
-
-  before do
-    @pagy, @products =
-      pagy_array(
-        [
-          Product.create!(name: "Product", description: "MyText", price: "9.99", category:),
-          Product.create!(name: "Name", description: "MyText", price: "9.99", category:)
-        ]
-      )
-  end
+RSpec.describe "admin/products/index", type: :view do
+  before { @pagy, @products = pagy_array([create(:product), create(:product)]) }
 
   it "renders a list of admin/products" do
     render
     name_selector = "tr>th"
     cell_selector = "tr>td"
-    assert_select name_selector, text: Regexp.new("Product".to_s), count: 1
-    assert_select cell_selector, text: Regexp.new("9.99".to_s), count: 2
+    assert_select name_selector, text: Regexp.new("Product"), count: 2
+    assert_select cell_selector, text: Regexp.new("100"), count: 2
   end
 end

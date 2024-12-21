@@ -2,13 +2,12 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/new" do
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
+RSpec.describe "admin/stocks/new", type: :view do
+  let!(:product) { create :product }
 
   before do
     assign(:product, product)
-    assign(:stock, Stock.new(product:, size: "MyString", quantity: 1))
+    assign(:stock, build(:stock, product:))
   end
 
   it "renders new stock form" do

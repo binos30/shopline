@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class OrderItem < ApplicationRecord
-  belongs_to :order
-  belongs_to :product
-  belongs_to :stock
+  belongs_to :order, inverse_of: :order_items
+  belongs_to :product, inverse_of: :order_items
+  belongs_to :stock, inverse_of: :order_items
 
   validates :order_code, :product_name, :size, presence: true
   validates :quantity, presence: true, numericality: { greater_than: 0 }

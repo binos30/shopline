@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/categories/new" do
-  before { assign(:category, Category.new(name: "MyString", description: "MyText")) }
+RSpec.describe "admin/categories/new", type: :view do
+  before { assign(:category, build(:category)) }
 
   it "renders new admin_category form" do
     render

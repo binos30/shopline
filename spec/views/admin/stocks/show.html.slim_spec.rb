@@ -2,10 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/show" do
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "Name", description: "MyText", price: "9.99", category:) }
-  let!(:stock) { Stock.create!(product:, size: "Size", quantity: 2) }
+RSpec.describe "admin/stocks/show", type: :view do
+  let!(:product) { create :product, :with_stocks, stocks_count: 1 }
+  let(:stock) { product.stocks.first }
 
   before do
     assign(:product, product)
@@ -14,7 +13,7 @@ RSpec.describe "admin/stocks/show" do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Size/)
-    expect(rendered).to match(/2/)
+    expect(rendered).to match(/SZ/)
+    expect(rendered).to match(/50/)
   end
 end

@@ -11,11 +11,11 @@ class User < ApplicationRecord
   # The column `gender` is supposed to be of type string in the database.
   literal_enum :gender, %w[male female]
 
-  belongs_to :role
+  belongs_to :role, inverse_of: :users
 
-  has_many :orders, dependent: :restrict_with_exception
+  has_many :orders, inverse_of: :user, dependent: :restrict_with_exception
 
-  validates :gender, presence: true, inclusion: { in: genders }
+  validates :gender, inclusion: { in: genders.keys }
   validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,
@@ -51,6 +51,14 @@ class User < ApplicationRecord
             .order(Arel.sql("CONCAT(users.first_name, ' ', users.last_name)"))
         end
   scope :filter_by_name, ->(name) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{name}%") }
+
+  # Overwrite the setter to rely on validations instead of [ArgumentError]
+  # https://github.com/rails/rails/issues/13971#issuecomment-721821257
+  def gender=(value)
+    self[:gender] = value
+  rescue ArgumentError
+    self[:gender] = nil
+  end
 
   # instead of deleting, indicate the user requested a delete & timestamp it
   def soft_delete!
@@ -98,7 +106,7 @@ class User < ApplicationRecord
     password_is_same = Devise::Encryptor.compare(User, encrypted_password_was, password)
 
     return unless password_is_same
-    errors.add(:base, I18n.t("errors.messages.old_password_not_allowed"))
+    errors.add(:password, I18n.t("devise.passwords.old_password_not_allowed"))
   end
 
   def set_role

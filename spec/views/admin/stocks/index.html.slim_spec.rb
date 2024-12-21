@@ -2,23 +2,19 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/index" do
-  let!(:category) { Category.create!(name: "Category") }
-  let!(:product) { Product.create!(name: "MyString", description: "MyText", price: "9.99", category:) }
+RSpec.describe "admin/stocks/index", type: :view do
+  let!(:product) { create :product, :with_stocks }
 
   before do
     assign(:product, product)
-    assign(
-      :stocks,
-      [Stock.create!(product:, size: "M", quantity: 2), Stock.create!(product:, size: "L", quantity: 2)]
-    )
+    assign(:stocks, product.stocks)
   end
 
   it "renders a list of admin/stocks" do
     render
     size_selector = "tr>th"
     quantity_selector = "tr>td"
-    assert_select size_selector, text: Regexp.new("M".to_s), count: 1
-    assert_select quantity_selector, text: Regexp.new(2.to_s), count: 2
+    assert_select size_selector, text: Regexp.new("SZ"), count: 2
+    assert_select quantity_selector, text: Regexp.new("50"), count: 2
   end
 end

@@ -2,9 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "site/products/show" do
-  let!(:category) { Category.create!(name: "Name3", description: "MyText") }
-  let!(:product) { Product.create!(name: "Name", description: "MyText", category:) }
+RSpec.describe "site/products/show", type: :view do
+  let!(:product) { create :product }
 
   before do
     assign(:product, product)
@@ -13,6 +12,6 @@ RSpec.describe "site/products/show" do
 
   it "renders attribute" do
     render
-    expect(rendered).to match(/Name/)
+    expect(rendered).to match(/Product/)
   end
 end

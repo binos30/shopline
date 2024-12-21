@@ -2,19 +2,10 @@
 
 require "rails_helper"
 
-RSpec.describe "/admin/customers" do
-  let!(:user) do
-    User.create!(
-      role: Role.find_or_create_by!(name: "Administrator"),
-      gender: "male",
-      email: "jd@gmail.com",
-      password: "pass123",
-      first_name: "John",
-      last_name: "Doe"
-    )
-  end
+RSpec.describe "/admin/customers", type: :request do
+  let!(:admin) { create :user, :as_admin }
 
-  before { sign_in(user) }
+  before { sign_in(admin) }
 
   describe "GET /index" do
     it "returns http success" do
