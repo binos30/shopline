@@ -31,14 +31,16 @@ RSpec.describe Subscriber, type: :model do
     describe "format" do
       subject { build :subscriber }
 
-      it "email accepts a valid value" do
-        subject.email = "subscriber@email.com"
-        expect(subject).to be_valid
-      end
+      describe "email" do
+        it "accepts a valid value" do
+          subject.email = "subscriber@email.com"
+          expect(subject).to be_valid
+        end
 
-      it "email does not accept an invalid format" do
-        subject.email = "subscriber@"
-        expect(subject).to be_invalid
+        it "does not accept an invalid format" do
+          subject.email = "subscriber@"
+          expect(subject).to be_invalid
+        end
       end
     end
   end

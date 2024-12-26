@@ -53,7 +53,7 @@ To test Stripe payments, use the following test card details:
 
 1. Go to the [Stripe Dashboard](https://dashboard.stripe.com) and create a new webhook for your production environment.
 2. Set the endpoint URL to your production route (e.g., `https://yourdomain.com/stripe_webhooks`).
-3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.created`).
+3. Select the events you want to listen for (e.g., `checkout.session.completed`, `customer.created`, `customer.deleted`).
 
 ## GitHub Actions, Linting and Security Auditing
 
@@ -134,6 +134,16 @@ See all options for running specs
 ```bash
 bin/rspec --help
 ```
+
+## Code Coverage
+
+[Coverage]: https://docs.ruby-lang.org/en/3.3/Coverage.html "API doc for Ruby's Coverage library"
+[SimpleCov]: https://github.com/simplecov-ruby/simplecov "A code coverage analysis tool for Ruby"
+
+[SimpleCov][SimpleCov] is a code coverage analysis tool for Ruby. It uses [Ruby's built-in Coverage][Coverage] library to
+gather code coverage data, but makes processing its results much easier by providing a clean API to filter, group, merge, format,
+and display those results, giving you a complete code coverage suite that can be set up with just a couple lines of code.
+SimpleCov/Coverage track covered ruby code, gathering coverage for common templating solutions like erb, slim and haml is not supported.
 
 After running your tests, open `coverage/index.html` in the browser of your choice. For example, in a Mac Terminal,
 run the following command from your application's root directory:

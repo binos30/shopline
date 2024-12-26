@@ -4,50 +4,47 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   describe "db_columns" do
-    it { is_expected.to have_db_column(:email).of_type(:string).with_options(null: false, default: "") }
-    it do
-      is_expected.to have_db_column(:encrypted_password).of_type(:string).with_options(null: false, default: "")
-    end
-    it { is_expected.to have_db_column(:reset_password_token).of_type(:string) }
-    it { is_expected.to have_db_column(:reset_password_sent_at).of_type(:datetime) }
-    it { is_expected.to have_db_column(:remember_created_at).of_type(:datetime) }
-    it { is_expected.to have_db_column(:sign_in_count).of_type(:integer).with_options(null: false, default: 0) }
-    it { is_expected.to have_db_column(:current_sign_in_at).of_type(:datetime) }
-    it { is_expected.to have_db_column(:last_sign_in_at).of_type(:datetime) }
-    it { is_expected.to have_db_column(:current_sign_in_ip).of_type(:string) }
-    it { is_expected.to have_db_column(:last_sign_in_ip).of_type(:string) }
-    it { is_expected.to have_db_column(:first_name).of_type(:string).with_options(null: false) }
-    it { is_expected.to have_db_column(:last_name).of_type(:string).with_options(null: false) }
-    it { is_expected.to have_db_column(:phone_number).of_type(:string) }
-    it { is_expected.to have_db_column(:active).of_type(:boolean).with_options(null: false, default: true) }
-    it { is_expected.to have_db_column(:role_id).of_type(:integer).with_options(null: false) }
-    it { is_expected.to have_db_column(:gender).of_type(:string).with_options(null: false) }
-    it { is_expected.to have_db_column(:deleted_at).of_type(:datetime) }
-    it { is_expected.to have_db_column(:stripe_customer_id).of_type(:string) }
+    it { should have_db_column(:email).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:encrypted_password).of_type(:string).with_options(null: false, default: "") }
+    it { should have_db_column(:reset_password_token).of_type(:string) }
+    it { should have_db_column(:reset_password_sent_at).of_type(:datetime) }
+    it { should have_db_column(:remember_created_at).of_type(:datetime) }
+    it { should have_db_column(:sign_in_count).of_type(:integer).with_options(null: false, default: 0) }
+    it { should have_db_column(:current_sign_in_at).of_type(:datetime) }
+    it { should have_db_column(:last_sign_in_at).of_type(:datetime) }
+    it { should have_db_column(:current_sign_in_ip).of_type(:string) }
+    it { should have_db_column(:last_sign_in_ip).of_type(:string) }
+    it { should have_db_column(:first_name).of_type(:string).with_options(null: false) }
+    it { should have_db_column(:last_name).of_type(:string).with_options(null: false) }
+    it { should have_db_column(:phone_number).of_type(:string) }
+    it { should have_db_column(:active).of_type(:boolean).with_options(null: false, default: true) }
+    it { should have_db_column(:role_id).of_type(:integer).with_options(null: false) }
+    it { should have_db_column(:gender).of_type(:string).with_options(null: false) }
+    it { should have_db_column(:deleted_at).of_type(:datetime) }
+    it { should have_db_column(:stripe_customer_id).of_type(:string) }
   end
 
   describe "db_indexes" do
-    it { is_expected.to have_db_index(:active) }
-    it { is_expected.to have_db_index(:email).unique }
-    it { is_expected.to have_db_index(:first_name) }
-    it { is_expected.to have_db_index(:last_name) }
-    it { is_expected.to have_db_index(:gender) }
-    it { is_expected.to have_db_index(:role_id) }
-    it { is_expected.to have_db_index(:reset_password_token).unique }
-    it { is_expected.to have_db_index(:stripe_customer_id).unique }
+    it { should have_db_index(:active) }
+    it { should have_db_index(:email).unique }
+    it { should have_db_index(:first_name) }
+    it { should have_db_index(:last_name) }
+    it { should have_db_index(:gender) }
+    it { should have_db_index(:role_id) }
+    it { should have_db_index(:reset_password_token).unique }
+    it { should have_db_index(:stripe_customer_id).unique }
   end
 
   describe "associations" do
     describe "belongs_to" do
       # Use `without_validating_presence` with `belong_to` to prevent the
       # matcher from checking whether the association disallows nil (Rails 5+ only).
-      # This can be helpful if you have a custom hook that always sets
-      # the association to a meaningful value:
-      it { is_expected.to belong_to(:role).inverse_of(:users).without_validating_presence }
+      # This can be helpful if you have a custom hook that always sets the association to a meaningful value:
+      it { should belong_to(:role).inverse_of(:users).without_validating_presence }
     end
 
     describe "has_many" do
-      it { is_expected.to have_many(:orders).inverse_of(:user).dependent(:restrict_with_exception) }
+      it { should have_many(:orders).inverse_of(:user).dependent(:restrict_with_exception) }
     end
   end
 
@@ -72,7 +69,7 @@ RSpec.describe User, type: :model do
     end
 
     describe "inclusion" do
-      it { is_expected.to validate_inclusion_of(:gender).in_array(User.genders.keys) }
+      it { should validate_inclusion_of(:gender).in_array(User.genders.keys) }
     end
 
     describe "length" do
@@ -98,24 +95,28 @@ RSpec.describe User, type: :model do
     describe "format" do
       subject { build :user }
 
-      it "first_name accepts a valid value" do
-        subject.first_name = "John"
-        expect(subject).to be_valid
+      describe "first_name" do
+        it "accepts a valid value" do
+          subject.first_name = "John"
+          expect(subject).to be_valid
+        end
+
+        it "does not accept an invalid format" do
+          subject.first_name = "John-1"
+          expect(subject).to be_invalid
+        end
       end
 
-      it "first_name does not accept an invalid format" do
-        subject.first_name = "John-1"
-        expect(subject).to be_invalid
-      end
+      describe "last_name" do
+        it "accepts a valid value" do
+          subject.last_name = "Doe"
+          expect(subject).to be_valid
+        end
 
-      it "last_name accepts a valid value" do
-        subject.last_name = "Doe"
-        expect(subject).to be_valid
-      end
-
-      it "last_name does not accept an invalid format" do
-        subject.last_name = "Doe-1"
-        expect(subject).to be_invalid
+        it "does not accept an invalid format" do
+          subject.last_name = "Doe-1"
+          expect(subject).to be_invalid
+        end
       end
     end
 

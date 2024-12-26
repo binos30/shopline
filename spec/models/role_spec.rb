@@ -37,14 +37,16 @@ RSpec.describe Role, type: :model do
     describe "format" do
       subject { build :role }
 
-      it "name accepts a valid value" do
-        subject.name = "role"
-        expect(subject).to be_valid
-      end
+      describe "name" do
+        it "accepts a valid value" do
+          subject.name = "role"
+          expect(subject).to be_valid
+        end
 
-      it "name does not accept an invalid format" do
-        subject.name = "role-1"
-        expect(subject).to be_invalid
+        it "does not accept an invalid format" do
+          subject.name = "role-1"
+          expect(subject).to be_invalid
+        end
       end
     end
   end

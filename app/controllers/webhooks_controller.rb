@@ -59,8 +59,8 @@ class WebhooksController < ApplicationController
       end
     when "customer.created"
       customer = event.data.object
-      user = User.find_by!(email: customer.email)
-      user.update!(stripe_customer_id: customer.id)
+      user = User.find_by(email: customer.email)
+      user&.update!(stripe_customer_id: customer.id)
     when "customer.deleted"
       customer = event.data.object
       user = User.find_by(stripe_customer_id: customer.id)
