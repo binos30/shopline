@@ -64,13 +64,13 @@ You can also run these actions locally before pushing to see if your run is like
 - [Brakeman](https://brakemanscanner.org/) - Security audit application code
 
   ```bash
-  bin/brakeman -q -w2
+  bin/brakeman --no-pager
   ```
 
 - [Brakeman: Ignoring False Positives](https://brakemanscanner.org/docs/ignoring_false_positives) - Creating and Managing an Ignore File
 
   ```bash
-  bin/brakeman -I -q -w2
+  bin/brakeman -I --no-pager
   ```
 
 - [Rubocop Rails Omakase](https://github.com/rails/rubocop-rails-omakase) - Ruby Linter
