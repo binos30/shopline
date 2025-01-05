@@ -53,7 +53,7 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:first_name) }
       it { should validate_presence_of(:last_name) }
 
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user }
 
       context "if encrypted_password_changed? on update" do
         before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
       it { should validate_length_of(:first_name).is_at_least(2).is_at_most(100) }
       it { should validate_length_of(:last_name).is_at_least(2).is_at_most(100) }
 
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user }
 
       context "if encrypted_password_changed? on update" do
         before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
@@ -141,7 +141,7 @@ RSpec.describe User, type: :model do
     end
 
     describe "new_and_old_password_must_be_different" do
-      subject! { create :user, password: "password" }
+      subject { build_stubbed :user, password: "password" }
 
       it "is valid" do
         expect(subject.valid?).to be true
@@ -181,14 +181,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".active_for_authentication?" do
-    subject { build :user }
+    subject { build_stubbed :user }
 
     it "returns true" do
       expect(subject.active_for_authentication?).to be true
     end
 
     context "when active is false" do
-      subject { build :user, active: false }
+      subject { build_stubbed :user, active: false }
 
       it "returns false" do
         expect(subject.active_for_authentication?).to be false
@@ -197,14 +197,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".admin?" do
-    subject { build :user, :as_admin }
+    subject { build_stubbed :user, :as_admin }
 
     it "returns true" do
       expect(subject.admin?).to be true
     end
 
     context "when the role is Customer" do
-      subject { build :user }
+      subject { build_stubbed :user }
 
       it "returns false" do
         expect(subject.admin?).to be false
@@ -213,14 +213,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".customer?" do
-    subject { build :user }
+    subject { build_stubbed :user }
 
     it "returns true" do
       expect(subject.customer?).to be true
     end
 
     context "when the role is Administrator" do
-      subject { build :user, :as_admin }
+      subject { build_stubbed :user, :as_admin }
 
       it "returns false" do
         expect(subject.customer?).to be false

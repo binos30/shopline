@@ -29,7 +29,7 @@ RSpec.describe "/admin/products", type: :request do
 
   describe "GET /index" do
     before do
-      create_list(:product, 2)
+      build_stubbed_list(:product, 2)
       get admin_products_url
     end
 

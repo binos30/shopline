@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "site/categories/show", type: :view do
-  let!(:category) { create :category }
+  let(:category) { build_stubbed :category }
 
   before do
     assign(:category, category)

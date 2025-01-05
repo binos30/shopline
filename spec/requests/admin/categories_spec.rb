@@ -28,7 +28,7 @@ RSpec.describe "/admin/categories", type: :request do
 
   describe "GET /index" do
     before do
-      create_list(:category, 2)
+      build_stubbed_list(:category, 2)
       get admin_categories_url
     end
 

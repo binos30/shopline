@@ -11,6 +11,7 @@ FactoryBot.define do
       transient { stocks_count { 2 } }
 
       after(:build) { |product, evaluator| build_list(:stock, evaluator.stocks_count, product:) }
+      after(:stub) { |product, evaluator| build_stubbed_list(:stock, evaluator.stocks_count, product:) }
     end
   end
 end

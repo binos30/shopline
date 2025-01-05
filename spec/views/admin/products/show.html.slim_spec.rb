@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "admin/products/show", type: :view do
-  let!(:product) { create :product }
+  let(:product) { build_stubbed :product }
 
   before { assign(:product, product) }
 

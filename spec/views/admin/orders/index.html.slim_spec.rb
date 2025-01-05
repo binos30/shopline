@@ -3,9 +3,9 @@
 require "rails_helper"
 
 RSpec.describe "admin/orders/index", type: :view do
-  let!(:user) { create :user, first_name: "John", last_name: "Doe" }
-  let!(:order) { create :order, user: }
-  let(:order2) { create :order, user: }
+  let(:user) { build_stubbed :user, first_name: "John", last_name: "Doe" }
+  let(:order) { build_stubbed :order, user: }
+  let(:order2) { build_stubbed :order, user: }
 
   before { @pagy, @orders = pagy_array([order, order2]) }
 

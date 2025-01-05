@@ -4,7 +4,7 @@ require "rails_helper"
 
 RSpec.describe "admin/products/edit", type: :view do
   let!(:categories) { Category.active }
-  let!(:product) { create :product }
+  let(:product) { build_stubbed :product }
 
   before do
     assign(:categories, categories)

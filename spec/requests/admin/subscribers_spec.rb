@@ -21,7 +21,7 @@ RSpec.describe "/admin/subscribers", type: :request do
 
   describe "GET /index" do
     before do
-      create_list(:subscriber, 2)
+      build_stubbed_list(:subscriber, 2)
       get admin_subscribers_url
     end
 

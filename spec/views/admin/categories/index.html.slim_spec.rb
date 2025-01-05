@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "admin/categories/index", type: :view do
-  before { @pagy, @categories = pagy_array([create(:category), create(:category)]) }
+  before { @pagy, @categories = pagy_array(build_stubbed_list(:category, 2)) }
 
   it "renders a list of admin/categories" do
     render
