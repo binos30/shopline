@@ -3,8 +3,6 @@
 .w-full
   = turbo_stream_from @product
 
-  == render "shared/alert"
-  == render "shared/notice"
   h1 class="underline h1-label"
     =< link_to @product.name, edit_admin_product_path(@product)
   .flex.justify-between.items-center.mb-4
