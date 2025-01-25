@@ -20,10 +20,7 @@ RSpec.describe "/admin/subscribers", type: :request do
   before { sign_in(admin) }
 
   describe "GET /index" do
-    before do
-      build_stubbed_list(:subscriber, 2)
-      get admin_subscribers_url
-    end
+    before { get admin_subscribers_url }
 
     it "renders a successful response" do
       expect(response).to be_successful

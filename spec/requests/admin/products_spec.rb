@@ -28,10 +28,7 @@ RSpec.describe "/admin/products", type: :request do
   before { sign_in(admin) }
 
   describe "GET /index" do
-    before do
-      build_stubbed_list(:product, 2)
-      get admin_products_url
-    end
+    before { get admin_products_url }
 
     it "renders a successful response" do
       expect(response).to be_successful

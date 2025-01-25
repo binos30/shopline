@@ -27,10 +27,7 @@ RSpec.describe "/admin/categories", type: :request do
   before { sign_in(admin) }
 
   describe "GET /index" do
-    before do
-      build_stubbed_list(:category, 2)
-      get admin_categories_url
-    end
+    before { get admin_categories_url }
 
     it "renders a successful response" do
       expect(response).to be_successful
