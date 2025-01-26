@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_26_012130) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_26_034803) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -88,6 +88,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_26_012130) do
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
     t.index ["stock_id"], name: "index_order_items_on_stock_id"
+    t.check_constraint "product_price >= 0::numeric", name: "product_price_non_negative"
+    t.check_constraint "quantity > 0", name: "quantity_positive"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -119,6 +121,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_26_012130) do
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["name"], name: "index_products_on_name", unique: true
     t.index ["slug"], name: "index_products_on_slug", unique: true
+    t.check_constraint "price >= 0::numeric", name: "price_non_negative"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -138,6 +141,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_26_012130) do
     t.datetime "updated_at", null: false
     t.index ["product_id", "size"], name: "index_stocks_on_product_id_and_size", unique: true
     t.index ["product_id"], name: "index_stocks_on_product_id"
+    t.check_constraint "quantity >= 0", name: "quantity_non_negative"
   end
 
   create_table "subscribers", force: :cascade do |t|
