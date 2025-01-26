@@ -25,37 +25,7 @@ class WebhooksController < ApplicationController
     case event.type
     when "checkout.session.completed"
       session = event.data.object
-      shipping_details = session["shipping_details"]
-      address =
-        "#{shipping_details["address"]["line1"]} #{shipping_details["address"]["city"]}, #{shipping_details["address"]["state"]} #{shipping_details["address"]["postal_code"]}" # rubocop:disable Layout/LineLength
-      full_session = Stripe::Checkout::Session.retrieve(id: session["id"], expand: ["line_items"])
-      line_items = full_session.line_items
-
-      Order.transaction do
-        order =
-          Order.new(
-            user_id: session["metadata"]["user_id"],
-            customer_full_name: session["metadata"]["user_full_name"],
-            customer_email: session["customer_details"]["email"],
-            customer_address: address,
-            total: session["amount_total"].to_f / 100
-          )
-        line_items["data"].each do |item|
-          product = Stripe::Product.retrieve(item["price"]["product"])
-          product_id = product["metadata"]["product_id"].to_i
-          stock = Stock.find(product["metadata"]["product_stock_id"])
-          order.order_items.build(
-            product_id:,
-            stock:,
-            product_name: product["name"],
-            product_price: item["price"]["unit_amount_decimal"].to_f / 100,
-            size: product["metadata"]["size"],
-            quantity: item["quantity"]
-          )
-          stock.update!(quantity: stock.quantity - item["quantity"].to_i)
-        end
-        order.save!
-      end
+      OrderCreator.call!(session)
     when "customer.created"
       customer = event.data.object
       user = User.find_by(email: customer.email)
@@ -65,7 +35,9 @@ class WebhooksController < ApplicationController
       user = User.find_by(stripe_customer_id: customer.id)
       user&.update!(stripe_customer_id: nil)
     else
-      logger.tagged("Stripe Checkout Webhook") { logger.error "Unhandled event type: #{event.type}" }
+      message = "Unhandled event type: #{event.type}"
+      logger.tagged("Stripe Checkout Webhook") { logger.error message }
+      return render json: { message: }
     end
 
     logger.tagged("Stripe Checkout Webhook") { logger.info "Checkout Success!" }

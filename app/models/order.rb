@@ -32,6 +32,23 @@ class Order < ApplicationRecord
   scope :filter_by_customer,
         ->(customer) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{customer}%") }
 
+  def build_order_items(line_items)
+    line_items["data"].each do |item|
+      product = Stripe::Product.retrieve(item["price"]["product"])
+      product_id = product["metadata"]["product_id"].to_i
+      stock = Stock.find(product["metadata"]["product_stock_id"])
+      order_items.build(
+        product_id:,
+        stock:,
+        product_name: product["name"],
+        product_price: item["price"]["unit_amount_decimal"].to_f / 100,
+        size: product["metadata"]["size"],
+        quantity: item["quantity"]
+      )
+      stock.update!(quantity: stock.quantity - item["quantity"].to_i)
+    end
+  end
+
   def fulfill!
     lock!
 
