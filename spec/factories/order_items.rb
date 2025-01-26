@@ -5,7 +5,6 @@ FactoryBot.define do
     order
     product
     stock { association(:stock, product:) }
-    order_code { order.order_code }
     product_name { product.name }
     product_price { product.price }
     size { stock.size }

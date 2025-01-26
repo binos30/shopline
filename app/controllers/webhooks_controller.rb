@@ -47,7 +47,6 @@ class WebhooksController < ApplicationController
           order.order_items.build(
             product_id:,
             stock:,
-            order_code: order.order_code,
             product_name: product["name"],
             product_price: item["price"]["unit_amount_decimal"].to_f / 100,
             size: product["metadata"]["size"],

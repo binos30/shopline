@@ -7,7 +7,6 @@ RSpec.describe OrderItem, type: :model do
     it { should have_db_column(:order_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:product_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:stock_id).of_type(:integer).with_options(null: false) }
-    it { should have_db_column(:order_code).of_type(:string).with_options(null: false) }
     it { should have_db_column(:product_name).of_type(:string).with_options(null: false) }
     it do
       should have_db_column(:product_price).of_type(:decimal).with_options(
@@ -23,7 +22,6 @@ RSpec.describe OrderItem, type: :model do
   end
 
   describe "db_indexes" do
-    it { should have_db_index(:order_code) }
     it { should have_db_index(:order_id) }
     it { should have_db_index(:product_id) }
     it { should have_db_index(:stock_id) }
@@ -39,7 +37,6 @@ RSpec.describe OrderItem, type: :model do
 
   describe "validations" do
     describe "presence" do
-      it { should validate_presence_of(:order_code) }
       it { should validate_presence_of(:product_name) }
       it { should validate_presence_of(:size) }
       it { should validate_presence_of(:quantity) }

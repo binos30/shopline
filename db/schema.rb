@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_08_17_051915) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_26_012130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,7 +78,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_17_051915) do
     t.bigint "order_id", null: false
     t.bigint "product_id", null: false
     t.bigint "stock_id", null: false
-    t.string "order_code", null: false
     t.string "product_name", null: false
     t.decimal "product_price", precision: 12, scale: 2, default: "0.0", null: false
     t.string "size", null: false
@@ -86,7 +85,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_08_17_051915) do
     t.virtual "subtotal", type: :decimal, precision: 12, scale: 2, null: false, as: "(product_price * (quantity)::numeric)", stored: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_code"], name: "index_order_items_on_order_code"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
     t.index ["stock_id"], name: "index_order_items_on_stock_id"
