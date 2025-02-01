@@ -80,7 +80,7 @@ module ApplicationHelper
     if images.attached?
       Rails.env.production? ? cl_image_path(images.first.key) : rails_blob_url(images.first)
     else
-      "https://via.placeholder.com/20"
+      "https://placehold.co/20"
     end
   end
 end

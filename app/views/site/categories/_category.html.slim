@@ -4,7 +4,7 @@ div id="#{dom_id category}" class="w-72 bg-white shadow-md rounded-xl duration-5
     - if category.image.attached?
       = custom_image_tag(category.image, class: "h-80 w-72 object-cover rounded-t-xl", alt: "Category")
     - else
-      = image_tag("https://via.placeholder.com/500", class: "h-80 w-72 object-cover rounded-t-xl", alt: "Category")
+      = image_tag("https://placehold.co/500", class: "h-80 w-72 object-cover rounded-t-xl", alt: "Category")
     div class="px-4 py-3 w-72"
       h5 class="mb-2 text-lg font-bold tracking-tight text-gray-900 block capitalize"
         = category.name

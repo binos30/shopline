@@ -20,7 +20,7 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
             - if product.images.attached?
               = custom_image_tag(product.images.first, variant: :thumb, width: 50, height: 50)
             - else
-              = image_tag("https://via.placeholder.com/50")
+              = image_tag("https://placehold.co/50")
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
             = link_to product.name, edit_admin_product_path(product), data: { turbo_frame: :_top }
           td class="px-6 py-4 whitespace-nowrap"
