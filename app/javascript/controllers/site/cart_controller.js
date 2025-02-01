@@ -43,6 +43,13 @@ export default class extends Controller {
     this.initInputQuantity();
   }
 
+  /**
+   * Disconnects event listeners from quantity input elements and cleans up resources.
+   *
+   * This method iterates over all elements with the `data-input-quantity` attribute,
+   * removes the click event listeners for increment and decrement buttons, and sets
+   * the global `cart` object to `null` to prevent memory leaks.
+   */
   disconnect() {
     this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
       const targetId = targetEl.id;
@@ -56,6 +63,7 @@ export default class extends Controller {
       incrementEl.removeEventListener("click", this.incrementClickHandler.bind(this, targetEl, maxValue), false);
       decrementEl.removeEventListener("click", this.decrementClickHandler.bind(this, targetEl, minValue), false);
     });
+    window.cart = null;
   }
 
   removeFromCart(e) {
