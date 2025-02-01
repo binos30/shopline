@@ -15,7 +15,6 @@ class User < ApplicationRecord
 
   has_many :orders, inverse_of: :user, dependent: :restrict_with_exception
 
-  validates :gender, inclusion: { in: genders.keys }
   validates :email, length: { maximum: 255 }
   validates :password,
             presence: true,
