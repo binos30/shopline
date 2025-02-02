@@ -5,7 +5,7 @@ module Site
     before_action :check_and_authenticate_user
 
     def create
-      result = CheckoutProcessor.call(params[:cart], current_user, view_context)
+      result = CheckoutProcessor.call(checkout_params[:cart], current_user, view_context)
 
       if result[:error]
         render json: { error: result[:error] }, status: result[:status]
@@ -42,6 +42,10 @@ module Site
                },
                status: :unauthorized and return
       end
+    end
+
+    def checkout_params
+      params.require(:checkout).permit(cart: %i[id name size price quantity])
     end
   end
 end

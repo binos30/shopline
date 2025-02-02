@@ -84,7 +84,8 @@ export default class extends Controller {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
     const payload = {
       authenticity_token: "",
-      cart,
+      // Use rest parameter when you have lots of keys which you want to keep and removing only few of them.
+      checkout: { cart: cart.map(({ slug, imageUrl, ...rest }) => ({ ...rest })) }, // eslint-disable-line no-unused-vars
     };
 
     fetch("/checkout", {
