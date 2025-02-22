@@ -3,7 +3,7 @@
 module Admin
   class ProductsController < AdminController
     before_action :set_lookups, only: %i[new create edit update]
-    before_action :set_product, only: %i[show edit update destroy]
+    before_action :set_product, only: %i[update destroy]
 
     # GET /admin/products or /admin/products.json
     def index
@@ -14,6 +14,10 @@ module Admin
 
     # GET /admin/products/1 or /admin/products/1.json
     def show
+      @product =
+        Product.includes([:category, :rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
+          params[:slug]
+        )
     end
 
     # GET /admin/products/new
@@ -23,6 +27,10 @@ module Admin
 
     # GET /admin/products/1/edit
     def edit
+      @product =
+        Product.includes([:rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
+          params[:slug]
+        )
     end
 
     # POST /admin/products or /admin/products.json
@@ -93,25 +101,12 @@ module Admin
     end
 
     # Use callbacks to share common setup or constraints between actions.
-    # rubocop:disable Rails/DynamicFindBy
-    def set_product # rubocop:disable Metrics/AbcSize
-      @product =
-        if action_name == "show"
-          Product.includes([:category, :rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
-            params[:slug]
-          )
-        elsif action_name == "edit"
-          Product.includes([:rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
-            params[:slug]
-          )
-        else
-          Product.find_by_friendly_id(params[:slug])
-        end
+    def set_product
+      @product = Product.find_by_friendly_id(params[:slug])
     rescue ActiveRecord::RecordNotFound
       logger.error "Product not found #{params[:slug]}"
       redirect_back(fallback_location: admin_products_url)
     end
-    # rubocop:enable Rails/DynamicFindBy
 
     # Only allow a list of trusted parameters through.
     def product_params

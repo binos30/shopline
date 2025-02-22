@@ -2,7 +2,8 @@
 
 module Admin
   class CategoriesController < AdminController
-    before_action :set_category, only: %i[show edit update destroy]
+    before_action :set_category, only: %i[update destroy]
+    before_action :set_and_eager_load_category, only: %i[show edit]
 
     # GET /admin/categories or /admin/categories.json
     def index
@@ -91,19 +92,19 @@ module Admin
     private
 
     # Use callbacks to share common setup or constraints between actions.
-    # rubocop:disable Rails/DynamicFindBy
     def set_category
-      @category =
-        if action_name == "show" || action_name == "edit"
-          Category.includes(:rich_text_description).find_by_friendly_id(params[:slug])
-        else
-          Category.find_by_friendly_id(params[:slug])
-        end
+      @category = Category.find_by_friendly_id(params[:slug])
     rescue ActiveRecord::RecordNotFound
       logger.error "Category not found #{params[:slug]}"
       redirect_back(fallback_location: admin_categories_url)
     end
-    # rubocop:enable Rails/DynamicFindBy
+
+    def set_and_eager_load_category
+      @category = Category.includes(:rich_text_description).find_by_friendly_id(params[:slug])
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Category not found #{params[:slug]}"
+      redirect_back(fallback_location: admin_categories_url)
+    end
 
     # Only allow a list of trusted parameters through.
     def category_params
