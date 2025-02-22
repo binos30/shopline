@@ -19,8 +19,8 @@ module Site
     private
 
     def check_and_authenticate_user
-      redirect_to new_user_session_url unless user_signed_in?
-      redirect_to root_url if user_signed_in? && !current_user.customer?
+      redirect_to new_user_session_url and return unless user_signed_in?
+      redirect_to root_url and return if !current_user.customer?
     end
   end
 end
