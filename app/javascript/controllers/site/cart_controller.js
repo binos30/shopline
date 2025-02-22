@@ -4,51 +4,28 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   initialize() {
     const productsContainer = this.element.querySelector("#products-container");
-    const subtotalElement = document.getElementById("order-subtotal");
-    const totalElement = document.getElementById("order-total");
     const orderSummaryContainer = document.getElementById("order-summary");
     window.cart = JSON.parse(localStorage.getItem("cart"));
     const cart = window.cart;
 
-    // Check if productsContainer has children element then remove each element
-    // to prevent duplicating of rendered element when clicking a link then clicking the browser back button
+    // Check if productsContainer has children element then remove each element to prevent duplicating of rendered element
+    // when clicking a link from the cart and then clicking the browser back button
     if (productsContainer.hasChildNodes()) {
       [...productsContainer.childNodes].forEach((el) => el.remove());
     }
+
     if (!cart?.length) {
       productsContainer.insertAdjacentHTML("afterbegin", this.emptyCartContent());
       return;
     }
-
     orderSummaryContainer.classList.remove("hidden");
 
-    let subtotal = 0;
-    const shippingFee = 0;
-    for (let i = 0; i < cart.length; i++) {
-      const count = i + 1;
-      const item = cart[i];
-      const price = +item.price;
-      subtotal += price * item.quantity;
-
-      productsContainer.insertAdjacentHTML("afterbegin", this.productCard(item, count));
-
-      const removeButton = document.getElementById(`remove-btn-${count}`);
-      removeButton.value = i;
-      removeButton.addEventListener("click", this.removeFromCart);
-    }
-    const total = subtotal + shippingFee;
-    subtotalElement.innerText = `$${subtotal.toFixed(2)}`;
-    totalElement.innerText = `$${total.toFixed(2)}`;
-
+    this.renderCartItems(cart, productsContainer);
     this.initInputQuantity();
   }
 
   /**
-   * Disconnects event listeners from quantity input elements and cleans up resources.
-   *
-   * This method iterates over all elements with the `data-input-quantity` attribute,
-   * removes the click event listeners for increment and decrement buttons, and sets
-   * the global `cart` object to `null` to prevent memory leaks.
+   * Disconnects event listeners from the elements and cleans up resources.
    */
   disconnect() {
     this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
@@ -63,7 +40,37 @@ export default class extends Controller {
       incrementEl.removeEventListener("click", this.incrementClickHandler.bind(this, targetEl, maxValue), false);
       decrementEl.removeEventListener("click", this.decrementClickHandler.bind(this, targetEl, minValue), false);
     });
+    if (window.cart?.length) {
+      for (let i = 0; i < window.cart.length; i++) {
+        const count = i + 1;
+        const removeButton = this.element.querySelector(`#remove-btn-${count}`);
+        removeButton.removeEventListener("click", this.removeFromCart);
+      }
+    }
     window.cart = null;
+  }
+
+  renderCartItems(cart, productsContainer) {
+    const subtotalElement = document.getElementById("order-subtotal");
+    const totalElement = document.getElementById("order-total");
+    let subtotal = 0;
+    const shippingFee = 0;
+
+    for (let i = 0; i < cart.length; i++) {
+      const count = i + 1;
+      const item = cart[i];
+      const price = +item.price;
+      subtotal += price * item.quantity;
+
+      productsContainer.insertAdjacentHTML("afterbegin", this.productCard(item, count));
+
+      const removeButton = this.element.querySelector(`#remove-btn-${count}`);
+      removeButton.value = i;
+      removeButton.addEventListener("click", this.removeFromCart);
+    }
+    const total = subtotal + shippingFee;
+    subtotalElement.innerText = `$${subtotal.toFixed(2)}`;
+    totalElement.innerText = `$${total.toFixed(2)}`;
   }
 
   removeFromCart(e) {
@@ -144,33 +151,19 @@ export default class extends Controller {
   }
 
   incrementClickHandler(targetEl, maxValue) {
-    const quantity = this.getCurrentValue(targetEl);
-    if (maxValue !== null && quantity >= maxValue) return;
-    targetEl.value = (quantity + 1).toString();
-
-    const itemSubtotalElement = document.getElementById(`${targetEl.id}-subtotal`);
-    const subtotalElement = document.getElementById("order-subtotal");
-    const totalElement = document.getElementById("order-total");
-    const cart = window.cart;
-    const { productId, productPrice, productSize } = targetEl.dataset;
-    const foundIndex = cart.findIndex((item) => item.id === +productId && item.size === productSize);
-
-    if (foundIndex >= 0) {
-      cart[foundIndex].quantity = +cart[foundIndex].quantity + 1;
-      localStorage.setItem("cart", JSON.stringify(cart));
-
-      const subtotal = (+productPrice * +cart[foundIndex].quantity).toFixed(2);
-      const orderSubtotal = (+subtotalElement.textContent.replace(/\$/g, "") + +productPrice).toFixed(2);
-      itemSubtotalElement.innerText = `$${subtotal}`;
-      subtotalElement.innerText = `$${orderSubtotal}`;
-      totalElement.innerText = `$${orderSubtotal}`;
-    }
+    this.updateQuantity(targetEl, maxValue, "increment");
   }
 
   decrementClickHandler(targetEl, minValue) {
-    const quantity = this.getCurrentValue(targetEl);
-    if (minValue !== null && quantity <= minValue) return;
-    targetEl.value = (quantity - 1).toString();
+    this.updateQuantity(targetEl, minValue, "decrement");
+  }
+
+  updateQuantity(targetEl, limitValue, action) {
+    const quantity = parseInt(targetEl.value) || 0;
+    if (action === "increment" && limitValue !== null && quantity >= limitValue) return;
+    if (action === "decrement" && limitValue !== null && quantity <= limitValue) return;
+
+    targetEl.value = (action === "increment" ? quantity + 1 : quantity - 1).toString();
 
     const itemSubtotalElement = document.getElementById(`${targetEl.id}-subtotal`);
     const subtotalElement = document.getElementById("order-subtotal");
@@ -180,19 +173,18 @@ export default class extends Controller {
     const foundIndex = cart.findIndex((item) => item.id === +productId && item.size === productSize);
 
     if (foundIndex >= 0) {
-      cart[foundIndex].quantity = +cart[foundIndex].quantity - 1;
+      cart[foundIndex].quantity =
+        action === "increment" ? +cart[foundIndex].quantity + 1 : +cart[foundIndex].quantity - 1;
       localStorage.setItem("cart", JSON.stringify(cart));
 
       const subtotal = (+productPrice * +cart[foundIndex].quantity).toFixed(2);
-      const orderSubtotal = (+subtotalElement.textContent.replace(/\$/g, "") - +productPrice).toFixed(2);
+      const orderSubtotal = (
+        +subtotalElement.textContent.replace(/\$/g, "") + (action === "increment" ? +productPrice : -productPrice)
+      ).toFixed(2);
       itemSubtotalElement.innerText = `$${subtotal}`;
       subtotalElement.innerText = `$${orderSubtotal}`;
       totalElement.innerText = `$${orderSubtotal}`;
     }
-  }
-
-  getCurrentValue(targetEl) {
-    return parseInt(targetEl.value) || 0;
   }
 
   emptyCartContent() {
