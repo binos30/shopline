@@ -29,16 +29,7 @@ export default class extends Controller {
    */
   disconnect() {
     this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
-      const targetId = targetEl.id;
-      const incrementEl = this.element.querySelector('[data-input-quantity-increment="' + targetId + '"]');
-      const decrementEl = this.element.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
-      let minValue = targetEl.getAttribute("data-input-quantity-min");
-      let maxValue = targetEl.getAttribute("data-input-quantity-max");
-      minValue = minValue ? parseInt(minValue) : null;
-      maxValue = maxValue ? parseInt(maxValue) : null;
-
-      incrementEl.removeEventListener("click", this.incrementClickHandler.bind(this, targetEl, maxValue), false);
-      decrementEl.removeEventListener("click", this.decrementClickHandler.bind(this, targetEl, minValue), false);
+      this.setupQuantityButtons(targetEl, "remove");
     });
     if (window.cart?.length) {
       for (let i = 0; i < window.cart.length; i++) {
@@ -137,16 +128,7 @@ export default class extends Controller {
 
   initInputQuantity() {
     this.element.querySelectorAll("[data-input-quantity]").forEach((targetEl) => {
-      const targetId = targetEl.id;
-      const incrementEl = this.element.querySelector('[data-input-quantity-increment="' + targetId + '"]');
-      const decrementEl = this.element.querySelector('[data-input-quantity-decrement="' + targetId + '"]');
-      let minValue = targetEl.getAttribute("data-input-quantity-min");
-      let maxValue = targetEl.getAttribute("data-input-quantity-max");
-      minValue = minValue ? parseInt(minValue) : null;
-      maxValue = maxValue ? parseInt(maxValue) : null;
-
-      incrementEl.addEventListener("click", this.incrementClickHandler.bind(this, targetEl, maxValue), false);
-      decrementEl.addEventListener("click", this.decrementClickHandler.bind(this, targetEl, minValue), false);
+      this.setupQuantityButtons(targetEl, "add");
     });
   }
 
@@ -184,6 +166,32 @@ export default class extends Controller {
       itemSubtotalElement.innerText = `$${subtotal}`;
       subtotalElement.innerText = `$${orderSubtotal}`;
       totalElement.innerText = `$${orderSubtotal}`;
+    }
+  }
+
+  /**
+   * Sets up or removes event listeners for quantity increment and decrement buttons.
+   *
+   * @param {HTMLElement} targetEl - The target element representing the quantity input.
+   * @param {string} action - The action to perform, either "add" to add event listeners or "remove" to remove them.
+   */
+  setupQuantityButtons(targetEl, action) {
+    const targetId = targetEl.id;
+    const incrementEl = this.element.querySelector(`[data-input-quantity-increment="${targetId}"]`);
+    const decrementEl = this.element.querySelector(`[data-input-quantity-decrement="${targetId}"]`);
+    let minValue = targetEl.getAttribute("data-input-quantity-min");
+    let maxValue = targetEl.getAttribute("data-input-quantity-max");
+    minValue = minValue ? parseInt(minValue) : null;
+    maxValue = maxValue ? parseInt(maxValue) : null;
+    const incrementHandler = this.incrementClickHandler.bind(this, targetEl, maxValue);
+    const decrementHandler = this.decrementClickHandler.bind(this, targetEl, minValue);
+
+    if (action === "add") {
+      incrementEl.addEventListener("click", incrementHandler);
+      decrementEl.addEventListener("click", decrementHandler);
+    } else if (action === "remove") {
+      incrementEl.removeEventListener("click", incrementHandler);
+      decrementEl.removeEventListener("click", decrementHandler);
     }
   }
 
