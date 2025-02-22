@@ -20,15 +20,12 @@ module Site
     def success
       session = Stripe::Checkout::Session.retrieve(params[:session_id])
       @customer = Stripe::Customer.retrieve(session.customer)
-
-      render :success
     rescue Stripe::InvalidRequestError => e
       logger.tagged("Stripe::InvalidRequestError") { logger.error e }
       redirect_to root_url, alert: e
     end
 
     def cancel
-      render :cancel
     end
 
     private
