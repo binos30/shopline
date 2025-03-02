@@ -25,7 +25,7 @@ class User < ApplicationRecord
             if: proc { |user| user.encrypted_password_changed? }
   validate :new_and_old_password_must_be_different
 
-  with_options presence: true, length: { minimum: 2, maximum: 100 }, format: /\A([^\d\W]|-|\s)*\z/ do
+  with_options presence: true, length: { in: 2..100 }, format: /\A([^\d\W]|-|\s)*\z/ do
     validates :first_name
     validates :last_name
   end
