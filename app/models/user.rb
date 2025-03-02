@@ -51,14 +51,6 @@ class User < ApplicationRecord
         end
   scope :filter_by_name, ->(name) { where("CONCAT(users.first_name, ' ', users.last_name) ILIKE ?", "%#{name}%") }
 
-  # Overwrite the setter to rely on validations instead of [ArgumentError]
-  # https://github.com/rails/rails/issues/13971#issuecomment-721821257
-  def gender=(value)
-    self[:gender] = value
-  rescue ArgumentError
-    self[:gender] = nil
-  end
-
   # instead of deleting, indicate the user requested a delete & timestamp it
   def soft_delete!
     update!(active: false, deleted_at: Time.current)
