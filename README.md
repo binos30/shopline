@@ -1,5 +1,7 @@
 # Shopline
 
+[![Created Badge](https://badges.pufler.dev/created/binos30/shopline)](https://badges.pufler.dev)
+[![Updated Badge](https://badges.pufler.dev/updated/binos30/shopline)](https://badges.pufler.dev)
 [![CI/CD](https://github.com/binos30/shopline/actions/workflows/ci.yml/badge.svg)](https://github.com/binos30/shopline/actions/workflows/ci.yml)
 [![Dependabot Status](https://badgen.net/github/dependabot/binos30/shopline?icon=dependabot)](https://dependabot.com)
 
