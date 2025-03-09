@@ -50,7 +50,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Restore ESLint cache
-        uses: actions/cache/restore@v4.0.2
+        uses: actions/cache/restore@v4
         with:
           path: .cache/eslint
           key: eslint-main-cache
@@ -69,13 +69,13 @@ jobs:
 
       - name: Save ESLint cache
         if: github.event_name == 'push'
-        uses: actions/cache/save@v4.0.2
+        uses: actions/cache/save@v4
         with:
           path: .cache/eslint
           key: eslint-main-cache
 
       - name: Restore prettier cache
-        uses: actions/cache/restore@v4.0.2
+        uses: actions/cache/restore@v4
         with:
           path: .cache/prettier
           key: prettier-main-cache
@@ -94,7 +94,7 @@ jobs:
 
       - name: Save prettier cache
         if: github.event_name == 'push'
-        uses: actions/cache/save@v4.0.2
+        uses: actions/cache/save@v4
         with:
           path: .cache/prettier
           key: prettier-main-cache
