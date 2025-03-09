@@ -59,7 +59,7 @@ To test Stripe payments, use the following test card details:
 
 ## GitHub Actions, Linting and Security Auditing
 
-GitHub actions are setup to lint and test the application on **pull_request** and **push** to **main** branch. It's also setup to deploy the application on pushes to **main**
+GitHub actions are setup to lint, test, and deploy the application.
 
 You can also run these actions locally before pushing to see if your run is likely to fail. See the following gems / commands for more info.
 
