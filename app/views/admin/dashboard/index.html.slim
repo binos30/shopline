@@ -1,40 +1,40 @@
-- title "Admin | Dashboard"
+- title t(".page_title")
 
 .w-full
-  h1 class="mb-4 h1-label" Dashboard
+  h1 class="mb-4 h1-label" = t(".heading")
   .flex.justify-between.items-center.flex-wrap.mt-8.max-w-4xl
     h2 class="mb-4 text-xl font-medium leading-tight tracking-tight text-gray-900 dark:text-white"
-      | Daily Stats
+      = t(".daily_stats.label")
     div class=("flex flex-col gap-10 justify-between w-full md:flex-row p-3 shadow-md bg-white border-b sm:rounded-lg" \
       " dark:bg-gray-800 dark:border-gray-700")
       div class="max-w-sm rounded overflow-hidden shadow-xl bg-gradient-to-r from-gray-900 to-gray-500"
         .px-6.py-4
-          div class="font-bold text-xl text-white mb-2" Revenue
+          div class="font-bold text-xl text-white mb-2" = t(".daily_stats.revenue")
           p class="text-white text-base"
             = number_to_currency(@quick_stats[:revenue], unit: "$")
       div class="max-w-sm rounded overflow-hidden shadow-xl bg-gradient-to-r from-gray-900 to-gray-500"
         .px-6.py-4
-          div class="font-bold text-xl text-white mb-2" Total Sales
+          div class="font-bold text-xl text-white mb-2" = t(".daily_stats.total_sales")
           p class="text-white text-base"
             = @quick_stats[:sales]
       div class="max-w-sm rounded overflow-hidden shadow-xl bg-gradient-to-r from-gray-900 to-gray-500"
         .px-6.py-4
-          div class="font-bold text-xl text-white mb-2" Avg Sale
+          div class="font-bold text-xl text-white mb-2" = t(".daily_stats.average_sale")
           p class="text-white text-base"
             = number_to_currency(@quick_stats[:avg_sale], unit: "$")
       div class="max-w-sm rounded overflow-hidden shadow-xl bg-gradient-to-r from-gray-900 to-gray-500"
         .px-6.py-4
-          div class="font-bold text-xl text-white mb-2" Item/Sale
+          div class="font-bold text-xl text-white mb-2" = t(".daily_stats.item_per_sale")
           p class="text-white text-base"
             = @quick_stats[:per_sale]
     div class="w-full my-8"
       h2 class="mb-4 text-xl font-medium leading-tight tracking-tight text-gray-900 dark:text-white"
-        | Revenue
+        = t(".revenue")
       div[class="w-full p-3 shadow-md bg-white border-b sm:rounded-lg dark:bg-gray-800 dark:border-gray-700"
         data-controller="admin--dashboard" data-admin--dashboard-revenue-value="#{@revenue_by_day.to_json}"
       ]
         canvas#revenueChart
     div class="w-full flex flex-col"
       h2 class="mb-4 text-xl font-medium leading-tight tracking-tight text-gray-900 dark:text-white"
-        | Recent Unfulfilled Orders
+        = t(".recent_unfulfilled_orders")
       == render "unfulfilled_orders_table"

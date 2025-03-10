@@ -3,15 +3,15 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
     thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
       tr
         th scope="col" class="px-6 py-3"
-          | Image
+          = t(".image")
         th scope="col" class="px-6 py-3"
-          | Name
+          = t(".name")
         th scope="col" class="px-6 py-3"
-          | Category
+          = t(".category")
         th scope="col" class="px-6 py-3"
-          | Price
+          = t(".price")
         th scope="col" class="px-6 py-3"
-          | Status
+          = t(".status")
     tbody
       - @products.each do |product|
         = turbo_stream_from product

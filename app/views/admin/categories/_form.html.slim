@@ -1,31 +1,33 @@
+- submit_label = category.new_record? ? t(".create") : t(".update")
+
 section class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
-    h1 class="h1-label" = category.id? ? "Editing category" : "New category"
+    h1 class="h1-label" = category.id? ? t(".heading.edit") : t(".heading.new")
     = form_with(model: [:admin, category], class: "contents") do |form|
       == render "shared/errors", errors: category&.errors&.full_messages || []
       .my-5
         = form.label :active, class: "inline-flex items-center cursor-pointer"
           = form.check_box :active, class: "sr-only peer"
-          span class="text-sm font-medium text-gray-900 dark:text-white" Status
+          span class="text-sm font-medium text-gray-900 dark:text-white" = t(".status")
           div class="peer form-switch"
       .my-5
-        = form.label :name, class: "form-label"
+        = form.label :name, t(".name"), class: "form-label"
         = form.text_field :name, required: true, placeholder: "Category 1",
           class: "form-input"
       .my-5
-        = form.label :description, class: "form-label"
+        = form.label :description, t(".description"), class: "form-label"
         = form.rich_text_area :description, placeholder: "Your description here",
           class: "form-input"
       .my-5
-        = form.label :image, class: "form-label"
+        = form.label :image, t(".image"), class: "form-label"
         = form.file_field :image, accept: "image/*",
           class: "form-input"
-      = form.submit class: "btn-primary"
+      = form.submit submit_label, class: "btn-primary"
     div
       - if category.id?
         => link_to admin_category_path(@category), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-eye w-3.5 h-3.5 me-2"
-          | Show this category
+          = t("actions.show_resource", resource_name: t("resources.category"))
       =< link_to admin_categories_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to categories
+        = t("actions.back_to_resources", resources_name: t("resources.categories"))

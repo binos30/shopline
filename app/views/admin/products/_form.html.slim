@@ -1,29 +1,31 @@
+- submit_label = product.new_record? ? t(".create") : t(".update")
+
 section class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
-    h1 class="h1-label" = product.id? ? "Editing product" : "New product"
+    h1 class="h1-label" = product.id? ? t(".heading.edit") : t(".heading.new")
     = form_with(model: [:admin, product], class: "contents") do |form|
       == render "shared/errors", errors: product&.errors&.full_messages || []
       div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
         .w-full
           = form.label :active, class: "inline-flex items-center cursor-pointer"
             = form.check_box :active, class: "sr-only peer"
-            span class="text-sm font-medium text-gray-900 dark:text-white" Status
+            span class="text-sm font-medium text-gray-900 dark:text-white" = t(".status")
             div class="peer form-switch"
         div class="sm:col-span-2"
-          = form.label :name, class: "form-label"
+          = form.label :name, t(".name"), class: "form-label"
           = form.text_field :name, required: true, placeholder: "Product 1",
             class: "form-input"
         .w-full
-          = form.label :category_id, class: "form-label"
+          = form.label :category_id, t(".category"), class: "form-label"
           = form.collection_select(:category_id, @categories, :id, :name,
             { include_blank: "Select a Category" }, required: true,
             class: "form-input")
         .w-full
-          = form.label :price, class: "form-label"
+          = form.label :price, t(".price"), class: "form-label"
           = form.number_field :price, min: "0", max: "999999999", step: ".01", required: true, placeholder: "0.0",
             class: "form-input"
         div class="sm:col-span-2"
-          = form.label :images, class: "form-label"
+          = form.label :images, t(".images"), class: "form-label"
           - if product.images.attached?
             div class="grid grid-cols-3 md:grid-cols-4 gap-2 mb-2"
               - product.images.each do |image|
@@ -34,18 +36,18 @@ section class="section-container"
           = form.file_field :images, multiple: true, accept: "image/*",
             class: "form-input"
         div class="sm:col-span-2"
-          = form.label :description, class: "form-label"
+          = form.label :description, t(".description"), class: "form-label"
           = form.rich_text_area :description, placeholder: "Your description here",
             class: "form-input"
-      = form.submit class: "btn-primary"
+      = form.submit submit_label, class: "btn-primary"
     div
       - if product.id?
         => link_to admin_product_stocks_path(product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-boxes-stacked w-3.5 h-3.5 me-2"
-          | Product Stocks
+          = t(".actions.show_product_stocks")
         => link_to admin_product_path(product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-eye w-3.5 h-3.5 me-2"
-          | Show this product
+          = t("actions.show_resource", resource_name: t("resources.product"))
       =< link_to admin_products_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to products
+        = t("actions.back_to_resources", resources_name: t("resources.products"))

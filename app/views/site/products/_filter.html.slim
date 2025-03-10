@@ -6,11 +6,11 @@ div class="flex flex-wrap items-center"
       div class="relative"
         div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
           i class="fa-solid fa-magnifying-glass w-4 h-4 text-gray-500 dark:text-gray-400"
-        = f.search_field :name, value: params[:name], id: "name-search", placeholder: "Search for products",
+        = f.search_field :name, value: params[:name], id: "name-search", placeholder: t(".form.search_placeholder"),
           class: "ps-10 site-form-input"
-    = f.number_field :min, value: params[:min], min: "0", max: "999999999", step: ".01", placeholder: "Min Price",
+    = f.number_field :min, value: params[:min], min: "0", max: "999999999", step: ".01", placeholder: t(".form.min_placeholder"),
       class: "me-1 mb-1 site-form-input"
-    = f.number_field :max, value: params[:max], min: "0", max: "999999999", step: ".01", placeholder: "Max Price",
+    = f.number_field :max, value: params[:max], min: "0", max: "999999999", step: ".01", placeholder: t(".form.max_placeholder"),
       class: "me-1 mb-1 site-form-input"
   = form_with(url: products_path, method: :get) do |f|
-    = f.submit "Clear", name: nil, class: "mb-1 bg-gray-800 text-white rounded-md p-2 cursor-pointer"
+    = f.submit t(".form.clear"), name: nil, class: "mb-1 bg-gray-800 text-white rounded-md p-2 cursor-pointer"

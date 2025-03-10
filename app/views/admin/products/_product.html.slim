@@ -1,34 +1,34 @@
 section id="#{dom_id product}" class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class="strong-label" Status:
+      strong class="strong-label" = "#{t(".status")}:"
       = status_badge(product.active)
     p
-      strong class="strong-label" Category:
+      strong class="strong-label" = "#{t(".category")}:"
       span class="text-gray-900 dark:text-white" =< product.category.name
     p
-      strong class="strong-label" Name:
+      strong class="strong-label" = "#{t(".name")}:"
       span class="text-gray-900 dark:text-white" =< product.name
     div
-      strong class="strong-label" Description:
+      strong class="strong-label" = "#{t(".description")}:"
       span class="text-gray-900 dark:text-white"
         = product.description
     p
-      strong class="strong-label" Price:
+      strong class="strong-label" = "#{t(".price")}:"
       span class="text-gray-900 dark:text-white" =< number_to_currency(product.price, unit: "$")
     - if product.images.attached?
       = render partial: "shared/product_image_gallery", locals: { images: product.images }
     div
       => link_to edit_admin_product_path(product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
-        | Edit this product
+        = t("actions.edit_resource", resource_name: t("resources.product"))
       =< link_to admin_products_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to products
+        = t("actions.back_to_resources", resources_name: t("resources.products"))
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
         class="btn-danger border border-red-300 dark:border-red-700 me-2 mb-2"
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
-        | Delete this product
+        = t("actions.destroy_resource", resource_name: t("resources.product"))
 
-== render "admin/shared/modal", record: "product", path: admin_product_path(product)
+== render "admin/shared/modal", resource_name: t("resources.product"), path: admin_product_path(product)

@@ -31,10 +31,21 @@ en:
   title: "Shopline"
   no_permission: "You don't have enough permission to access <strong>%{controller_name}</strong>."
   record:
-    create: "%{record} <strong>%{name}</strong> was successfully created."
-    update: "%{record} <strong>%{name}</strong> was successfully updated."
-    delete: "%{record} <strong>%{name}</strong> was successfully deleted."
+    create: "%{resource_name} <strong>%{name}</strong> was successfully created."
+    update: "%{resource_name} <strong>%{name}</strong> was successfully updated."
+    delete: "%{resource_name} <strong>%{name}</strong> was successfully deleted."
     fulfill: "Order <strong>%{code}</strong> was successfully fulfilled."
+  turbo:
+    confirm: "Are you sure you want to delete this %{resource_name}?"
+    confirm_fulfill_order: "Are you sure you want to fulfill this Order?"
+    confirm_sign_out: "Are you sure you want to sign out?"
+  actions:
+    new_resource: New %{resource_name}
+    edit_resource: Edit %{resource_name}
+    update_resource: Update %{resource_name}
+    show_resource: Show %{resource_name}
+    destroy_resource: Delete %{resource_name}
+    back_to_resources: Back to %{resources_name}
   activerecord:
     attributes:
       user:
@@ -50,3 +61,374 @@ en:
             email:
               blank: "is required"
               taken: "has already been subscribed"
+  admin:
+    categories:
+      category:
+        status: Status
+        name: Name
+        description: Description
+      content:
+        form:
+          search_placeholder: Search for categories
+      form:
+        heading:
+          new: New Category
+          edit: Edit Category
+        status: Status
+        name: Name
+        description: Description
+        image: Image
+        create: Create Category
+        update: Update Category
+      table:
+        image: Image
+        name: Name
+        description: Description
+        status: Status
+      edit:
+        page_title: "Admin | Edit Category #%{category_id}"
+      index:
+        page_title: Admin | Categories
+        heading: Categories
+      new:
+        page_title: Admin | New Category
+      show:
+        page_title: "Admin | Category #%{category_id}"
+    customers:
+      content:
+        form:
+          search_customer_placeholder: Search for customer
+      table:
+        full_name: Full Name
+        email: Email
+        total_orders: Total Orders
+        total_spent: Total Spent
+        status: Status
+      index:
+        page_title: Admin | Customers
+        heading: Customers
+    dashboard:
+      unfulfilled_orders_table:
+        code: Order ID
+        customer: Customer
+        date: Date
+        total: Total
+      index:
+        page_title: Admin | Dashboard
+        heading: Dashboard
+        daily_stats:
+          label: Daily Stats
+          revenue: Revenue
+          total_sales: Total Sales
+          average_sale: Avg Sale
+          item_per_sale: Item/Sale
+        revenue: Revenue
+        recent_unfulfilled_orders: Recent Unfulfilled Orders
+    orders:
+      order_items_table:
+        product: Product
+        size: Size
+        quantity: Qty
+        price: Price
+        subtotal: Subtotal
+      order:
+        status: Status
+        code: Order ID
+        date: Date
+        total: Total
+        customer: Customer
+        email: Email
+        address: Address
+        actions:
+          fulfill: Fulfill
+      content:
+        form:
+          search_code_placeholder: Search for order id
+          search_customer_placeholder: Search for customer
+      table:
+        code: Order ID
+        customer: Customer
+        date: Date
+        total: Total
+        status: Status
+      index:
+        page_title: Admin | Orders
+        heading: Orders
+      show:
+        page_title: Admin | Order %{order_code}
+    products:
+      product:
+        status: Status
+        category: Category
+        name: Name
+        description: Description
+        price: Price
+      content:
+        form:
+          search_placeholder: Search for products
+      form:
+        heading:
+          new: New Product
+          edit: Edit Product
+        status: Status
+        name: Name
+        category: Category
+        price: Price
+        images: Images
+        description: Description
+        create: Create Product
+        update: Update Product
+        actions:
+          show_product_stocks: Show Product Stocks
+      table:
+        image: Image
+        name: Name
+        category: Category
+        price: Price
+        status: Status
+      edit:
+        page_title: "Admin | Edit Product #%{product_id}"
+      index:
+        page_title: Admin | Products
+        heading: Products
+      new:
+        page_title: Admin | New Product
+      show:
+        page_title: "Admin | Product #%{product_id}"
+    shared:
+      modal:
+        actions:
+          "yes": Yes, I'm sure
+          "no": No, cancel
+      sidebar:
+        dashboard: Dashboard
+        categories: Categories
+        products: Products
+        orders: Orders
+        customers: Customers
+        subscribers: Subscribers
+        sign_out: Sign Out
+    stocks:
+      stock:
+        product: Product
+        size: Size
+        quantity: Quantity
+      form:
+        heading:
+          new: New Stock
+          edit: Edit Stock
+        size: Size
+        quantity: Quantity
+        create: Create Stock
+        update: Update Stock
+      table:
+        size: Size
+        quantity: Quantity
+      edit:
+        page_title: "Admin | Product #%{product_id} | Edit Stock #%{stock_id}"
+      index:
+        page_title: "Admin | Product #%{product_id} | Stocks"
+        heading: Stocks
+      new:
+        page_title: "Admin | Product #%{product_id} | New Stock"
+      show:
+        page_title: "Admin | Product #%{product_id} | Stock #%{stock_id}"
+    subscribers:
+      content:
+        form:
+          search_email_placeholder: Search for email
+      table:
+        email: Email
+        ip_address: IP Address
+        user_agent: User Agent
+        date_subscribed: Date Subscribed
+      index:
+        page_title: Admin | Subscribers
+        heading: Subscribers
+  shared:
+    footer:
+      about:
+        label: About Shopline
+        description: "Shopline is a leading online marketplace, offering a wide range of products to cater to all your needs. Our commitment to quality and customer service ensures a great shopping experience."
+      quick_links:
+        label: Quick Links
+        home: Home
+        github: GitHub
+        facebook: Facebook
+        linkedin: LinkedIn
+        source_code: Source Code
+      contact:
+        label: Contact
+        email: Email
+        phone: Phone
+    navbar:
+      home: Home
+      categories: Categories
+      products: Products
+      about: About
+      sign_in: Sign In
+      sign_up: Sign Up
+      dashboard: Dashboard
+      my_orders: My Orders
+      edit_profile: Edit Profile
+      sign_out: Sign Out
+  site:
+    cart:
+      show:
+        page_title: Cart
+        heading: Shopping Cart
+        order_summary: Order Summary
+        subtotal: Subtotal
+        shipping_fee: Shipping Fee
+        total: Total
+        actions:
+          checkout: Proceed to Checkout
+          continue_shopping: Continue Shopping
+          clear: Clear Cart
+    categories:
+      category:
+        actions:
+          browse_products: Browse products
+      product_filter:
+        form:
+          search_placeholder: Search for products
+          min_placeholder: Min Price
+          max_placeholder: Max Price
+          clear: Clear
+      index:
+        page_title: Categories
+        form:
+          search_placeholder: Search for categories
+        no_categories: No categories found
+      show:
+        no_products: No products found
+    checkout:
+      cancel:
+        page_title: Order Canceled
+        heading: Order Canceled
+        description: "Your order has been canceled. You can continue shopping or view your orders."
+      success:
+        page_title: Order Successful
+        heading: "Thanks for your order, %{customer}!"
+        description: "Your order has been successfully placed."
+    home:
+      banner:
+        title: "Welcome to Shopline!"
+        description: "Shop online with Shopline. You shop, we ship!"
+        actions:
+          shop_now: Shop Now
+      categories:
+        actions:
+          browse_products: Browse products
+      newsletter_form:
+        heading: Stay Updated
+        description: Subscribe to our newsletter for the latest updates and offers
+      index:
+        customer_testimonials: Customer Testimonials
+    orders:
+      content:
+        form:
+          search_placeholder: Search for order id
+      order_items_table:
+        product: Product
+        size: Size
+        quantity: Qty
+        price: Price
+        subtotal: Subtotal
+      order:
+        status: Status
+        code: Order ID
+        date: Date
+        total: Total
+        customer: Customer
+        email: Email
+        address: Address
+        actions:
+          back: Back to orders
+      table:
+        code: Order ID
+        date: Date
+        price: Price
+        status: Status
+        actions:
+          view: View Order
+      index:
+        page_title: My Orders
+        heading: My Orders
+      show:
+        page_title: "Order %{order_code}"
+        heading: "Order %{order_code}"
+    products:
+      filter:
+        form:
+          search_placeholder: Search for products
+          min_placeholder: Min Price
+          max_placeholder: Max Price
+          clear: Clear
+      index:
+        page_title: Products
+        no_products: No products found
+      show:
+        size: Size
+        actions:
+          add_to_cart: Add to Cart
+    subscribers:
+      form:
+        email_placeholder: Enter your email
+        submit: Subscribe
+      create:
+        success: "Thank you for subscribing to our newsletter!"
+        success_description: "You will receive the latest updates and offers from Shopline."
+  users:
+    registrations:
+      edit:
+        page_title: Edit Profile
+        heading: Edit Profile
+        form:
+          first_name: First Name
+          last_name: Last Name
+          email: Email
+          gender: Gender
+          password: Password
+          password_confirmation: Password Confirmation
+          current_password: Current Password
+          submit: Update
+          tooltip:
+            password: (leave blank if you don't want to change it)
+            current_password: (we need your current password to confirm your changes)
+          account:
+            cancel: Cancel my account
+            unhappy?: Unhappy?
+            cancel_confirm: Are you sure?
+        actions:
+          back: Back
+      new:
+        page_title: Sign Up
+        heading: Create an account
+        form:
+          first_name: First Name
+          last_name: Last Name
+          email: Email
+          gender: Gender
+          password: Password
+          password_confirmation: Password Confirmation
+          submit: Sign up
+        already_have_an_account: "Already have an account? "
+        actions:
+          log_in: Log in
+    sessions:
+      new:
+        page_title: Login
+        heading: Log in to your account
+        form:
+          email: Email
+          password: Password
+          remember_me: Remember me
+          submit: Log in
+        no_account_yet: "Don't have an account yet? "
+        actions:
+          sign_up: Sign up
+    shared:
+      links:
+        log_in: Log in
+        sign_up: Sign up

@@ -1,4 +1,4 @@
-- title "Admin | Order #{@order.order_code}"
+- title t(".page_title", order_code: @order.order_code)
 
 = turbo_stream_from @order
 

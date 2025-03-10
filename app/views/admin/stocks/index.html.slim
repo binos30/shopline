@@ -1,4 +1,4 @@
-- title "Admin | Product ##{@product.id} | Stocks"
+- title t(".page_title", product_id: @product.id)
 
 .w-full
   = turbo_stream_from @product
@@ -6,8 +6,8 @@
   h1 class="underline h1-label"
     =< link_to @product.name, edit_admin_product_path(@product)
   .flex.justify-between.items-center.mb-4
-    h1 class="h1-label" Stocks
+    h1 class="h1-label" = t(".heading")
     = link_to new_admin_product_stock_path(@product), class: "btn-primary" do
       i class="fa-solid fa-plus w-3.5 h-3.5 me-2"
-      | New Stock
+      = t("actions.new_resource", resource_name: t("resources.stock"))
   == render "table"

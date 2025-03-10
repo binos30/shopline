@@ -1,4 +1,4 @@
-- title "Admin | Category ##{@category.id}"
+- title t(".page_title", category_id: @category.id)
 
 = turbo_stream_from @category
 

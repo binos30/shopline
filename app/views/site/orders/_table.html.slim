@@ -6,28 +6,28 @@ section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 mb-4 shadow-m
           - @orders.each do |order|
             div class="flex flex-wrap items-center gap-y-4 py-6"
               dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1"
-                dt class="text-base font-medium text-gray-500 dark:text-gray-400" Order ID:
+                dt class="text-base font-medium text-gray-500 dark:text-gray-400" = "#{t(".code")}:"
                 dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   = link_to order.order_code, order_path(order.order_code), data: { turbo_frame: :_top },
                     class: "hover:underline"
 
               dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1"
-                dt class="text-base font-medium text-gray-500 dark:text-gray-400" Date:
+                dt class="text-base font-medium text-gray-500 dark:text-gray-400" = "#{t(".date")}:"
                 dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   = format_date(order.created_at, "%b %e, %Y %l:%M %p")
 
               dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1"
-                dt class="text-base font-medium text-gray-500 dark:text-gray-400" Price:
+                dt class="text-base font-medium text-gray-500 dark:text-gray-400" = "#{t(".price")}:"
                 dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white"
                   = number_to_currency(order.total, unit: "$")
 
               dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1"
-                dt class="text-base font-medium text-gray-500 dark:text-gray-400" Status:
+                dt class="text-base font-medium text-gray-500 dark:text-gray-400" = "#{t(".status")}:"
                 dd class="me-2 mt-1.5 inline-flex items-center rounded px-2.5 py-0.5 text-xs font-medium"
                   = order_status_badge(order.fulfilled)
 
               div class="w-full grid sm:grid-cols-2 lg:flex lg:w-64 lg:items-center lg:justify-end gap-4"
-                = link_to "View details", order_path(order.order_code), data: { turbo_frame: :_top },
+                = link_to t(".actions.view"), order_path(order.order_code), data: { turbo_frame: :_top },
                   class: ("w-full inline-flex justify-center rounded-lg  border border-gray-200 bg-white px-3 py-2 text-sm" \
                     " font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4" \
                     " focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700" \

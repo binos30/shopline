@@ -1,26 +1,26 @@
 section id="#{dom_id stock}" class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class="strong-label" Product:
+      strong class="strong-label" = "#{t(".product")}:"
       span class="text-gray-900 dark:text-white" =< @product.name
     p
-      strong class="strong-label" Size:
+      strong class="strong-label" = "#{t(".size")}:"
       span class="text-gray-900 dark:text-white" =< stock.size
     p
-      strong class="strong-label" Quantity:
+      strong class="strong-label" = "#{t(".quantity")}:"
       span class="text-gray-900 dark:text-white" =< stock.quantity
     div
       => link_to edit_admin_product_stock_path(@product, stock),
         class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
-        | Edit this stock
+        = t("actions.edit_resource", resource_name: t("resources.stock"))
       =< link_to admin_product_stocks_path(@product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to stocks
+        = t("actions.back_to_resources", resources_name: t("resources.stocks"))
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
         class="btn-danger border border-red-300 dark:border-red-700 me-2 mb-2"
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
-        | Delete this stock
+        = t("actions.destroy_resource", resource_name: t("resources.stock"))
 
-== render "admin/shared/modal", record: "stock", path: admin_product_stock_path(@product, stock)
+== render "admin/shared/modal", resource_name: t("resources.stock"), path: admin_product_stock_path(@product, stock)

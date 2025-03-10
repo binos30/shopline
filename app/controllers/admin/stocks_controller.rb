@@ -31,7 +31,7 @@ module Admin
         if @stock.save
           format.html do
             redirect_to admin_product_stock_url(@product, @stock),
-                        notice: t("record.create", record: Stock.name, name: @stock.size)
+                        notice: t("record.create", resource_name: t("resources.stock"), name: @stock.size)
           end
         else
           format.html { render :new, status: :unprocessable_entity }
@@ -45,7 +45,7 @@ module Admin
         if @stock.update(stock_params)
           format.html do
             redirect_to admin_product_stock_url(@product, @stock),
-                        notice: t("record.update", record: Stock.name, name: @stock.size)
+                        notice: t("record.update", resource_name: t("resources.stock"), name: @stock.size)
           end
         else
           format.html { render :edit, status: :unprocessable_entity }
@@ -60,7 +60,7 @@ module Admin
       respond_to do |format|
         format.html do
           redirect_to admin_product_stocks_url(@product),
-                      notice: t("record.delete", record: Stock.name, name: @stock.size)
+                      notice: t("record.delete", resource_name: t("resources.stock"), name: @stock.size)
         end
       end
     rescue ActiveRecord::DeleteRestrictionError, ActiveRecord::InvalidForeignKey => e

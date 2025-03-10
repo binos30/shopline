@@ -3,15 +3,15 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
     thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
       tr
         th scope="col" class="px-6 py-3"
-          | Full Name
+          = t(".full_name")
         th scope="col" class="px-6 py-3"
-          | Email
+          = t(".email")
         th scope="col" class="px-6 py-3"
-          | Total Orders
+          = t(".total_orders")
         th scope="col" class="px-6 py-3"
-          | Total Spent
+          = t(".total_spent")
         th scope="col" class="px-6 py-3"
-          | Status
+          = t(".status")
     tbody
       - @customers.each do |customer|
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"

@@ -1,4 +1,4 @@
-- title "Admin | Editing Category ##{@category.id}"
+- title t(".page_title", category_id: @category.id)
 
 div class="mx-auto w-full"
   == render "form", category: @category

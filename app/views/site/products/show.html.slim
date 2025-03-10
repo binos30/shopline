@@ -20,7 +20,7 @@ div class="flex flex-wrap justify-center gap-10 py-10"
     div class="text-md py-4"
       = @product.description
     div class="my-4"
-      p class="text-lg uppercase" Size
+      p class="text-lg uppercase" = t(".size")
       - @product.stocks.each do |stock|
         - if stock.quantity.positive?
           button[value="#{stock.size}"
@@ -44,4 +44,4 @@ div class="flex flex-wrap justify-center gap-10 py-10"
       disabled
       data-action="site--products#addToCart"
     ]
-      | Add to Cart
+      = t(".actions.add_to_cart")

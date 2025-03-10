@@ -2,28 +2,28 @@ section class="mb-4 order-section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
       .w-full
-        strong class="strong-label" Status:
+        strong class="strong-label" = "#{t(".status")}:"
         = order_status_badge(order.fulfilled)
       .w-full
-        strong class="strong-label" Order ID:
+        strong class="strong-label" = "#{t(".code")}:"
         span class="text-gray-900 dark:text-white" =< order.order_code
       .w-full
-        strong class="strong-label" Date:
+        strong class="strong-label" = "#{t(".date")}:"
         span class="text-gray-900 dark:text-white" = format_date(order.created_at, "%b %e, %Y %l:%M %p")
       .w-full
-        strong class="strong-label" Total:
+        strong class="strong-label" = "#{t(".total")}:"
         span class="text-gray-900 dark:text-white" =< number_to_currency(order.total, unit: "$")
       .w-full
-        strong class="strong-label" Customer:
+        strong class="strong-label" = "#{t(".customer")}:"
         span class="text-gray-900 dark:text-white" =< order.customer_full_name
       .w-full
-        strong class="strong-label" Email:
+        strong class="strong-label" = "#{t(".email")}:"
         span class="text-gray-900 dark:text-white" =< order.customer_email
       div class="sm:col-span-2"
-        strong class="strong-label" Address:
+        strong class="strong-label" = "#{t(".address")}:"
         span class="text-gray-900 dark:text-white" =< order.customer_address
     == render "order_items_table", order_items: order.order_items
     div
       =< link_to orders_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to orders
+        = t(".actions.back")

@@ -3,18 +3,18 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
     thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
       tr
         th scope="col" class="px-6 py-3"
-          | Order ID
+          = t(".code")
         th scope="col" class="px-6 py-3"
-          | Customer
+          = t(".customer")
         th scope="col" class="px-6 py-3"
-          | Date
+          = t(".date")
         th scope="col" class="px-6 py-3"
-          | Total
+          = t(".total")
     tbody
       - @unfulfilled_orders.each do |order|
         tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
           th scope="row" class="underline px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-            = link_to order.order_code, admin_order_path(order)
+            = link_to order.order_code, admin_order_path(order.order_code)
           td class="px-6 py-4 whitespace-nowrap"
             = order.customer_full_name
           td class="px-6 py-4 whitespace-nowrap"

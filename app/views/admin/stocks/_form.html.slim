@@ -1,25 +1,27 @@
+- submit_label = stock.new_record? ? t(".create") : t(".update")
+
 section class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     h1 class="italic h1-label" = @product.name
-    h1 class="h1-label" = stock.persisted? ? "Editing stock" : "New stock"
+    h1 class="h1-label" = stock.persisted? ? t(".heading.edit") : t(".heading.new")
     = form_with(model: [:admin, @product, stock], class: "contents") do |form|
       == render "shared/errors", errors: stock&.errors&.full_messages || []
       div class="grid gap-4 sm:grid-cols-2 sm:gap-6 my-5"
         .w-full
-          = form.label :size, class: "form-label"
+          = form.label :size, t(".size"), class: "form-label"
           = form.text_field :size, required: true,
             class: "form-input"
         .w-full
-          = form.label :quantity, class: "form-label"
+          = form.label :quantity, t(".quantity"), class: "form-label"
           = form.number_field :quantity, min: "0", max: "999999999", step: "1", required: true, placeholder: "0.0",
             class: "form-input"
-      = form.submit class: "btn-primary"
+      = form.submit submit_label, class: "btn-primary"
     div
       - if stock.id?
         => link_to admin_product_stock_path(@product, stock),
           class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
           i class="fa-solid fa-eye w-3.5 h-3.5 me-2"
-          | Show this stock
+          = t("actions.show_resource", resource_name: t("resources.stock"))
       =< link_to admin_product_stocks_path(@product), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to stocks
+        = t("actions.back_to_resources", resources_name: t("resources.stocks"))

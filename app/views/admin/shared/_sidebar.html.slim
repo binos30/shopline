@@ -13,41 +13,41 @@ aside[id="logo-sidebar" aria-label="Sidebar"
   div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800"
     = link_to root_path, class: "flex items-center ps-2.5 mb-5" do
       = image_tag("logo-no-background.svg", class: "h-6 me-3 sm:h-7", alt: "Shopline Logo")
-      span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white" Shopline
+      span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white" = t(:title)
     ul class="space-y-2 font-medium"
       li
         = link_to admin_dashboard_index_path,
           class: "#{sidebar_link_active_class("dashboard")} sidebar-link group " do
           i class="fa-solid fa-gauge sidebar-link-icon #{sidebar_link_icon_active_class("dashboard")}"
-          span class="ms-3" Dashboard
+          span class="ms-3" = t(".dashboard")
       li
         = link_to admin_categories_path,
           class: "#{sidebar_link_active_class("categories")} sidebar-link group " do
           i class="fa-solid fa-list sidebar-link-icon #{sidebar_link_icon_active_class("categories")}"
-          span class="ms-3" Categories
+          span class="ms-3" = t(".categories")
       li
         = link_to admin_products_path,
           class: "#{sidebar_link_active_class("products, stocks")} sidebar-link group " do
           i class="fa-solid fa-cart-shopping sidebar-link-icon #{sidebar_link_icon_active_class("products, stocks")}"
-          span class="ms-3" Products
+          span class="ms-3" = t(".products")
       li
         = link_to admin_orders_path,
           class: "#{sidebar_link_active_class("orders")} sidebar-link group " do
           i class="fa-solid fa-truck-fast sidebar-link-icon #{sidebar_link_icon_active_class("orders")}"
-          span class="ms-3" Orders
+          span class="ms-3" = t(".orders")
       li
         = link_to admin_customers_path,
           class: "#{sidebar_link_active_class("customers")} sidebar-link group " do
           i class="fa-solid fa-users sidebar-link-icon #{sidebar_link_icon_active_class("customers")}"
-          span class="ms-3" Customers
+          span class="ms-3" = t(".customers")
       li
         = link_to admin_subscribers_path,
           class: "#{sidebar_link_active_class("subscribers")} sidebar-link group " do
           i class="fa-solid fa-envelope-open-text sidebar-link-icon #{sidebar_link_icon_active_class("subscribers")}"
-          span class="ms-3" Subscribers
+          span class="ms-3" = t(".subscribers")
     ul class="pt-4 mt-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700"
       li
-        = link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },
+        = link_to destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: t("turbo.confirm_sign_out") },
           class: "sidebar-link group" do
           i class="fa-solid fa-arrow-right-from-bracket sidebar-link-icon"
-          span class="ms-3" Sign Out
+          span class="ms-3" = t(".sign_out")

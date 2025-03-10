@@ -1,9 +1,9 @@
-- title "Admin | Products"
+- title t(".page_title")
 
 .w-full
   .flex.justify-between.items-center.mb-4
-    h1 class="h1-label" Products
+    h1 class="h1-label" = t(".heading")
     = link_to new_admin_product_path, class: "btn-primary" do
       i class="fa-solid fa-plus w-3.5 h-3.5 me-2"
-      | New Product
+      = t("actions.new_resource", resource_name: t("resources.product"))
   == render "content"

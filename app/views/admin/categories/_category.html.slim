@@ -1,26 +1,26 @@
 section id="#{dom_id category}" class="section-container"
   div class="p-6 space-y-4 md:space-y-6 sm:p-8"
     p
-      strong class="strong-label" Status:
+      strong class="strong-label" = "#{t(".status")}:"
       = status_badge(category.active)
     p
-      strong class="strong-label" Name:
+      strong class="strong-label" = "#{t(".name")}:"
       span class="text-gray-900 dark:text-white" =< category.name
     div
-      strong class="strong-label" Description:
+      strong class="strong-label" = "#{t(".description")}:"
       span class="text-gray-900 dark:text-white"
         = category.description
     div
       => link_to edit_admin_category_path(category), class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-pen w-3.5 h-3.5 me-2"
-        | Edit this category
+        = t("actions.edit_resource", resource_name: t("resources.category"))
       =< link_to admin_categories_path, class: "btn-dark border border-gray-300 dark:border-gray-700 me-2 mb-2" do
         i class="fa-solid fa-arrow-left w-3.5 h-3.5 me-2"
-        | Back to categories
+        = t("actions.back_to_resources", resources_name: t("resources.categories"))
       button[data-modal-target="popup-modal" data-modal-toggle="popup-modal" type="button"
         class="btn-danger border border-red-300 dark:border-red-700 me-2 mb-2"
       ]
         i class="fa-solid fa-trash w-3.5 h-3.5 me-2"
-        | Delete this category
+        = t("actions.destroy_resource", resource_name: t("resources.category"))
 
-== render "admin/shared/modal", record: "category", path: admin_category_path(category)
+== render "admin/shared/modal", resource_name: t("resources.category"), path: admin_category_path(category)

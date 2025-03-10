@@ -1,4 +1,4 @@
-- title "Admin | Editing Product ##{@product.id}"
+- title t(".page_title", product_id: @product.id)
 
 div class="mx-auto w-full"
   == render "form", product: @product

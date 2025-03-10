@@ -13,7 +13,7 @@ h3 = @category.description
     == render @products
   - else
     p class="text-2xl text-center text-gray-800"
-      | No products found
+      = t(".no_products")
 
   = render "turbo_stream_replace_pagination_product"
 

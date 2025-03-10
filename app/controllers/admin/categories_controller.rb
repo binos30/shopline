@@ -36,7 +36,7 @@ module Admin
         if @category.save
           format.html do
             redirect_to admin_category_url(@category),
-                        notice: t("record.create", record: Category.name, name: @category.name)
+                        notice: t("record.create", resource_name: t("resources.category"), name: @category.name)
           end
           format.json { render :show, status: :created, location: admin_category_url(@category) }
         else
@@ -58,7 +58,7 @@ module Admin
         if @category.update(category_params)
           format.html do
             redirect_to admin_category_url(@category),
-                        notice: t("record.update", record: Category.name, name: @category.name)
+                        notice: t("record.update", resource_name: t("resources.category"), name: @category.name)
           end
           format.json { render :show, status: :ok, location: admin_category_url(@category) }
         else
@@ -80,7 +80,8 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_categories_url, notice: t("record.delete", record: Category.name, name: @category.name)
+          redirect_to admin_categories_url,
+                      notice: t("record.delete", resource_name: t("resources.category"), name: @category.name)
         end
         format.json { head :no_content }
       end

@@ -1,5 +1,5 @@
 div class="bg-gray-600 text-white my-10 text-center py-20 px-1"
-  h2 class="text-3xl font-bold mb-6" Stay Updated
+  h2 class="text-3xl font-bold mb-6" = t(".heading")
   p class="mb-8"
-    | Subscribe to our newsletter for the latest updates and offers
+    = t(".description")
   = turbo_frame_tag :newsletter, src: new_subscriber_path

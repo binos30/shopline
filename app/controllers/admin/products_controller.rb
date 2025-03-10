@@ -15,7 +15,7 @@ module Admin
     # GET /admin/products/1 or /admin/products/1.json
     def show
       @product =
-        Product.includes([:category, :rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
+        Product.includes([:rich_text_description, { images_attachments: :blob }]).find_by_friendly_id(
           params[:slug]
         )
     end
@@ -41,7 +41,7 @@ module Admin
         if @product.save
           format.html do
             redirect_to admin_product_url(@product),
-                        notice: t("record.create", record: Product.name, name: @product.name)
+                        notice: t("record.create", resource_name: t("resources.product"), name: @product.name)
           end
           format.json { render :show, status: :created, location: admin_product_url(@product) }
         else
@@ -63,7 +63,7 @@ module Admin
         if @product.update(product_params)
           format.html do
             redirect_to admin_product_url(@product),
-                        notice: t("record.update", record: Product.name, name: @product.name)
+                        notice: t("record.update", resource_name: t("resources.product"), name: @product.name)
           end
           format.json { render :show, status: :ok, location: admin_product_url(@product) }
         else
@@ -85,7 +85,8 @@ module Admin
 
       respond_to do |format|
         format.html do
-          redirect_to admin_products_url, notice: t("record.delete", record: Product.name, name: @product.name)
+          redirect_to admin_products_url,
+                      notice: t("record.delete", resource_name: t("resources.product"), name: @product.name)
         end
         format.json { head :no_content }
       end

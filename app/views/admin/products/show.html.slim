@@ -1,4 +1,4 @@
-- title "Admin | Product ##{@product.id}"
+- title t(".page_title", product_id: @product.id)
 
 = turbo_stream_from @product
 

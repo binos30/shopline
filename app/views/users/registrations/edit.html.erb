@@ -1,4 +1,4 @@
-<%- title "Edit Profile" %>
+<%- title t(".page_title") %>
 <section class="sm:pt-4 bg-gray-50 dark:bg-gray-900">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto min-h-screen lg:py-0">
     <%= link_to root_path,
@@ -9,7 +9,7 @@
       class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-        <h1 class="h1-label">Edit Profile</h1>
+        <h1 class="h1-label"><%= t(".heading") %></h1>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "space-y-4 md:space-y-6" }) do |f| %>
           <%= render "users/shared/error_messages", resource: resource %>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -17,32 +17,32 @@
           <% end %>
           <div class="mt-10 grid grid-cols-1 gap-x-6 sm:grid-cols-6">
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :first_name, class: "form-label" %>
+              <%= f.label :first_name, t(".form.first_name"), class: "form-label" %>
               <%= f.text_field :first_name, autocomplete: "first_name", required: true,
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :last_name, class: "form-label" %>
+              <%= f.label :last_name, t(".form.last_name"), class: "form-label" %>
               <%= f.text_field :last_name, autocomplete: "last_name", required: true,
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :email, class: "form-label" %>
+              <%= f.label :email, t(".form.email"), class: "form-label" %>
               <%= f.email_field :email, autofocus: true, autocomplete: "email",
                 required: true, placeholder: "name@company.com",
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :gender, class: "form-label" %>
+              <%= f.label :gender, t(".form.gender"), class: "form-label" %>
               <%= f.select :gender, enum_for_select(User, :gender), { include_blank: "Select gender" }, required: true,
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
               <div class="flex items-center justify-between mb-2">
-                <%= f.label :password, class: "block text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= f.label :password, t(".form.password"), class: "block text-sm font-medium text-gray-900 dark:text-white" %>
                 <i data-tooltip-target="tooltip-password" class="fa-regular fa-circle-question text-gray-900 dark:text-white"></i>
                 <div id="tooltip-password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                  <i>(leave blank if you don't want to change it)</i>
+                  <i><%= t(".form.tooltip.password") %></i>
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
@@ -50,16 +50,16 @@
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
-              <%= f.label :password_confirmation, class: "form-label" %>
+              <%= f.label :password_confirmation, t(".form.password_confirmation"), class: "form-label" %>
               <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "••••••••",
                 class: "form-input" %>
             </div>
             <div class="mb-3 sm:col-span-3">
               <div class="flex items-center justify-between mb-2">
-                <%= f.label :current_password, class: "block text-sm font-medium text-gray-900 dark:text-white" %>
+                <%= f.label :current_password, t(".form.current_password"), class: "block text-sm font-medium text-gray-900 dark:text-white" %>
                 <i data-tooltip-target="tooltip-current_password" class="fa-regular fa-circle-question text-gray-900 dark:text-white"></i>
                 <div id="tooltip-current_password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                  <i>(we need your current password to confirm your changes)</i>
+                  <i><%= t(".form.tooltip.current_password") %></i>
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
               </div>
@@ -67,17 +67,18 @@
                 class: "form-input" %>
             </div>
           </div>
-          <%= f.submit "Update", class: "btn-primary" %>
+          <%= f.submit t(".form.submit"), class: "btn-primary" %>
         <% end %>
         <h3 class="font-medium leading-tight tracking-tight text-gray-900 dark:text-white">
-          Cancel my account
+          <%= t(".form.account.cancel") %>
         </h3>
         <h4 class="font-medium leading-tight tracking-tight text-gray-900 dark:text-white">
-          Unhappy?<%= button_to "Cancel my account", registration_path(resource_name), method: :delete,
-          class: "px-2 py-1 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800",
-          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+          <%= t(".form.account.unhappy?") %>
+          <%= button_to t(".form.account.cancel"), registration_path(resource_name), method: :delete,
+            class: "px-2 py-1 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800",
+            data: { turbo_method: :delete, turbo_confirm: t(".form.account.cancel_confirm") } %>
         </h4>
-        <%= link_to "Back", :back,
+        <%= link_to "< #{t(".actions.back")}", :back,
           class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" %>
       </div>
     </div>

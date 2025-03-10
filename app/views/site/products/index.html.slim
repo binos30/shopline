@@ -1,4 +1,4 @@
-- title "Products"
+- title t(".page_title")
 
 == render "filter"
 
@@ -8,7 +8,7 @@
     == render @products
   - else
     p class="text-2xl text-center text-gray-800"
-      | No products found
+      = t(".no_products")
 
   = render "turbo_stream_replace_pagination"
 

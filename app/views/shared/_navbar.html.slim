@@ -2,7 +2,7 @@ nav class="bg-white fixed w-full z-40 top-0 start-0 border-b border-gray-200"
   div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
     = link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do
       = image_tag "logo-no-background.svg", class: "h-8", alt: "Shopline Logo"
-      span class="self-center text-2xl font-semibold whitespace-nowrap" Shopline
+      span class="self-center text-2xl font-semibold whitespace-nowrap" = t(:title)
     div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
       = link_to cart_path, class: "text-gray-500 hover:text-gray-600 me-3 md:me-4" do
         div class="relative py-2"
@@ -25,18 +25,18 @@ nav class="bg-white fixed w-full z-40 top-0 start-0 border-b border-gray-200"
           ul class="py-2" aria-labelledby="user-menu-button"
             - if current_user.admin?
               li
-                = link_to "Dashboard", admin_dashboard_index_path,
+                = link_to t(".dashboard"), admin_dashboard_index_path,
                   class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             - if current_user.customer?
               li
-                = link_to "My Orders", orders_path,
+                = link_to t(".my_orders"), orders_path,
                   class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             li
-              = link_to "Edit Profile", edit_user_registration_path,
+              = link_to t(".edit_profile"), edit_user_registration_path,
                 class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
             li
-              = link_to "Sign Out", destroy_user_session_path,
-                data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to sign out?" },
+              = link_to t(".sign_out"), destroy_user_session_path,
+                data: { turbo_method: :delete, turbo_confirm: t("turbo.confirm_sign_out") },
                 class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
       button[data-collapse-toggle="navbar-items" type="button" aria-controls="navbar-items" aria-expanded="false"
         class=("inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden" \
@@ -48,17 +48,17 @@ nav class="bg-white fixed w-full z-40 top-0 start-0 border-b border-gray-200"
     div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-items"
       ul id="navbar-links"
         li
-          = link_to "Home", root_path, nav_link_attributes("home")
+          = link_to t(".home"), root_path, nav_link_attributes("home")
         li
-          = link_to "Categories", categories_path, nav_link_attributes("categories")
+          = link_to t(".categories"), categories_path, nav_link_attributes("categories")
         li
-          = link_to "Products", products_path, nav_link_attributes("products")
+          = link_to t(".products"), products_path, nav_link_attributes("products")
         li
-          = link_to "About", "#{root_path}#about", nav_link_attributes("about")
+          = link_to t(".about"), "#{root_path}#about", nav_link_attributes("about")
         - unless user_signed_in?
           li
-            = link_to "Sign In", new_user_session_path,
+            = link_to t(".sign_in"), new_user_session_path,
               class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"
           li
-            = link_to "Sign Up", new_user_registration_path,
+            = link_to t(".sign_up"), new_user_registration_path,
               class: "block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0"

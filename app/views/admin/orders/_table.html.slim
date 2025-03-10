@@ -3,15 +3,15 @@ div class="relative overflow-x-auto shadow-md sm:rounded-lg"
     thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400"
       tr
         th scope="col" class="px-6 py-3"
-          | Order ID
+          = t(".code")
         th scope="col" class="px-6 py-3"
-          | Customer
+          = t(".customer")
         th scope="col" class="px-6 py-3"
-          | Date
+          = t(".date")
         th scope="col" class="px-6 py-3"
-          | Total
+          = t(".total")
         th scope="col" class="px-6 py-3"
-          | Status
+          = t(".status")
     tbody
       - @orders.each do |order|
         = turbo_stream_from order

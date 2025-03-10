@@ -1,0 +1,9 @@
+en:
+  resources:
+    category: Category
+    categories: Categories
+    orders: Orders
+    product: Product
+    products: Products
+    stock: Stock
+    stocks: Stocks

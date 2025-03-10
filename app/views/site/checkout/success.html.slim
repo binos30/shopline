@@ -1,6 +1,8 @@
-- title "Order Success"
+- title t(".page_title")
 
-h1 class="text-lg font-semibold" Thanks for your order, #{@customer.name}!
+section class="flex flex-col items-center justify-center h-screen space-y-4"
+  h1 class="text-lg font-semibold" = t(".heading", customer: @customer.name)
+  p = t(".description")
 
 javascript:
   localStorage.removeItem("cart");
