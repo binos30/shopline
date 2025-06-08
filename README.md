@@ -75,6 +75,12 @@ You can also run these actions locally before pushing to see if your run is like
   bin/brakeman -I --no-pager
   ```
 
+- [Bundler Audit](https://github.com/rubysec/bundler-audit) - Security audit dependencies
+
+  ```bash
+  bin/bundler-audit --update
+  ```
+
 - [Rubocop Rails Omakase](https://github.com/rails/rubocop-rails-omakase) - Ruby Linter
 
   ```bash

@@ -22,6 +22,9 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Security audit dependencies
+        run: bin/bundler-audit --update
+
       - name: Scan for common Rails security vulnerabilities using static analysis
         run: bin/brakeman --no-pager
 
