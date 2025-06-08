@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "Site::Cart", type: :request do
+RSpec.describe "Site::Cart" do
   describe "GET /show" do
     it "returns http success" do
       get "/cart"

@@ -14,9 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/orders", type: :request do
-  let!(:admin) { create :user, :as_admin }
-  let!(:order) { create :order }
+RSpec.describe "/admin/orders" do
+  let!(:admin) { create(:user, :as_admin) }
+  let!(:order) { create(:order) }
 
   before { sign_in(admin) }
 

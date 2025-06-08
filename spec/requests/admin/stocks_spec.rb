@@ -14,9 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/products/1/stocks", type: :request do
-  let!(:admin) { create :user, :as_admin }
-  let!(:product) { create :product, :with_stocks }
+RSpec.describe "/admin/products/1/stocks" do
+  let!(:admin) { create(:user, :as_admin) }
+  let!(:product) { create(:product, :with_stocks) }
 
   # This should return the minimal set of attributes required to create a valid
   # Stock. As you add validations to Stock, be sure to

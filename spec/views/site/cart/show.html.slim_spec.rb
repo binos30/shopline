@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "site/cart/show.html.slim", type: :view do
+RSpec.describe "site/cart/show.html.slim" do
   it "renders cart label" do
     render
     expect(rendered).to match(/cart/)

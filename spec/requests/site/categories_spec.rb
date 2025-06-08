@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "/categories", type: :request do
+RSpec.describe "/categories" do
   describe "GET /show" do
-    let!(:category) { create :category }
+    let!(:category) { create(:category) }
 
     before { get category_url(category) }
 

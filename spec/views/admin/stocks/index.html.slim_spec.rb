@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/index", type: :view do
-  let!(:product) { create :product, :with_stocks }
+RSpec.describe "admin/stocks/index" do
+  let!(:product) { create(:product, :with_stocks) }
 
   before do
     assign(:product, product)

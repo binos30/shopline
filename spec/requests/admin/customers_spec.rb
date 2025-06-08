@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "/admin/customers", type: :request do
-  let!(:admin) { create :user, :as_admin }
+RSpec.describe "/admin/customers" do
+  let!(:admin) { create(:user, :as_admin) }
 
   before { sign_in(admin) }
 

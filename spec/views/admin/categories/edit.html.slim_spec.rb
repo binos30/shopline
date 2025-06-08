@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/categories/edit", type: :view do
-  let(:category) { build_stubbed :category }
+RSpec.describe "admin/categories/edit" do
+  let(:category) { build_stubbed(:category) }
 
   before { assign(:category, category) }
 

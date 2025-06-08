@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Subscriber, type: :model do
+RSpec.describe Subscriber do
   describe "db_columns" do
     it { should have_db_column(:email).of_type(:string).with_options(null: false) }
     it { should have_db_column(:ip_address).of_type(:string).with_options(null: false, default: "") }
@@ -23,13 +23,13 @@ RSpec.describe Subscriber, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :subscriber }
+      subject { build(:subscriber) }
 
       it { should validate_uniqueness_of(:email).case_insensitive }
     end
 
     describe "format" do
-      subject { build :subscriber }
+      subject { build(:subscriber) }
 
       describe "email" do
         it "accepts a valid value" do
@@ -39,7 +39,7 @@ RSpec.describe Subscriber, type: :model do
 
         it "does not accept an invalid format" do
           subject.email = "subscriber@"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
     end

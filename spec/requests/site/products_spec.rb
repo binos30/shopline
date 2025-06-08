@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "/products", type: :request do
+RSpec.describe "/products" do
   describe "GET /show" do
-    let!(:product) { create :product, :with_stocks }
+    let!(:product) { create(:product, :with_stocks) }
 
     before { get product_url(product) }
 

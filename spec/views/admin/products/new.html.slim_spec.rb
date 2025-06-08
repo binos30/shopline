@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/products/new", type: :view do
+RSpec.describe "admin/products/new" do
   let!(:categories) { Category.active }
 
   before do

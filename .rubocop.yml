@@ -135,3 +135,15 @@ RSpec/ExampleLength:
 
 RSpec/MultipleExpectations:
   Max: 3
+
+RSpec/ImplicitExpect:
+  EnforcedStyle: should
+
+RSpec/NamedSubject:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 6

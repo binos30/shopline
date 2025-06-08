@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/new", type: :view do
-  let(:product) { build_stubbed :product }
+RSpec.describe "admin/stocks/new" do
+  let(:product) { build_stubbed(:product) }
 
   before do
     assign(:product, product)

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Stock, type: :model do
+RSpec.describe Stock do
   describe "db_columns" do
     it { should have_db_column(:product_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:size).of_type(:string).with_options(null: false) }
@@ -35,7 +35,7 @@ RSpec.describe Stock, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :stock }
+      subject { build(:stock) }
 
       it { should validate_uniqueness_of(:size).scoped_to(:product_id).case_insensitive }
     end

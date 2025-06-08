@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   describe "db_columns" do
     it { should have_db_column(:email).of_type(:string).with_options(null: false, default: "") }
     it { should have_db_column(:encrypted_password).of_type(:string).with_options(null: false, default: "") }
@@ -53,23 +53,29 @@ RSpec.describe User, type: :model do
       it { should validate_presence_of(:first_name) }
       it { should validate_presence_of(:last_name) }
 
-      subject { build_stubbed :user }
+      context "when encrypted_password_changed? on update" do
+        let(:user) do
+          build_stubbed(:user).tap { |u| allow(u).to receive(:encrypted_password_changed?).and_return(true) }
+        end
 
-      context "if encrypted_password_changed? on update" do
-        before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
-
-        it { should validate_presence_of(:password).on(:update) }
+        it "validates presence of password on update" do
+          expect(user).to validate_presence_of(:password).on(:update)
+        end
       end
 
-      context "if not encrypted_password_changed? on update" do
-        before { allow(subject).to receive(:encrypted_password_changed?).and_return(false) }
+      context "when not encrypted_password_changed? on update" do
+        let(:user) do
+          build_stubbed(:user).tap { |u| allow(u).to receive(:encrypted_password_changed?).and_return(false) }
+        end
 
-        it { should_not validate_presence_of(:password).on(:update) }
+        it "doesn't validate presence of password on update" do
+          expect(user).not_to validate_presence_of(:password).on(:update)
+        end
       end
     end
 
     describe "inclusion" do
-      it { should validate_inclusion_of(:gender).in_array(User.genders.keys) }
+      it { should validate_inclusion_of(:gender).in_array(described_class.genders.keys) }
     end
 
     describe "length" do
@@ -77,23 +83,29 @@ RSpec.describe User, type: :model do
       it { should validate_length_of(:first_name).is_at_least(2).is_at_most(100) }
       it { should validate_length_of(:last_name).is_at_least(2).is_at_most(100) }
 
-      subject { build_stubbed :user }
+      context "when encrypted_password_changed? on update" do
+        let(:user) do
+          build_stubbed(:user).tap { |u| allow(u).to receive(:encrypted_password_changed?).and_return(true) }
+        end
 
-      context "if encrypted_password_changed? on update" do
-        before { allow(subject).to receive(:encrypted_password_changed?).and_return(true) }
-
-        it { should validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20) }
+        it "validates length of password on update" do
+          expect(user).to validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20)
+        end
       end
 
-      context "if not encrypted_password_changed? on update" do
-        before { allow(subject).to receive(:encrypted_password_changed?).and_return(false) }
+      context "when not encrypted_password_changed? on update" do
+        let(:user) do
+          build_stubbed(:user).tap { |u| allow(u).to receive(:encrypted_password_changed?).and_return(false) }
+        end
 
-        it { should_not validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20) }
+        it "doesn't validate length of password on update" do
+          expect(user).not_to validate_length_of(:password).on(:update).is_at_least(8).is_at_most(20)
+        end
       end
     end
 
     describe "format" do
-      subject { build :user }
+      subject { build(:user) }
 
       describe "first_name" do
         it "accepts a valid value" do
@@ -103,7 +115,7 @@ RSpec.describe User, type: :model do
 
         it "does not accept an invalid format" do
           subject.first_name = "John-1"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
 
@@ -115,15 +127,15 @@ RSpec.describe User, type: :model do
 
         it "does not accept an invalid format" do
           subject.last_name = "Doe-1"
-          expect(subject).to be_invalid
+          expect(subject).not_to be_valid
         end
       end
     end
 
     describe "before_validation .set_role" do
-      subject { build :user, role: }
+      subject { build(:user, role:) }
 
-      let!(:role) { create :role, :as_admin }
+      let!(:role) { create(:role, :as_admin) }
 
       it "sets the role to Administrator" do
         subject.save!
@@ -141,7 +153,7 @@ RSpec.describe User, type: :model do
     end
 
     describe "new_and_old_password_must_be_different" do
-      subject { build_stubbed :user, password: "password" }
+      subject { build_stubbed(:user, password: "password") }
 
       it "is valid" do
         expect(subject.valid?).to be true
@@ -159,7 +171,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "status" do
-    subject { build :user }
+    subject { build(:user) }
 
     it "sets active to true" do
       expect(subject.active).to be true
@@ -172,7 +184,7 @@ RSpec.describe User, type: :model do
     end
 
     describe ".activate!" do
-      subject { build :user, active: false }
+      subject { build(:user, active: false) }
 
       it "changes the active from false to true" do
         expect { subject.activate! }.to(change(subject, :active).from(false).to(true))
@@ -181,14 +193,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".active_for_authentication?" do
-    subject { build_stubbed :user }
+    subject { build_stubbed(:user) }
 
     it "returns true" do
       expect(subject.active_for_authentication?).to be true
     end
 
     context "when active is false" do
-      subject { build_stubbed :user, active: false }
+      subject { build_stubbed(:user, active: false) }
 
       it "returns false" do
         expect(subject.active_for_authentication?).to be false
@@ -197,14 +209,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".admin?" do
-    subject { build_stubbed :user, :as_admin }
+    subject { build_stubbed(:user, :as_admin) }
 
     it "returns true" do
       expect(subject.admin?).to be true
     end
 
     context "when the role is Customer" do
-      subject { build_stubbed :user }
+      subject { build_stubbed(:user) }
 
       it "returns false" do
         expect(subject.admin?).to be false
@@ -213,14 +225,14 @@ RSpec.describe User, type: :model do
   end
 
   describe ".customer?" do
-    subject { build_stubbed :user }
+    subject { build_stubbed(:user) }
 
     it "returns true" do
       expect(subject.customer?).to be true
     end
 
     context "when the role is Administrator" do
-      subject { build_stubbed :user, :as_admin }
+      subject { build_stubbed(:user, :as_admin) }
 
       it "returns false" do
         expect(subject.customer?).to be false

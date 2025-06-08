@@ -14,8 +14,8 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/categories", type: :request do
-  let!(:admin) { create :user, :as_admin }
+RSpec.describe "/admin/categories" do
+  let!(:admin) { create(:user, :as_admin) }
 
   # This should return the minimal set of attributes required to create a valid
   # Category. As you add validations to Category, be sure to
@@ -35,7 +35,7 @@ RSpec.describe "/admin/categories", type: :request do
   end
 
   describe "GET /show" do
-    let!(:category) { create :category }
+    let!(:category) { create(:category) }
 
     before { get admin_category_url(category) }
 
@@ -52,7 +52,7 @@ RSpec.describe "/admin/categories", type: :request do
   end
 
   describe "GET /edit" do
-    let!(:category) { create :category }
+    let!(:category) { create(:category) }
 
     before { get edit_admin_category_url(category) }
 
@@ -92,7 +92,7 @@ RSpec.describe "/admin/categories", type: :request do
   end
 
   describe "PATCH /update" do
-    let!(:category) { create :category }
+    let!(:category) { create(:category) }
     let(:new_attributes) { { name: "Category2" } }
 
     context "with valid parameters" do
@@ -118,7 +118,7 @@ RSpec.describe "/admin/categories", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let!(:category) { create :category }
+    let!(:category) { create(:category) }
 
     it "destroys the requested category" do
       expect { delete admin_category_url(category) }.to change(Category, :count).by(-1)

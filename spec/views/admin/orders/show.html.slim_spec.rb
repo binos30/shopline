@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/orders/show", type: :view do
-  let(:user) { build_stubbed :user, email: "jd@gmail.com", first_name: "John", last_name: "Doe" }
-  let(:order) { build_stubbed :order, user:, customer_address: "Customer Address" }
+RSpec.describe "admin/orders/show" do
+  let(:user) { build_stubbed(:user, email: "jd@gmail.com", first_name: "John", last_name: "Doe") }
+  let(:order) { build_stubbed(:order, user:, customer_address: "Customer Address") }
 
   before { assign(:order, order) }
 

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Order, type: :model do
+RSpec.describe Order do
   describe "db_columns" do
     it { should have_db_column(:user_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:customer_email).of_type(:string).with_options(null: false) }
@@ -10,13 +10,14 @@ RSpec.describe Order, type: :model do
     it { should have_db_column(:customer_address).of_type(:string).with_options(null: false) }
     it { should have_db_column(:fulfilled).of_type(:boolean).with_options(null: false, default: false) }
     it { should have_db_column(:order_code).of_type(:string).with_options(null: false) }
+
     it do
-      should have_db_column(:total).of_type(:decimal).with_options(
-               null: false,
-               default: 0.0,
-               precision: 12,
-               scale: 2
-             )
+      expect(subject).to have_db_column(:total).of_type(:decimal).with_options(
+        null: false,
+        default: 0.0,
+        precision: 12,
+        scale: 2
+      )
     end
   end
 
@@ -47,7 +48,7 @@ RSpec.describe Order, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :order }
+      subject { build(:order) }
 
       it { should validate_uniqueness_of(:order_code).case_insensitive }
     end

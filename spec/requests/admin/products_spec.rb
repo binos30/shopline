@@ -14,9 +14,9 @@ require "rails_helper"
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/admin/products", type: :request do
-  let!(:admin) { create :user, :as_admin }
-  let!(:category) { create :category }
+RSpec.describe "/admin/products" do
+  let!(:admin) { create(:user, :as_admin) }
+  let!(:category) { create(:category) }
 
   # This should return the minimal set of attributes required to create a valid
   # Product. As you add validations to Product, be sure to
@@ -36,7 +36,7 @@ RSpec.describe "/admin/products", type: :request do
   end
 
   describe "GET /show" do
-    let!(:product) { create :product }
+    let!(:product) { create(:product) }
 
     before { get admin_product_url(product) }
 
@@ -53,7 +53,7 @@ RSpec.describe "/admin/products", type: :request do
   end
 
   describe "GET /edit" do
-    let!(:product) { create :product }
+    let!(:product) { create(:product) }
 
     before { get edit_admin_product_url(product) }
 
@@ -92,7 +92,7 @@ RSpec.describe "/admin/products", type: :request do
   end
 
   describe "PATCH /update" do
-    let!(:product) { create :product }
+    let!(:product) { create(:product) }
     let(:new_attributes) { { name: "Product2" } }
 
     context "with valid parameters" do
@@ -118,7 +118,7 @@ RSpec.describe "/admin/products", type: :request do
   end
 
   describe "DELETE /destroy" do
-    let!(:product) { create :product }
+    let!(:product) { create(:product) }
 
     it "destroys the requested product" do
       expect { delete admin_product_url(product) }.to change(Product, :count).by(-1)

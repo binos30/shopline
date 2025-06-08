@@ -2,20 +2,22 @@
 
 require "rails_helper"
 
-RSpec.describe OrderItem, type: :model do
+RSpec.describe OrderItem do
   describe "db_columns" do
     it { should have_db_column(:order_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:product_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:stock_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:product_name).of_type(:string).with_options(null: false) }
+
     it do
-      should have_db_column(:product_price).of_type(:decimal).with_options(
-               null: false,
-               default: 0.0,
-               precision: 12,
-               scale: 2
-             )
+      expect(subject).to have_db_column(:product_price).of_type(:decimal).with_options(
+        null: false,
+        default: 0.0,
+        precision: 12,
+        scale: 2
+      )
     end
+
     it { should have_db_column(:size).of_type(:string).with_options(null: false) }
     it { should have_db_column(:quantity).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:subtotal).of_type(:decimal).with_options(null: false, precision: 12, scale: 2) }

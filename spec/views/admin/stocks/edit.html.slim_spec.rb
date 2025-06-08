@@ -2,8 +2,8 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/stocks/edit", type: :view do
-  let!(:product) { create :product, :with_stocks, stocks_count: 1 }
+RSpec.describe "admin/stocks/edit" do
+  let!(:product) { create(:product, :with_stocks, stocks_count: 1) }
   let(:stock) { product.stocks.first }
 
   before do

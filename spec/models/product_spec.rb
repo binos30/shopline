@@ -2,18 +2,20 @@
 
 require "rails_helper"
 
-RSpec.describe Product, type: :model do
+RSpec.describe Product do
   describe "db_columns" do
     it { should have_db_column(:category_id).of_type(:integer).with_options(null: false) }
     it { should have_db_column(:name).of_type(:string).with_options(null: false) }
+
     it do
-      should have_db_column(:price).of_type(:decimal).with_options(
-               null: false,
-               default: 0.0,
-               precision: 12,
-               scale: 2
-             )
+      expect(subject).to have_db_column(:price).of_type(:decimal).with_options(
+        null: false,
+        default: 0.0,
+        precision: 12,
+        scale: 2
+      )
     end
+
     it { should have_db_column(:active).of_type(:boolean).with_options(null: false, default: true) }
     it { should have_db_column(:slug).of_type(:string).with_options(null: false) }
   end
@@ -52,7 +54,7 @@ RSpec.describe Product, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :product }
+      subject { build(:product) }
 
       it { should validate_uniqueness_of(:name).case_insensitive }
     end

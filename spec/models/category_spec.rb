@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Category, type: :model do
+RSpec.describe Category do
   describe "db_columns" do
     it { should have_db_column(:name).of_type(:string).with_options(null: false) }
     it { should have_db_column(:active).of_type(:boolean).with_options(null: false, default: true) }
@@ -32,7 +32,7 @@ RSpec.describe Category, type: :model do
     end
 
     describe "uniqueness" do
-      subject { build :category }
+      subject { build(:category) }
 
       it { should validate_uniqueness_of(:name).case_insensitive }
     end

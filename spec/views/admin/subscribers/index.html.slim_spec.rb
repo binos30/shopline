@@ -2,9 +2,9 @@
 
 require "rails_helper"
 
-RSpec.describe "admin/subscribers/index", type: :view do
-  let(:subscriber_john) { build_stubbed :subscriber, email: "jd@gmail.com" }
-  let(:subscriber_jane) { build_stubbed :subscriber, email: "jd@email.com" }
+RSpec.describe "admin/subscribers/index" do
+  let(:subscriber_john) { build_stubbed(:subscriber, email: "jd@gmail.com") }
+  let(:subscriber_jane) { build_stubbed(:subscriber, email: "jd@email.com") }
 
   before { @pagy, @subscribers = pagy_array([subscriber_john, subscriber_jane]) }
 
