@@ -1,8 +1,11 @@
 # RuboCop Configuration
 
-require:
+plugins:
+  - rubocop-rails
   - rubocop-rspec
   - rubocop-rspec_rails
+  - rubocop-factory_bot
+  - rubocop-capybara
 
 inherit_gem:
   # Omakase Ruby styling for Rails

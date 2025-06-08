@@ -3,16 +3,16 @@
 source "https://rubygems.org"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.2.1"
+gem "rails", "~> 7.2.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.5"
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", ">= 5.0"
+gem "puma"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -30,7 +30,7 @@ gem "tailwindcss-rails"
 gem "jbuilder"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", ">= 4.0.1"
+gem "redis"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -45,7 +45,7 @@ gem "tzinfo-data", platforms: %i[windows jruby]
 gem "bootsnap", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", ">= 1.2"
+gem "image_processing"
 
 # Use slim-rails for HTML templating
 gem "slim-rails"
@@ -102,6 +102,9 @@ group :development, :test do
   gem "rubocop-rspec", require: false
   # Code style checking for Rails-related RSpec files [https://github.com/rubocop/rubocop-rspec_rails]
   gem "rubocop-rspec_rails", require: false
+  gem "rubocop-capybara", require: false
+  gem "rubocop-factory_bot", require: false
+  gem "rubocop-rails", require: false
   # Interact with the Ruby syntax tree [https://github.com/ruby-syntax-tree/syntax_tree]
   gem "syntax_tree", require: false
   # Provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation,
@@ -132,7 +135,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers"
 
   # A code coverage analysis tool for Ruby [https://github.com/simplecov-ruby/simplecov]
   gem "simplecov", require: false
