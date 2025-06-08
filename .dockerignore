@@ -47,7 +47,6 @@
 /.dockerignore
 /Dockerfile*
 
-/.husky
 /docs/
 
 # Ignore yarn files
