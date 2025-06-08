@@ -26,8 +26,8 @@ jobs:
         run: bin/brakeman --no-pager
 
   lint:
+    needs: scan_ruby # Ensures lint runs only if scan_ruby passes
     runs-on: ubuntu-latest
-    needs: scan_ruby
     permissions:
       actions: write
     steps:
@@ -112,8 +112,8 @@ jobs:
         run: bin/rails zeitwerk:check
 
   test:
+    needs: lint # Ensures test runs only if lint passes
     runs-on: ubuntu-latest
-    needs: [scan_ruby, lint]
     services:
       postgres:
         image: postgres
@@ -157,9 +157,10 @@ jobs:
           if-no-files-found: ignore
 
   deploy:
-    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: test # Ensures deploy runs only if test passes
+    # Only deploy on main branch
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: [scan_ruby, lint, test]
     permissions:
       deployments: write
     steps:
