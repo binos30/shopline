@@ -130,6 +130,9 @@ group :development do
   # A normaliser/beautifier for HTML that also understands embedded Ruby. Ideal for tidying up Rails templates
   # [https://github.com/threedaymonk/htmlbeautifier]
   gem "htmlbeautifier", require: false
+
+  # Git hooks manager [https://github.com/evilmartians/lefthook]
+  gem "lefthook", require: false
 end
 
 group :test do

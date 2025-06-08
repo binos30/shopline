@@ -1,0 +1,47 @@
+# Refer for explanation to following link:
+# https://lefthook.dev/configuration/
+pre-push:
+  jobs:
+    - name: Audit packages
+      tags:
+        - frontend
+        - security
+      run: yarn npm audit
+
+    - name: Audit gems
+      tags:
+        - backend
+        - security
+      run: bin/bundler-audit --update
+
+    - name: Scan Rails security vulnerabilities
+      tags:
+        - backend
+        - security
+      run: bin/brakeman --no-pager
+
+pre-commit:
+  parallel: true
+  commands:
+    rubocop:
+      glob: "*.{rake,rb}"
+      run: bin/rubocop --force-exclusion -A {staged_files}
+      stage_fixed: true # Automatically stage fixed files
+    syntax_tree:
+      glob: "*.{rake,rb}"
+      run: bin/bundle exec stree write {staged_files}
+      stage_fixed: true
+    slim-lint:
+      glob: "*.slim"
+      run: bin/bundle exec slim-lint {staged_files}
+    prettier:
+      glob: "*.{css,html,js,json,md,mjs,scss,yml}"
+      run: yarn prettier --write --cache --cache-location .cache/prettier {staged_files}
+      stage_fixed: true
+    eslint:
+      glob: "*.{cjs,js,mjs}"
+      run: yarn eslint --cache --cache-location .cache/eslint --fix --report-unused-disable-directives {staged_files}
+      stage_fixed: true
+    rspec:
+      glob: "*_spec.rb"
+      run: bin/rspec {staged_files}

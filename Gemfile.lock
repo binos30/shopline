@@ -186,6 +186,7 @@ GEM
     kramdown-parser-gfm (1.1.0)
       kramdown (~> 2.0)
     language_server-protocol (3.17.0.5)
+    lefthook (1.11.13)
     lint_roller (1.1.0)
     local_time (3.0.3)
     logger (1.7.0)
@@ -506,6 +507,7 @@ DEPENDENCIES
   image_processing
   jbuilder
   jsbundling-rails
+  lefthook
   local_time
   pagy
   pg
