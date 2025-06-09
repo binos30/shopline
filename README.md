@@ -21,7 +21,14 @@ Prerequisites
 - [PostgreSQL](https://www.postgresql.org/download/)
 - [Node.js ^20.15.1](https://github.com/nvm-sh/nvm)
 
-Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials. Get `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` from your [Stripe](https://dashboard.stripe.com) account
+Create `.env` file at the root of the project directory. Copy the content of `.env.template.erb` to `.env` then update the `username` and `password` based on your database credentials. Get `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` from your [Stripe](https://dashboard.stripe.com) account.
+
+To enable error monitoring with Honeybadger:
+
+1. Sign up for a [Honeybadger](https://www.honeybadger.io/) account
+2. Create a new project in Honeybadger
+3. Get your project's API key from the project settings
+4. Add the API key to your `.env` file as `HONEYBADGER_API_KEY`
 
 Install dependencies and setup database
 
