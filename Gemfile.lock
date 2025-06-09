@@ -163,6 +163,9 @@ GEM
       activerecord (>= 4.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    honeybadger (5.28.0)
+      logger
+      ostruct
     htmlbeautifier (1.4.3)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
@@ -503,6 +506,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   friendly_id
+  honeybadger
   htmlbeautifier
   image_processing
   jbuilder
