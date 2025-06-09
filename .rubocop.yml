@@ -112,6 +112,7 @@ Style/InlineComment:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
+  Enabled: true
   EnforcedStyle: always_true
 
 # Rails Cops
