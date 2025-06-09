@@ -190,3 +190,8 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           github_deployment: true
           wait_deploy: true
+
+      - name: Notify Honeybadger about deployment
+        uses: honeybadger-io/github-notify-deploy-action@v1
+        with:
+          api_key: ${{ secrets.HONEYBADGER_API_KEY }}
