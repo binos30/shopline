@@ -29,7 +29,7 @@ Install dependencies and setup database
 bin/setup
 ```
 
-Re-enable git hooks
+Re-enable git hooks _(Run this command only if you've already set up the application prior to the migration from husky to lefthook)_
 
 ```bash
 git config --unset core.hooksPath
