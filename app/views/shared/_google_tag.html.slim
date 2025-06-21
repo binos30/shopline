@@ -1,7 +1,7 @@
 - if Rails.env.production?
   /! Google tag (gtag.js)
   script[async src="https://www.googletagmanager.com/gtag/js?id=G-HXY81TL7EB"]
-  javascript[nonce=content_security_policy_nonce]:
+  javascript[nonce=request.content_security_policy_nonce]:
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
