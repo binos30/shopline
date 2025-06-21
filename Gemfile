@@ -108,7 +108,6 @@ group :development, :test do
   gem "rubocop-rspec_rails", require: false
   gem "rubocop-capybara", require: false
   gem "rubocop-factory_bot", require: false
-  gem "rubocop-rails", require: false
   # Interact with the Ruby syntax tree [https://github.com/ruby-syntax-tree/syntax_tree]
   gem "syntax_tree", require: false
   # Provides a comprehensive suite of tools for Ruby programming: intellisense, diagnostics, inline documentation,
