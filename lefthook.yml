@@ -18,7 +18,7 @@ pre-push:
       tags:
         - backend
         - security
-      run: bin/brakeman --no-pager
+      run: bin/brakeman -q --no-pager
 
 pre-commit:
   parallel: true
