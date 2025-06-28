@@ -1,8 +1,6 @@
 doctype html
 html
   head
-    = render "shared/google_tag"
-
     title
       = content_for?(:title) ? yield(:title) : t(:title)
 
@@ -15,6 +13,8 @@ html
 
     = csrf_meta_tags
     = csp_meta_tag
+
+    = render "shared/google_tag"
 
     = tag.link(href: request.original_url, rel: "canonical")
     = favicon_link_tag "logo-no-background.svg", rel: "apple-touch-icon", type: "image/svg+xml"
