@@ -223,7 +223,7 @@ export default class extends Controller {
   productCard(product, count) {
     const subtotal = (+product.price * +product.quantity).toFixed(2);
     return `
-      <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
+      <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-xs dark:border-gray-700 dark:bg-gray-800 md:p-6">
         <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
           <a href="/products/${product.slug}" class="shrink-0 md:order-1">
             <img
@@ -239,7 +239,7 @@ export default class extends Controller {
                 type="button"
                 id="decrement-button-${count}"
                 data-input-quantity-decrement="quantity-input-${count}"
-                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
               >
                 <svg
                   class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -266,7 +266,7 @@ export default class extends Controller {
                 data-product-id=${product.id}
                 data-product-price=${product.price}
                 data-product-size=${product.size}
-                class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-hidden focus:ring-0 dark:text-white [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                 value="${product.quantity}"
                 required
               />
@@ -274,7 +274,7 @@ export default class extends Controller {
                 type="button"
                 id="increment-button-${count}"
                 data-input-quantity-increment="quantity-input-${count}"
-                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
               >
                 <svg
                   class="h-2.5 w-2.5 text-gray-900 dark:text-white"
