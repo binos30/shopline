@@ -24,22 +24,22 @@ div class="flex flex-wrap justify-center gap-10 py-10"
       - @product.stocks.each do |stock|
         - if stock.quantity.positive?
           button[value="#{stock.size}"
-            class=("bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded hover:bg-gray-300 focus:outline-none" \
+            class=("bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded-sm hover:bg-gray-300 focus:outline-hidden" \
               " focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50")
             data-action="site--products#selectSize"
           ]
             = stock.size
         - else
           button[value="#{stock.size}" disabled="true"
-            class=("disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded hover:bg-gray-300" \
-              " focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50")
+            class=("disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold me-1 py-2 px-4 rounded-sm hover:bg-gray-300" \
+              " focus:outline-hidden focus:ring-2 focus:ring-gray-500 focus:ring-opacity-50")
           ]
             = stock.size
     #selected-size
     button[
       id="addToCartBtn"
       class=("inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-white" \
-        " bg-gray-600 disabled:bg-gray-400 enabled:hover:bg-gray-700 focus:outline-none focus:ring-2" \
+        " bg-gray-600 disabled:bg-gray-400 enabled:hover:bg-gray-700 focus:outline-hidden focus:ring-2" \
         " focus:ring-offset-2 focus:ring-gray-500")
       disabled
       data-action="site--products#addToCart"

@@ -6,7 +6,7 @@
       <%= image_tag("logo-no-background.svg", class: "w-14 h-14", alt: "logo") %>
     <% end %>
     <div
-      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+      class="w-full bg-white rounded-lg shadow-sm dark:border md:mt-0 sm:max-w-lg xl:p-0 dark:bg-gray-800 dark:border-gray-700"
     >
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="h1-label"><%= t(".heading") %></h1>
@@ -41,7 +41,7 @@
               <div class="flex items-center justify-between mb-2">
                 <%= f.label :password, t(".form.password"), class: "block text-sm font-medium text-gray-900 dark:text-white" %>
                 <i data-tooltip-target="tooltip-password" class="fa-regular fa-circle-question text-gray-900 dark:text-white"></i>
-                <div id="tooltip-password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                <div id="tooltip-password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
                   <i><%= t(".form.tooltip.password") %></i>
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
@@ -58,7 +58,7 @@
               <div class="flex items-center justify-between mb-2">
                 <%= f.label :current_password, t(".form.current_password"), class: "block text-sm font-medium text-gray-900 dark:text-white" %>
                 <i data-tooltip-target="tooltip-current_password" class="fa-regular fa-circle-question text-gray-900 dark:text-white"></i>
-                <div id="tooltip-current_password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                <div id="tooltip-current_password" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-xs opacity-0 tooltip dark:bg-gray-700">
                   <i><%= t(".form.tooltip.current_password") %></i>
                   <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
@@ -75,11 +75,11 @@
         <h4 class="font-medium leading-tight tracking-tight text-gray-900 dark:text-white">
           <%= t(".form.account.unhappy?") %>
           <%= button_to t(".form.account.cancel"), registration_path(resource_name), method: :delete,
-            class: "px-2 py-1 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800",
+            class: "px-2 py-1 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-2 focus:outline-hidden focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800",
             data: { turbo_method: :delete, turbo_confirm: t(".form.account.cancel_confirm") } %>
         </h4>
         <%= link_to "< #{t(".actions.back")}", :back,
-          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" %>
+          class: "inline-block border border-gray-300 text-white bg-gray-800 hover:bg-gray-900 focus:outline-hidden focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" %>
       </div>
     </div>
   </div>

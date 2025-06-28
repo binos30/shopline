@@ -5,7 +5,7 @@ section class="bg-gray-50 dark:bg-gray-900"
     = link_to root_path,
       class: "flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white" do
       = image_tag("logo-no-background.svg", class: "w-14 h-14", alt: "logo")
-    div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    div class="w-full bg-white rounded-lg shadow-sm dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
       div class="p-6 space-y-4 md:space-y-6 sm:p-8"
         h1 class="h1-label" = t(".heading")
         = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "space-y-4 md:space-y-6" }) do |f|
@@ -26,8 +26,8 @@ section class="bg-gray-50 dark:bg-gray-900"
               .flex.items-start
                 .flex.items-center.h-5
                   = f.check_box :remember_me, "aria-describedby": "user_remember_me",
-                    class: ("w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700" \
-                      " dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800")
+                    class: ("w-4 h-4 border border-gray-300 rounded-sm bg-gray-50 focus:ring-3 focus:ring-primary-300" \
+                      " dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800")
                 .ml-3.text-sm
                   = f.label :remember_me, t(".form.remember_me"), class: "text-gray-500 dark:text-gray-300"
           = f.submit t(".form.submit"), class: "btn-primary"
