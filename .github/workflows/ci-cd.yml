@@ -191,7 +191,14 @@ jobs:
           github_deployment: true
           wait_deploy: true
 
-      - name: Notify Honeybadger about deployment
+  notify_honeybadger:
+    needs: deploy # Ensures notify_honeybadger runs only if deploy passes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🍯 Notify Honeybadger about deployment
         uses: honeybadger-io/github-notify-deploy-action@v1
         with:
           api_key: ${{ secrets.HONEYBADGER_API_KEY }}
