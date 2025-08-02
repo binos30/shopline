@@ -4,7 +4,7 @@ module ApplicationHelper
   include Pagy::Frontend
 
   def title(page_title)
-    content_for :title, "#{t(:title)} | #{page_title}"
+    content_for :title, "#{page_title} | #{t(:title)}"
   end
 
   # Returns a date in the format specified.
