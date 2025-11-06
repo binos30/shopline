@@ -87,7 +87,7 @@ RSpec.describe "/admin/products/1/stocks" do
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
         post admin_product_stocks_url(product), params: { stock: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end
@@ -113,7 +113,7 @@ RSpec.describe "/admin/products/1/stocks" do
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch admin_product_stock_url(product, stock), params: { stock: invalid_attributes }
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
   end

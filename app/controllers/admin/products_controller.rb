@@ -45,15 +45,15 @@ module Admin
           end
           format.json { render :show, status: :created, location: admin_product_url(@product) }
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @product.errors, status: :unprocessable_entity }
+          format.html { render :new, status: :unprocessable_content }
+          format.json { render json: @product.errors, status: :unprocessable_content }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
       respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @product.errors, status: :unprocessable_content }
       end
     end
 
@@ -67,15 +67,15 @@ module Admin
           end
           format.json { render :show, status: :ok, location: admin_product_url(@product) }
         else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @product.errors, status: :unprocessable_entity }
+          format.html { render :edit, status: :unprocessable_content }
+          format.json { render json: @product.errors, status: :unprocessable_content }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @product.errors.add(:base, e)
       respond_to do |format|
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @product.errors, status: :unprocessable_content }
       end
     end
 

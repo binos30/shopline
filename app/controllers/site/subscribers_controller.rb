@@ -16,7 +16,7 @@ module Site
       end
     rescue StandardError => e
       logger.tagged("Create Subscriber Error") { logger.error e }
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
 
     private

@@ -20,7 +20,7 @@ module Admin
     rescue ActiveRecord::RecordInvalid => e
       logger.tagged("Fulfill Order Error") { logger.error e.message }
       flash.now[:alert] = e.message
-      render :show, status: :unprocessable_entity
+      render :show, status: :unprocessable_content
     end
 
     private

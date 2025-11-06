@@ -15,7 +15,7 @@ class CheckoutProcessor < ApplicationService
     { url: session.url }
   rescue ActiveRecord::RecordInvalid, ActiveRecord::RecordNotFound => e
     Rails.logger.tagged("Checkout Error") { Rails.logger.error e }
-    { error: e.message, status: :unprocessable_entity }
+    { error: e.message, status: :unprocessable_content }
   end
 
   private

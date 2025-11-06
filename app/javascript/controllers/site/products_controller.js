@@ -57,6 +57,7 @@ export default class extends Controller {
     const addToCartBtn = document.getElementById("addToCartBtn");
     if (addToCartBtn.hasAttribute("disabled")) {
       addToCartBtn.removeAttribute("disabled");
+      addToCartBtn.classList.add("cursor-pointer");
     }
   }
 }

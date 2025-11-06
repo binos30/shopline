@@ -34,7 +34,7 @@ module Admin
                         notice: t("record.create", resource_name: t("resources.stock"), name: @stock.size)
           end
         else
-          format.html { render :new, status: :unprocessable_entity }
+          format.html { render :new, status: :unprocessable_content }
         end
       end
     end
@@ -48,7 +48,7 @@ module Admin
                         notice: t("record.update", resource_name: t("resources.stock"), name: @stock.size)
           end
         else
-          format.html { render :edit, status: :unprocessable_entity }
+          format.html { render :edit, status: :unprocessable_content }
         end
       end
     end

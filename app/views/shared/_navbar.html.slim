@@ -3,7 +3,7 @@ nav class="bg-white fixed w-full z-40 top-0 start-0 border-b border-gray-200"
     = link_to root_path, class: "flex items-center space-x-3 rtl:space-x-reverse" do
       = image_tag "logo-no-background.svg", class: "h-8", alt: "Shopline Logo"
       span class="self-center text-2xl font-semibold whitespace-nowrap" = t(:title)
-    div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse"
+    div class="flex items-center md:order-2 gap-2 rtl:space-x-reverse"
       = link_to cart_path, class: "text-gray-500 hover:text-gray-600 me-3 md:me-4" do
         div class="relative py-2"
           div class="t-0 absolute left-3"
@@ -13,7 +13,7 @@ nav class="bg-white fixed w-full z-40 top-0 start-0 border-b border-gray-200"
       - if user_signed_in?
         button[type="button" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
           data-dropdown-placement="bottom"
-          class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300"
+          class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 cursor-pointer"
         ]
           span class="sr-only" Open user menu
           = image_tag avatar, class: "w-8 h-8 rounded-full", alt: "user photo"

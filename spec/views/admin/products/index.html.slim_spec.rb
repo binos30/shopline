@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe "admin/products/index" do
-  before { @pagy, @products = pagy_array(build_stubbed_list(:product, 2)) }
+  before { @pagy, @products = pagy(:offset, build_stubbed_list(:product, 2)) }
 
   it "renders a list of admin/products" do
     render

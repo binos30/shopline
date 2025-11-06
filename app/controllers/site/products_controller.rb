@@ -10,7 +10,7 @@ module Site
           .available
           .active
           .order(:name)
-      @pagy, @products = pagy_countless(@products, limit: 10)
+      @pagy, @products = pagy(:countless, @products, limit: 10)
 
       respond_to do |format|
         format.html

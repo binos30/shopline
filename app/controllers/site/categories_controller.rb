@@ -9,7 +9,7 @@ module Site
           .filters(params.slice(:name))
           .active
           .order(:name)
-      @pagy, @categories = pagy_countless(@categories, limit: 10)
+      @pagy, @categories = pagy(:countless, @categories, limit: 10)
 
       respond_to do |format|
         format.html
@@ -27,7 +27,7 @@ module Site
           .available
           .active
           .order(:name)
-      @pagy, @products = pagy_countless(@products, limit: 10)
+      @pagy, @products = pagy(:countless, @products, limit: 10)
 
       respond_to do |format|
         format.html

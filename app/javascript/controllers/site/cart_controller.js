@@ -239,7 +239,7 @@ export default class extends Controller {
                 type="button"
                 id="decrement-button-${count}"
                 data-input-quantity-decrement="quantity-input-${count}"
-                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 cursor-pointer"
               >
                 <svg
                   class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -274,7 +274,7 @@ export default class extends Controller {
                 type="button"
                 id="increment-button-${count}"
                 data-input-quantity-increment="quantity-input-${count}"
-                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+                class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-hidden focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 cursor-pointer"
               >
                 <svg
                   class="h-2.5 w-2.5 text-gray-900 dark:text-white"
@@ -307,7 +307,7 @@ export default class extends Controller {
               </span>
               <button
                 type="button"
-                class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500"
+                class="inline-flex items-center text-sm font-medium text-red-600 hover:underline dark:text-red-500 cursor-pointer"
                 id="remove-btn-${count}"
               >
                 <svg

@@ -40,15 +40,15 @@ module Admin
           end
           format.json { render :show, status: :created, location: admin_category_url(@category) }
         else
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @category.errors, status: :unprocessable_entity }
+          format.html { render :new, status: :unprocessable_content }
+          format.json { render json: @category.errors, status: :unprocessable_content }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
       respond_to do |format|
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @category.errors, status: :unprocessable_content }
       end
     end
 
@@ -62,15 +62,15 @@ module Admin
           end
           format.json { render :show, status: :ok, location: admin_category_url(@category) }
         else
-          format.html { render :edit, status: :unprocessable_entity }
-          format.json { render json: @category.errors, status: :unprocessable_entity }
+          format.html { render :edit, status: :unprocessable_content }
+          format.json { render json: @category.errors, status: :unprocessable_content }
         end
       end
     rescue ActiveRecord::RecordNotUnique => e
       @category.errors.add(:base, e)
       respond_to do |format|
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @category.errors, status: :unprocessable_content }
       end
     end
 

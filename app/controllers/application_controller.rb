@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
+  include Pagy::Method
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
