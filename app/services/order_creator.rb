@@ -2,7 +2,7 @@
 
 class OrderCreator < ApplicationService
   MAX_RETRIES = 3
-  RETRY_DELAY = 2.seconds
+  RETRY_DELAY = 1.second
 
   def initialize(session)
     @session = session
@@ -16,7 +16,7 @@ class OrderCreator < ApplicationService
     rescue StandardError => e
       retries += 1
       if retries <= MAX_RETRIES
-        Rails.logger.warn "Order creation failed. Retrying in #{RETRY_DELAY} seconds... (Attempt #{retries}/#{MAX_RETRIES})"
+        Rails.logger.warn "Order creation failed. Retrying in #{RETRY_DELAY} second... (Attempt #{retries}/#{MAX_RETRIES})"
         sleep RETRY_DELAY
         retry # This is a Ruby keyword that retries the `begin` block
       else
