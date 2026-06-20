@@ -9,6 +9,12 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
+env:
+  NODE_VERSION: 24
+  # Keep Corepack's downloaded Yarn binary and Yarn's global cache in cacheable workspace paths.
+  COREPACK_HOME: .cache/corepack
+  YARN_GLOBAL_FOLDER: .cache/yarn/berry
+
 jobs:
   scan_ruby:
     runs-on: ubuntu-latest
@@ -35,6 +41,8 @@ jobs:
       actions: write
     env:
       RUBOCOP_CACHE_ROOT: tmp/rubocop
+      ESLINT_CACHE_KEY: eslint-main-cache
+      PRETTIER_CACHE_KEY: prettier-main-cache
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -45,14 +53,26 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Restore Corepack and Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/corepack
+            .cache/yarn/berry
+          key: yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-${{ hashFiles('package.json', 'yarn.lock', '.yarnrc.yml') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
-          cache: "yarn"
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Enable Corepack
         run: corepack enable
+
+      - name: Install Yarn via Corepack
+        run: corepack install
 
       - name: Install JavaScript dependencies
         run: yarn install --immutable
@@ -61,7 +81,7 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: .cache/eslint
-          key: eslint-main-cache
+          key: ${{ env.ESLINT_CACHE_KEY }}
 
       - name: Run ESLint
         run: yarn eslint-ci
@@ -72,7 +92,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.event.repository.full_name }}
         run: |
-          gh api --method DELETE /repos/{owner}/{repo}/actions/caches?key=eslint-main-cache ||
+          gh api --method DELETE /repos/{owner}/{repo}/actions/caches?key=${{ env.ESLINT_CACHE_KEY }} ||
             echo "ESLint cache not found"
 
       - name: Save ESLint cache
@@ -80,13 +100,13 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: .cache/eslint
-          key: eslint-main-cache
+          key: ${{ env.ESLINT_CACHE_KEY }}
 
       - name: Restore prettier cache
         uses: actions/cache/restore@v4
         with:
           path: .cache/prettier
-          key: prettier-main-cache
+          key: ${{ env.PRETTIER_CACHE_KEY }}
 
       - name: Run prettier
         run: yarn prettier-ci
@@ -97,7 +117,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.event.repository.full_name }}
         run: |
-          gh api --method DELETE /repos/{owner}/{repo}/actions/caches?key=prettier-main-cache ||
+          gh api --method DELETE /repos/{owner}/{repo}/actions/caches?key=${{ env.PRETTIER_CACHE_KEY }} ||
             echo "Prettier cache not found"
 
       - name: Save prettier cache
@@ -105,7 +125,7 @@ jobs:
         uses: actions/cache/save@v4
         with:
           path: .cache/prettier
-          key: prettier-main-cache
+          key: ${{ env.PRETTIER_CACHE_KEY }}
 
       - name: Prepare RuboCop cache
         uses: actions/cache@v4
@@ -154,20 +174,32 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
+      - name: Restore Corepack and Yarn cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .cache/corepack
+            .cache/yarn/berry
+          key: yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-${{ hashFiles('package.json', 'yarn.lock', '.yarnrc.yml') }}
+          restore-keys: |
+            yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
-          cache: "yarn"
+          node-version: ${{ env.NODE_VERSION }}
 
       - name: Enable Corepack
         run: corepack enable
+
+      - name: Install Yarn via Corepack
+        run: corepack install
 
       - name: Install JavaScript dependencies
         run: yarn install --immutable
 
       - name: Precompile assets
-        run: bin/bundle exec rake assets:precompile
+        run: bin/rails assets:precompile
 
       - name: Run tests
         env:
