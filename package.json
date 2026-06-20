@@ -30,10 +30,6 @@
   "bugs": {
     "url": "https://github.com/binos30/shopline/issues"
   },
-  "engines": {
-    "yarn": "4.5.0",
-    "node": "^20.15.1"
-  },
   "homepage": "https://shopline-t6yk.onrender.com",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.2.0",
@@ -66,5 +62,5 @@
     "stree": "bin/bundle exec stree check '**/*.{rake,rb}'",
     "stree-fix": "bin/bundle exec stree write '**/*.{rake,rb}'"
   },
-  "packageManager": "yarn@4.5.0"
+  "packageManager": "yarn@4.17.0"
 }

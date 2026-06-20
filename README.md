@@ -30,33 +30,50 @@ To enable error monitoring with Honeybadger:
 3. Get your project's API key from the project settings
 4. Add the API key to your `.env` file as `HONEYBADGER_API_KEY`
 
-Install dependencies and setup database
-
-```bash
-bin/setup
-```
-
 Re-enable git hooks _(Run this command only if you've already set up the application prior to the migration from husky to lefthook)_
 
 ```bash
 git config --unset core.hooksPath
 ```
 
-Run `lefthook install` to sync the git hooks
-
-Start local web server
+Install dependencies, setup database, and run the development server
 
 ```bash
-bin/dev
+bin/setup
 ```
 
 Go to [http://localhost:3000](http://localhost:3000)
+
+Action Mailer Previews
+
+[http://localhost:3000/rails/mailers](http://localhost:3000/rails/mailers)
 
 Use [Stripe CLI](https://docs.stripe.com/stripe-cli) to simulate Stripe events in your local environment or [learn more about Webhooks](https://docs.stripe.com/webhooks)
 
 ```bash
 stripe listen --forward-to localhost:3000/stripe_webhooks
 ```
+
+### Debugging
+
+The `bin/dev` script uses [foreman](https://github.com/ddollar/foreman) to run all processes (Rails server, Sidekiq, JS/CSS watchers) in a single terminal. While convenient, foreman doesn't support interactive debugging with `binding.irb` or `debugger` breakpoints because it multiplexes output from multiple processes.
+
+**Run processes individually** (recommended for debugging sessions)
+
+Instead of `bin/dev`, start each process in separate terminal tabs:
+
+```bash
+# Terminal 1 - Rails server (supports debugger)
+bin/rails s
+
+# Terminal 2 - JS watcher
+yarn build --watch
+
+# Terminal 3 - CSS watcher
+bin/rails tailwindcss:watch
+```
+
+This allows `binding.irb` and `debugger` to work normally in the Rails server terminal.
 
 ## Testing Payments
 
@@ -94,6 +111,12 @@ You can also run these actions locally before pushing to see if your run is like
 
   ```bash
   bin/bundler-audit --update
+  ```
+
+- [Yarn Audit](https://yarnpkg.com/cli/npm/audit) - Security audit npm dependencies
+
+  ```bash
+  yarn npm audit
   ```
 
 - [Rubocop Rails Omakase](https://github.com/rails/rubocop-rails-omakase) - Ruby Linter

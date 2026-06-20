@@ -46,8 +46,7 @@
 # Ignore Docker-related files
 /.dockerignore
 /Dockerfile*
-
-/docs/
+docker-compose.yml
 
 # Ignore yarn files
 .yarn/*
@@ -61,23 +60,28 @@ yarn-debug.log*
 .yarn-integrity
 
 .cache/
+.ruby-lsp/
+.vscode/
+coverage/
+docs/
+spec/
+test/
+test-results/
+
+.bundler-audit.yml
 .eslintcache
+.prettierignore
+.prettierrc.yml
+.rspec
+.rubocop.yml
+.slim-lint.yml
+.streerc
 
-# Created by https://www.toptal.com/developers/gitignore/api/visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=visualstudiocode
+eslint.config.mjs
+lefthook.yml
+Procfile.dev
 
-### VisualStudioCode ###
-.vscode/*
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
-
-# End of https://www.toptal.com/developers/gitignore/api/visualstudiocode
+# Legal and Documentation
+LICENSE
+README.md
+*.md
