@@ -11,9 +11,9 @@ concurrency:
 
 env:
   NODE_VERSION: 24
-  # Keep Corepack's downloaded Yarn binary and Yarn's global cache in cacheable workspace paths.
-  COREPACK_HOME: .cache/corepack
-  YARN_GLOBAL_FOLDER: .cache/yarn/berry
+  # Use absolute workspace paths so Corepack and Yarn caches can be restored safely across steps.
+  COREPACK_HOME: ${{ github.workspace }}/.cache/corepack
+  YARN_GLOBAL_FOLDER: ${{ github.workspace }}/.cache/yarn/berry
 
 jobs:
   scan_ruby:
@@ -57,8 +57,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            .cache/corepack
-            .cache/yarn/berry
+            ${{ env.COREPACK_HOME }}
+            ${{ env.YARN_GLOBAL_FOLDER }}
           key: yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-${{ hashFiles('package.json', 'yarn.lock', '.yarnrc.yml') }}
           restore-keys: |
             yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
@@ -178,8 +178,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: |
-            .cache/corepack
-            .cache/yarn/berry
+            ${{ env.COREPACK_HOME }}
+            ${{ env.YARN_GLOBAL_FOLDER }}
           key: yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-${{ hashFiles('package.json', 'yarn.lock', '.yarnrc.yml') }}
           restore-keys: |
             yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
