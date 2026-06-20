@@ -12,6 +12,6 @@ RSpec.describe "site/categories/show" do
 
   it "renders attribute" do
     render
-    expect(rendered).to match(/Category/)
+    expect(rendered).to include("Category")
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe "admin/stocks/show" do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/SZ/)
-    expect(rendered).to match(/50/)
+    expect(rendered).to include("SZ")
+    expect(rendered).to include("50")
   end
 end

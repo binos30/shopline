@@ -9,8 +9,8 @@ RSpec.describe "admin/products/show" do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Product/)
-    expect(rendered).to match(/Description/)
-    expect(rendered).to match(/100/)
+    expect(rendered).to include("Product")
+    expect(rendered).to include("Description")
+    expect(rendered).to include("100")
   end
 end

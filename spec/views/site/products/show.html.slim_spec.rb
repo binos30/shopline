@@ -12,6 +12,6 @@ RSpec.describe "site/products/show" do
 
   it "renders attribute" do
     render
-    expect(rendered).to match(/Product/)
+    expect(rendered).to include("Product")
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe "admin/orders/show" do
   it "renders attributes in <p>" do
     render
     expect(rendered).to match(/jd@gmail.com/)
-    expect(rendered).to match(/John Doe/)
-    expect(rendered).to match(/Customer Address/)
+    expect(rendered).to include("John Doe")
+    expect(rendered).to include("Customer Address")
   end
 end

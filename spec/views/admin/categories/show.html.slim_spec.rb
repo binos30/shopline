@@ -16,7 +16,7 @@ RSpec.describe "admin/categories/show" do
 
   it "renders attributes in <p>" do
     render
-    expect(rendered).to match(/Category/)
-    expect(rendered).to match(/Description/)
+    expect(rendered).to include("Category")
+    expect(rendered).to include("Description")
   end
 end
