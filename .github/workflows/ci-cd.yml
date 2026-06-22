@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -45,7 +45,7 @@ jobs:
       PRETTIER_CACHE_KEY: prettier-main-cache
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -54,7 +54,7 @@ jobs:
           bundler-cache: true
 
       - name: Restore Corepack and Yarn cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ${{ env.COREPACK_HOME }}
@@ -64,7 +64,7 @@ jobs:
             yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -78,7 +78,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Restore ESLint cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: .cache/eslint
           key: ${{ env.ESLINT_CACHE_KEY }}
@@ -97,13 +97,13 @@ jobs:
 
       - name: Save ESLint cache
         if: github.event_name == 'push'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: .cache/eslint
           key: ${{ env.ESLINT_CACHE_KEY }}
 
       - name: Restore prettier cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: .cache/prettier
           key: ${{ env.PRETTIER_CACHE_KEY }}
@@ -122,13 +122,13 @@ jobs:
 
       - name: Save prettier cache
         if: github.event_name == 'push'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: .cache/prettier
           key: ${{ env.PRETTIER_CACHE_KEY }}
 
       - name: Prepare RuboCop cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         env:
           DEPENDENCIES_HASH: ${{ hashFiles('.ruby-version', '**/.rubocop.yml', 'Gemfile.lock') }}
         with:
@@ -166,7 +166,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libvips postgresql-client libpq-dev
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -175,7 +175,7 @@ jobs:
           bundler-cache: true
 
       - name: Restore Corepack and Yarn cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ${{ env.COREPACK_HOME }}
@@ -185,7 +185,7 @@ jobs:
             yarn-${{ runner.os }}-node${{ env.NODE_VERSION }}-
 
       - name: Set up Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -211,7 +211,7 @@ jobs:
           bin/rspec
 
       - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: screenshots
@@ -227,10 +227,10 @@ jobs:
       deployments: write
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Deploy to Render
-        uses: JorgeLNJunior/render-deploy@v1.4.5
+        uses: JorgeLNJunior/render-deploy@v1.5.0
         with:
           service_id: ${{ secrets.RENDER_SERVICE_ID }}
           api_key: ${{ secrets.RENDER_API_KEY }}
@@ -243,7 +243,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 🍯 Notify Honeybadger about deployment
         uses: honeybadger-io/github-notify-deploy-action@v1
