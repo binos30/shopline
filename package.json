@@ -32,22 +32,22 @@
   },
   "homepage": "https://shopline-t6yk.onrender.com",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.2.0",
+    "@fortawesome/fontawesome-free": "^7.3.0",
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
     "@rails/actiontext": "^8.1.300",
     "chart.js": "^4.5.1",
     "debounce": "^3.0.0",
-    "flowbite": "^4.0.1",
+    "flowbite": "^4.0.2",
     "local-time": "^3.0.3",
-    "trix": "^2.1.18"
+    "trix": "^2.1.19"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "esbuild": "^0.28.1",
-    "eslint": "^10.2.1",
+    "eslint": "^10.6.0",
     "eslint-formatter-gha": "^2.0.1",
-    "globals": "^17.5.0",
+    "globals": "^17.7.0",
     "prettier": "^3.8.3"
   },
   "scripts": {
